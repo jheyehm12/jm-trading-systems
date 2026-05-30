@@ -6,6 +6,7 @@ import {
   Cpu,
   GitBranch,
   LineChart,
+  Play,
   ScanSearch,
   Sparkles,
   Target,
@@ -84,6 +85,36 @@ const additionalProjects = [
   },
 ]
 
+const aiAutomationProjects = [
+  {
+    banner: 'intake',
+    category: 'AI Workflow Automation',
+    title: 'Accounting Firm AI Intake Workflow',
+    copy: 'Built an AI-powered document intake workflow for an accounting firm where clients submit documents through a form. The system automatically reviews submissions, identifies missing information, assigns priority levels, generates accountant summaries, and drafts follow-up communications.',
+    features: [
+      'Automated document intake',
+      'AI-powered submission review',
+      'Missing information detection',
+      'Priority classification',
+      'Accountant summary generation',
+      'Automated follow-up drafting',
+      'Google Forms integration',
+      'Google Sheets tracking',
+    ],
+    tools: [
+      'Make.com',
+      'OpenAI',
+      'Google Forms',
+      'Google Sheets',
+      'Workflow Automation',
+    ],
+    outcome:
+      'Reduced manual review effort and streamlined client onboarding through AI-assisted workflow automation.',
+    demoUrl:
+      '[PASTE_YOUR_LOOM_URL_HERE](https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1)',
+  },
+]
+
 const coreSkills = [
   {
     icon: CandlestickChart,
@@ -135,6 +166,17 @@ const coreSkills = [
     title: 'VPS Deployment & Monitoring',
     copy: 'Deployment, runtime monitoring, and operational oversight for long-running automation.',
   },
+]
+
+const automationSkills = [
+  'Workflow Automation',
+  'AI Process Automation',
+  'Make.com',
+  'OpenAI Integration',
+  'Business Process Automation',
+  'Google Workspace Automation',
+  'API Integration',
+  'Document Processing Workflows',
 ]
 
 const workStyle = [
@@ -227,12 +269,22 @@ const toolVisuals = {
   'Futures': { kind: 'text', label: 'F' },
   'Git': { kind: 'image', src: 'https://cdn.simpleicons.org/git/F05032' },
   'GitHub': { kind: 'image', src: 'https://cdn.simpleicons.org/github/FFFFFF' },
+  'Google Forms': {
+    kind: 'image',
+    src: 'https://cdn.simpleicons.org/googleforms/7248B9',
+  },
+  'Google Sheets': {
+    kind: 'image',
+    src: 'https://cdn.simpleicons.org/googlesheets/34A853',
+  },
   'JIRA': { kind: 'image', src: 'https://cdn.simpleicons.org/jira/2684FF' },
   'Katalon': { kind: 'text', label: 'K' },
   'Katalon Studio': { kind: 'text', label: 'K' },
+  'Make.com': { kind: 'image', src: 'https://cdn.simpleicons.org/make/7B61FF' },
   'MQL5': { kind: 'text', label: 'MQ' },
   'MT4': { kind: 'text', label: 'MT4' },
   'MT5': { kind: 'text', label: 'MT5' },
+  'OpenAI': { kind: 'image', src: 'https://cdn.simpleicons.org/openai/FFFFFF' },
   'Pine Script': { kind: 'text', label: 'PS' },
   'Postman': { kind: 'image', src: 'https://cdn.simpleicons.org/postman/FF6C37' },
   'Python': { kind: 'image', src: 'https://cdn.simpleicons.org/python/3776AB' },
@@ -244,6 +296,7 @@ const toolVisuals = {
   },
   'VPS': { kind: 'text', label: 'VPS' },
   'Webhooks': { kind: 'icon', icon: Workflow },
+  'Workflow Automation': { kind: 'icon', icon: Workflow },
 }
 
 const fadeUp = {
@@ -257,6 +310,16 @@ const fadeUp = {
       ease: [0.22, 1, 0.36, 1],
     },
   }),
+}
+
+function resolveLinkHref(value) {
+  if (!value) {
+    return ''
+  }
+
+  const markdownMatch = value.match(/\((https?:\/\/[^)]+)\)$/)
+
+  return markdownMatch?.[1] ?? value
 }
 
 function SectionHeading({ eyebrow, title, copy, actionLabel, actionHref }) {
@@ -328,6 +391,17 @@ function StackBadge({ name }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/12 bg-cyan-400/6 px-3 py-1.5 text-[11px] font-medium text-cyan-100">
       <ToolLogo name={name} />
+      {name}
+    </span>
+  )
+}
+
+function BannerToolBadge({ name }) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/12 bg-[#0a1824]/88 px-3 py-2 text-[11px] font-medium text-cyan-50 shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur">
+      <span className="scale-[0.85]">
+        <ToolLogo name={name} />
+      </span>
       {name}
     </span>
   )
@@ -428,6 +502,57 @@ function ProjectBanner({ project }) {
     )
   }
 
+  if (project.banner === 'intake') {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_78%_24%,rgba(34,211,238,0.16),transparent_28%),radial-gradient(circle_at_18%_84%,rgba(99,102,241,0.16),transparent_30%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
+        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="absolute left-5 top-5 z-10 max-w-[11rem] sm:max-w-[13rem]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+            AI Workflow Automation
+          </p>
+          <p className="mt-3 text-[1.42rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[1.65rem]">
+            Accounting Firm Intake
+          </p>
+        </div>
+        <div className="absolute right-4 top-4 z-10 rounded-full border border-cyan-300/12 bg-cyan-300/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+          OpenAI + Make
+        </div>
+        <div className="absolute inset-x-0 top-1/2 z-10 hidden -translate-y-1/2 justify-center px-6 lg:flex lg:pl-[22rem] lg:pr-[17rem] xl:pl-[24rem] xl:pr-[18rem]">
+          <div className="flex max-w-3xl flex-wrap justify-center gap-3">
+            {project.tools.map((item) => (
+              <BannerToolBadge key={`banner-tool-${item}`} name={item} />
+            ))}
+          </div>
+        </div>
+        <div className="absolute bottom-5 left-5 flex h-20 w-20 flex-col justify-between rounded-[1.4rem] border border-cyan-300/14 bg-[#081824]/92 p-3 shadow-[0_14px_30px_rgba(0,0,0,0.34)]">
+          <div className="h-2 w-10 rounded-full bg-cyan-200/75" />
+          <div className="space-y-2">
+            <div className="h-2 w-full rounded-full bg-white/18" />
+            <div className="h-2 w-5/6 rounded-full bg-white/14" />
+            <div className="h-2 w-1/2 rounded-full bg-white/12" />
+          </div>
+        </div>
+        <div className="absolute bottom-5 right-5 h-24 w-40 rounded-[1.65rem] border border-cyan-300/14 bg-[#081824]/92 p-4 pl-[4.4rem] shadow-[0_16px_34px_rgba(0,0,0,0.36)]">
+          <div className="absolute left-3 top-3 flex h-12 w-12 items-center justify-center rounded-[1.2rem] border border-cyan-300/16 bg-cyan-300/8 text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.14)]">
+            <Workflow className="h-6 w-6" />
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-200/80">
+              Tracking
+            </span>
+            <Sparkles className="h-4 w-4 text-cyan-200" />
+          </div>
+          <div className="mt-4 space-y-3">
+            <div className="h-2 w-full rounded-full bg-cyan-300/65" />
+            <div className="h-2 w-5/6 rounded-full bg-cyan-300/45" />
+            <div className="h-2 w-3/4 rounded-full bg-cyan-300/35" />
+            <div className="h-2 w-2/3 rounded-full bg-cyan-300/25" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
       <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
@@ -506,6 +631,90 @@ function FeaturedProjectCard({ project, index }) {
           View Project
           <ArrowRight className="h-4 w-4" />
         </a>
+      </div>
+    </motion.article>
+  )
+}
+
+function AutomationProjectCard({ project, index }) {
+  const demoHref = resolveLinkHref(project.demoUrl)
+
+  return (
+    <motion.article
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeUp}
+      custom={index * 0.08}
+      className="group overflow-hidden rounded-[1.9rem] border border-cyan-400/10 bg-[#08131d] shadow-[0_24px_70px_rgba(0,0,0,0.32)]"
+    >
+      <div className="relative h-52 overflow-hidden border-b border-white/6">
+        <ProjectBanner project={project} />
+      </div>
+
+      <div className="grid gap-8 p-6 xl:grid-cols-[1.04fr_0.96fr] xl:p-8">
+        <div>
+          <span className="inline-flex rounded-full border border-cyan-400/12 bg-cyan-400/6 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            {project.category}
+          </span>
+          <h3 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-white">
+            {project.title}
+          </h3>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+            {project.copy}
+          </p>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {project.features.map((feature) => (
+              <div
+                key={feature}
+                className="rounded-[1.2rem] border border-white/6 bg-white/4 px-4 py-3"
+              >
+                <p className="text-sm text-slate-200">{feature}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="flex flex-wrap gap-2.5 lg:hidden">
+            {project.tools.map((item) => (
+              <StackBadge key={item} name={item} />
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-[1.5rem] border border-white/6 bg-white/4 p-5 lg:mt-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300/80">
+              Outcome
+            </p>
+            <p className="mt-3 text-sm leading-7 text-slate-200">
+              {project.outcome}
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={githubUrl}
+              rel="noreferrer"
+              target="_blank"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-[#041018] transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              View Project
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            {demoHref ? (
+              <a
+                href={demoHref}
+                rel="noreferrer"
+                target="_blank"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300/18 bg-white/3 px-5 py-3 text-sm font-semibold text-cyan-100 transition-colors duration-300 hover:bg-cyan-300/8"
+              >
+                <Play className="h-4 w-4" />
+                Watch Demo
+              </a>
+            ) : null}
+          </div>
+        </div>
       </div>
     </motion.article>
   )
@@ -1004,6 +1213,29 @@ function App() {
           </div>
         </section>
 
+        <section
+          id="ai-automation-projects"
+          className="relative border-b border-white/6 py-20"
+        >
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+            <SectionHeading
+              eyebrow="AI & Automation Projects"
+              title="AI-assisted workflow systems that support business operations without pulling focus away from trading development."
+              copy="This secondary project layer shows business automation, document processing, and OpenAI-connected workflow design using the same structured build mindset applied across trading systems."
+            />
+
+            <div className="mt-12">
+              {aiAutomationProjects.map((project, index) => (
+                <AutomationProjectCard
+                  key={project.title}
+                  index={index}
+                  project={project}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="skills" className="relative border-b border-white/6 py-20">
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <SectionHeading
@@ -1016,6 +1248,53 @@ function App() {
               {coreSkills.map((item, index) => (
                 <SkillCard key={item.title} index={index} item={item} />
               ))}
+            </div>
+
+            <div className="mt-10 grid gap-6 xl:grid-cols-[0.8fr_1.2fr]">
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeUp}
+                className="rounded-[1.7rem] border border-cyan-400/10 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_38%),linear-gradient(180deg,rgba(8,20,30,0.96),rgba(5,12,19,1))] p-6 shadow-[0_22px_54px_rgba(0,0,0,0.28)]"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300/80">
+                  AI & Automation
+                </p>
+                <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-white">
+                  Workflow and process automation skills that complement the main trading stack.
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  This category stays secondary to trading systems work, while
+                  showing practical experience building AI-assisted workflows,
+                  integration layers, and document-driven automation.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeUp}
+                custom={0.08}
+                className="rounded-[1.7rem] border border-cyan-400/10 bg-[#07131d] p-6 shadow-[0_22px_54px_rgba(0,0,0,0.28)]"
+              >
+                <div className="flex flex-wrap gap-3">
+                  {automationSkills.map((skill, index) => (
+                    <motion.div
+                      key={skill}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.25 }}
+                      variants={fadeUp}
+                      custom={index * 0.03}
+                      className="rounded-full border border-cyan-400/12 bg-cyan-400/6 px-4 py-2.5 text-sm font-medium text-cyan-100"
+                    >
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
