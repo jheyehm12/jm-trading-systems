@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react'
 
 const githubUrl = 'https://github.com/jheyehm12'
+const aiAutomationHash = '#ai-automation'
 
 const featuredProjects = [
   {
@@ -234,6 +236,9 @@ const tools = [
   'Python',
   'TradingView',
   'FastAPI',
+  'Make.com',
+  'OpenAI',
+  'Claude',
   'Git',
   'GitHub',
   'CSV Logging',
@@ -280,11 +285,12 @@ const toolVisuals = {
   'JIRA': { kind: 'image', src: 'https://cdn.simpleicons.org/jira/2684FF' },
   'Katalon': { kind: 'text', label: 'K' },
   'Katalon Studio': { kind: 'text', label: 'K' },
+  Claude: { kind: 'text', label: 'CL' },
   'Make.com': { kind: 'image', src: 'https://cdn.simpleicons.org/make/7B61FF' },
   'MQL5': { kind: 'text', label: 'MQ' },
   'MT4': { kind: 'text', label: 'MT4' },
   'MT5': { kind: 'text', label: 'MT5' },
-  'OpenAI': { kind: 'image', src: 'https://cdn.simpleicons.org/openai/FFFFFF' },
+  OpenAI: { kind: 'text', label: 'AI' },
   'Pine Script': { kind: 'text', label: 'PS' },
   'Postman': { kind: 'image', src: 'https://cdn.simpleicons.org/postman/FF6C37' },
   'Python': { kind: 'image', src: 'https://cdn.simpleicons.org/python/3776AB' },
@@ -693,15 +699,6 @@ function AutomationProjectCard({ project, index }) {
           </div>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={githubUrl}
-              rel="noreferrer"
-              target="_blank"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-[#041018] transition-transform duration-300 hover:-translate-y-0.5"
-            >
-              View Project
-              <ArrowRight className="h-4 w-4" />
-            </a>
             {demoHref ? (
               <a
                 href={demoHref}
@@ -778,6 +775,87 @@ function SkillCard({ item, index }) {
 }
 
 function App() {
+  useLayoutEffect(() => {
+    const getAiAutomationSection = () => {
+      if (window.location.hash !== aiAutomationHash) {
+        return null
+      }
+
+      const section = document.getElementById('ai-automation')
+
+      if (!section) {
+        return null
+      }
+
+      return section
+    }
+
+    const scrollToAiAutomationSection = (behavior = 'smooth') => {
+      const section = getAiAutomationSection()
+
+      if (!section) {
+        return
+      }
+
+      window.requestAnimationFrame(() => {
+        section.scrollIntoView({
+          behavior,
+          block: 'start',
+        })
+      })
+    }
+
+    const ensureAiAutomationSectionPosition = () => {
+      const section = getAiAutomationSection()
+
+      if (!section) {
+        return
+      }
+
+      if (Math.abs(section.getBoundingClientRect().top) > 120) {
+        section.scrollIntoView({
+          behavior: 'auto',
+          block: 'start',
+        })
+      }
+    }
+
+    const initialSection = getAiAutomationSection()
+
+    if (initialSection) {
+      initialSection.scrollIntoView({
+        behavior: 'auto',
+        block: 'start',
+      })
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      scrollToAiAutomationSection('smooth')
+    }, 140)
+    const fallbackId = window.setTimeout(ensureAiAutomationSectionPosition, 900)
+    const lateFallbackId = window.setTimeout(
+      ensureAiAutomationSectionPosition,
+      1800,
+    )
+
+    const handleHashChange = () => {
+      scrollToAiAutomationSection('smooth')
+      window.setTimeout(ensureAiAutomationSectionPosition, 700)
+    }
+
+    window.addEventListener('load', ensureAiAutomationSectionPosition)
+
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+      window.clearTimeout(fallbackId)
+      window.clearTimeout(lateFallbackId)
+      window.removeEventListener('load', ensureAiAutomationSectionPosition)
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#040b12] text-white">
       <main className="relative overflow-hidden bg-[linear-gradient(180deg,#03080f_0%,#06111a_38%,#040b12_100%)]">
@@ -1092,7 +1170,7 @@ function App() {
             <SectionHeading
               eyebrow="Supporting Strength"
               title="QA Foundation"
-              copy="9+ years of QA experience applied to trading system development. I use structured testing, regression checks, replay validation, log review, edge-case testing, and automation testing to make trading systems more reliable before live use."
+              copy="10+ years of QA experience applied to trading system development. I use structured testing, regression checks, replay validation, log review, edge-case testing, and automation testing to make trading systems more reliable before live use."
             />
 
             <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
@@ -1109,7 +1187,7 @@ function App() {
                       Reliability Layer
                     </p>
                     <p className="mt-4 text-5xl font-semibold tracking-[-0.05em] text-white">
-                      9+ Years
+                      10+ Years
                     </p>
                   </div>
                   <div className="rounded-2xl border border-cyan-300/12 bg-cyan-300/8 p-3 text-cyan-200">
@@ -1214,8 +1292,8 @@ function App() {
         </section>
 
         <section
-          id="ai-automation-projects"
-          className="relative border-b border-white/6 py-20"
+          id="ai-automation"
+          className="relative scroll-mt-24 border-b border-white/6 py-20 sm:scroll-mt-28"
         >
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <SectionHeading
