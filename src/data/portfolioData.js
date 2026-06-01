@@ -357,7 +357,7 @@ export const tools = [
 export const aboutHighlights = [
   'Trader since 2020',
   'Software & Automation Developer since 2023',
-  '9+ Years QA & Validation Experience',
+  '10+ Years QA & Validation Experience',
   'Trading Systems & AI Automation Specialist',
   'MT4/MT5 • TradingView • Python • React',
   'Scalable Architecture & Validation-First Design',
