@@ -11,7 +11,6 @@ export const navItems = [
   },
   { label: 'Skills', to: '/skills' },
   { label: 'Services', to: '/services' },
-  { label: 'Contact', to: '/contact' },
 ]
 
 export const projectRoutes = [
