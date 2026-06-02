@@ -161,7 +161,7 @@ export function SiteNav() {
                 </button>
                 <div
                   className={`overflow-hidden transition-[max-height] duration-300 ease-out ${
-                    mobileProjectsOpen ? 'max-h-56' : 'max-h-0'
+                    mobileProjectsOpen ? 'max-h-72' : 'max-h-0'
                   }`}
                 >
                   <div className="flex flex-col gap-0.5 border-l border-cyan-300/12 py-1 pl-4">

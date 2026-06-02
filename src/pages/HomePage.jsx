@@ -9,11 +9,18 @@ import {
   Target,
 } from 'lucide-react'
 import { PageShell } from '../components/PageShell'
+import {
+  FeaturedProjectCard,
+  HomeFeaturedTradeVaultCard,
+} from '../components/ProjectCards'
 import { SectionHeading } from '../components/SectionHeading'
 import {
+  aboutContent,
   aboutHighlights,
   dashboardBars,
   deskRows,
+  featuredProjects,
+  fullStackTradingProjects,
   githubUrl,
 } from '../data/portfolioData'
 import { fadeUp } from '../lib/animations'
@@ -38,7 +45,7 @@ export function HomePage() {
               <h1 className="mt-8 max-w-5xl font-semibold tracking-[-0.07em]">
                 <span className="block max-w-4xl text-[1.15rem] leading-snug text-white sm:text-[1.35rem] lg:text-[1.5rem]">
                   Algorithmic Trading Developer • AI Automation Engineer • Full
-                  Stack Developer
+                  Stack Trading Applications
                 </span>
                 <span className="mt-4 block bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-[2.6rem] leading-[1.02] text-transparent sm:text-[3.6rem] lg:text-[4.5rem]">
                   Building Intelligent Trading Systems
@@ -46,14 +53,8 @@ export function HomePage() {
               </h1>
 
               <p className="mt-7 max-w-3xl text-xl font-medium leading-8 text-slate-200 sm:text-2xl">
-                Trading systems, AI automation, and full-stack solutions built
-                with validation-first thinking.
-              </p>
-
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-                I build trading platforms, automation workflows, and modern web
-                applications with a focus on clean logic, reliable execution,
-                replay validation, and real-world usability.
+                Trading systems, AI automation, and full stack trading
+                applications built with a validation-first approach.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -240,11 +241,32 @@ export function HomePage() {
       </section>
 
       <section className="relative border-b border-white/6 py-20">
+        <PageShell>
+          <SectionHeading
+            eyebrow="Featured Work"
+            title="Flagship trading systems and full stack trading applications."
+            copy="MyAlert AI and TradeVault represent core trading systems expertise extended into AI-assisted decision workflows and production SaaS delivery."
+          />
+
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <FeaturedProjectCard
+              project={featuredProjects[0]}
+              index={0}
+            />
+            <HomeFeaturedTradeVaultCard
+              project={fullStackTradingProjects[0]}
+              index={1}
+            />
+          </div>
+        </PageShell>
+      </section>
+
+      <section className="relative border-b border-white/6 py-20">
         <PageShell className="!pt-0">
           <SectionHeading
             eyebrow="About"
-            title="Building trading systems, AI automation, and software solutions with a validation-first mindset."
-            copy="Trader since 2020 and software developer focused on trading systems, AI automation, and workflow solutions. My background in quality assurance and validation helps ensure systems are built with reliability, scalability, and real-world usability in mind."
+            title={aboutContent.title}
+            copy={aboutContent.copy}
           />
 
           <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
@@ -259,15 +281,10 @@ export function HomePage() {
                 Validation-First Development
               </p>
               <p className="mt-5 text-lg leading-8 text-slate-300">
-                JM Trading Systems combines trading domain knowledge, automation
-                engineering, and software development experience. Projects are
-                built with a strong focus on maintainability, structured
-                architecture, testing, validation, and long-term scalability.
+                {aboutContent.validationIntro}
               </p>
               <p className="mt-5 text-lg leading-8 text-slate-300">
-                Whether developing MT4/MT5 systems, TradingView strategies,
-                AI-powered workflows, or business applications, the goal remains
-                the same: reliable solutions designed for real-world use.
+                {aboutContent.validationDetail}
               </p>
             </motion.div>
 

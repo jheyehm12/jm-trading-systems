@@ -12,12 +12,14 @@ export function ProjectsOverviewPage() {
       <PageShell>
         <SectionHeading
           eyebrow="Projects"
-          title="Portfolio work across trading systems, AI automation, and QA validation."
-          copy="Explore featured development work organized by focus area. Each category keeps the same structured build mindset applied across trading infrastructure, workflow automation, and reliability review."
+          title="Portfolio work across trading systems, full stack trading apps, AI automation, and QA validation."
+          copy="Explore development work organized by focus area. Trading systems remain the core specialization, with supporting proof in SaaS delivery, workflow automation, and validation discipline."
         />
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {projectRoutes.map((route, index) => (
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
+          {[...projectRoutes]
+            .sort((a, b) => (a.sortOrder ?? 99) - (b.sortOrder ?? 99))
+            .map((route, index) => (
             <motion.article
               key={route.to}
               initial="hidden"
@@ -25,8 +27,18 @@ export function ProjectsOverviewPage() {
               viewport={{ once: true, amount: 0.25 }}
               variants={fadeUp}
               custom={index * 0.08}
-              className="flex min-w-0 flex-col rounded-[1.75rem] border border-cyan-400/10 bg-[#07131d] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.32)]"
+              className={[
+                'relative flex min-w-0 flex-col rounded-[1.75rem] border bg-[#07131d] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.32)]',
+                route.featured
+                  ? 'border-cyan-400/18 ring-1 ring-cyan-400/10'
+                  : 'border-cyan-400/10',
+              ].join(' ')}
             >
+              {route.featured ? (
+                <span className="mb-4 inline-flex w-fit rounded-full border border-cyan-300/16 bg-cyan-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                  Featured
+                </span>
+              ) : null}
               <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
                 {route.title}
               </h3>

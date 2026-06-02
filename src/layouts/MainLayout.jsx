@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Outlet, useLocation } from 'react-router-dom'
+import { SiteFooter } from '../components/SiteFooter'
 import { SiteNav } from '../components/SiteNav'
 
 export function MainLayout() {
@@ -33,6 +34,7 @@ export function MainLayout() {
           </motion.div>
         </AnimatePresence>
       </main>
+      <SiteFooter />
     </div>
   )
 }

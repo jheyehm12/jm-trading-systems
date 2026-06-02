@@ -7,6 +7,7 @@ import { ProjectsOverviewPage } from './pages/ProjectsOverviewPage'
 import { QAValidationProjectsPage } from './pages/QAValidationProjectsPage'
 import { ServicesPage } from './pages/ServicesPage'
 import { SkillsPage } from './pages/SkillsPage'
+import { FullStackTradingPage } from './pages/FullStackTradingPage'
 import { TradingProjectsPage } from './pages/TradingProjectsPage'
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="projects" element={<ProjectsOverviewPage />} />
           <Route path="projects/trading" element={<TradingProjectsPage />} />
+          <Route
+            path="projects/full-stack"
+            element={<FullStackTradingPage />}
+          />
           <Route
             path="projects/ai-automation"
             element={<AIAutomationProjectsPage />}

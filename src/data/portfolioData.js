@@ -40,6 +40,7 @@ export const githubUrl = 'https://github.com/jheyehm12'
 export const featuredProjects = [
   {
     banner: 'ai',
+    featured: true,
     title: 'MyAlert AI Decision System',
     copy: 'AI-assisted trading decision framework built around TradingView alerts, backend processing, structured logging, replay validation, and automation-ready workflows.',
     tools: ['Python', 'TradingView', 'FastAPI', 'Webhooks', 'CSV Logging', 'Telegram'],
@@ -50,7 +51,7 @@ export const featuredProjects = [
     title: 'LookBack TradingView Strategy',
     copy: 'Advanced TradingView futures system focused on contextual market analysis, replay-driven validation, execution refinement, and structured workflow design for discretionary and semi-systematic trading environments.',
     tools: ['TradingView', 'Pine Script', 'Futures', 'Replay Validation'],
-    tags: ['NDA Safe', 'Contextual Analysis', 'Workflow Design'],
+    tags: ['Contextual Analysis', 'Workflow Design', 'Replay Validation'],
   },
   {
     banner: 'ea',
@@ -142,6 +143,52 @@ export const aiAutomationProjects = [
       'Reduced manual review effort and streamlined client onboarding through AI-assisted workflow automation.',
     demoUrl:
       '[PASTE_YOUR_LOOM_URL_HERE](https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1)',
+  },
+]
+
+export const fullStackTradingProjects = [
+  {
+    banner: 'tradevault',
+    featured: true,
+    category: 'Full Stack Trading SaaS',
+    title: 'TradeVault',
+    subtitle: 'Trading Journal & Analytics SaaS',
+    copy: 'TradeVault is a full stack trading journal and analytics SaaS built for traders to track, manage, and analyze trading performance through secure authentication, trade journaling, performance dashboards, and interactive visualizations.',
+    features: [
+      'User registration & authentication',
+      'Protected routes & session handling',
+      'Trading dashboard & trade CRUD',
+      'Win rate & total P&L tracking',
+      'Risk/reward & best/worst trade analysis',
+      'Equity curve & monthly performance charts',
+      'Win/loss breakdown & P&L by symbol',
+      'Supabase RLS & PostgreSQL integration',
+    ],
+    tools: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Supabase',
+      'PostgreSQL',
+      'React Router',
+      'Recharts',
+      'Tailwind CSS',
+      'Vercel',
+    ],
+    tags: [
+      'Trading SaaS',
+      'Auth & RLS',
+      'Analytics Dashboard',
+      'Trade CRUD',
+      'Performance Tracking',
+      'Responsive UI',
+    ],
+    outcome:
+      'Built a production-ready trader-focused SaaS application that demonstrates full stack delivery while staying aligned with trading systems and validation-focused development.',
+    demoUrl:
+      'https://www.loom.com/share/6bf544a1f76d4988b75ea54a85a37aa4',
+    liveUrl: 'https://trade-vault2.vercel.app/',
+    githubUrl: githubUrl,
   },
 ]
 
@@ -237,6 +284,7 @@ export const serviceCategories = [
       'Build Pine Script indicators and strategies',
       'Build or modify MT5 EAs',
       'Backtesting and optimization',
+      'Trading Journal & Analytics Platforms',
     ],
   },
   {
@@ -251,10 +299,10 @@ export const serviceCategories = [
     ],
   },
   {
-    title: 'Full Stack Development',
+    title: 'Full Stack Trading Apps',
     icon: Layers3,
     description:
-      'Building modern web applications, client portals, dashboards, automation interfaces, and integrated business systems with a focus on usability, scalability, and maintainability.',
+      'Trader-focused web applications including journals, analytics dashboards, client portals, and integrated business systems with a focus on usability, scalability, and maintainability.',
     items: [
       { label: 'React Development', icon: Atom },
       { label: 'JavaScript / TypeScript', icon: FileCode2 },
@@ -357,11 +405,21 @@ export const tools = [
 export const aboutHighlights = [
   'Trader since 2020',
   'Software & Automation Developer since 2023',
-  '10+ Years QA & Validation Experience',
-  'Trading Systems & AI Automation Specialist',
+  '9+ Years QA & Validation Experience',
   'MT4/MT5 • TradingView • Python • React',
+  'TradeVault • Full Stack Trading SaaS',
   'Scalable Architecture & Validation-First Design',
 ]
+
+export const aboutContent = {
+  title:
+    'Building trading systems, AI automation, and trader-focused software with a validation-first mindset.',
+  copy: 'Trader since 2020 and software developer focused on trading systems development, AI automation, full stack trading applications, and workflow solutions. My background in quality assurance and validation helps ensure systems are built with reliability, scalability, and real-world usability in mind.',
+  validationIntro:
+    'JM Trading Systems combines trading domain knowledge, automation engineering, and software development experience across MT4/MT5 systems, TradingView strategies, AI-powered workflows, and trader-facing SaaS platforms.',
+  validationDetail:
+    'Projects are built with a strong focus on maintainability, structured architecture, testing, validation, and long-term scalability—whether the deliverable is an EA, automation pipeline, or a production trading application like TradeVault.',
+}
 
 export const dashboardBars = [26, 38, 34, 52, 46, 72, 64, 88, 76, 104, 94, 122]
 

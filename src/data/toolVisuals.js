@@ -44,7 +44,25 @@ export const toolVisuals = {
   'Pine Script': { kind: 'text', label: 'PS' },
   'Postman': { kind: 'image', src: 'https://cdn.simpleicons.org/postman/FF6C37' },
   'Python': { kind: 'image', src: 'https://cdn.simpleicons.org/python/3776AB' },
+  'PostgreSQL': {
+    kind: 'image',
+    src: 'https://cdn.simpleicons.org/postgresql/4169E1',
+  },
+  'React': { kind: 'image', src: 'https://cdn.simpleicons.org/react/61DAFB' },
+  'Recharts': { kind: 'icon', icon: LineChart },
+  'React Router': { kind: 'icon', icon: GitBranch },
   'Replay Validation': { kind: 'icon', icon: LineChart },
+  'Supabase': { kind: 'image', src: 'https://cdn.simpleicons.org/supabase/3FCF8E' },
+  'Tailwind CSS': {
+    kind: 'image',
+    src: 'https://cdn.simpleicons.org/tailwindcss/06B6D4',
+  },
+  'TypeScript': {
+    kind: 'image',
+    src: 'https://cdn.simpleicons.org/typescript/3178C6',
+  },
+  'Vercel': { kind: 'image', src: 'https://cdn.simpleicons.org/vercel/FFFFFF' },
+  'Vite': { kind: 'image', src: 'https://cdn.simpleicons.org/vite/646CFF' },
   'Telegram': { kind: 'image', src: 'https://cdn.simpleicons.org/telegram/26A5E4' },
   'TradingView': {
     kind: 'image',

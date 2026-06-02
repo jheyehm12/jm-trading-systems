@@ -1,16 +1,77 @@
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
+  BarChart3,
   BrainCircuit,
   Cpu,
+  ExternalLink,
+  GitBranch,
+  LineChart,
   Play,
   Sparkles,
   Workflow,
 } from 'lucide-react'
 import { githubUrl } from '../data/portfolioData'
 import { fadeUp } from '../lib/animations'
-import { resolveLinkHref } from '../lib/resolveLinkHref'
+import { getValidUrl } from '../lib/getValidUrl'
 import { BannerToolBadge, StackBadge } from './ToolLogo'
+
+function FeaturedBadge() {
+  return (
+    <span className="absolute right-4 top-4 z-20 rounded-full border border-cyan-300/20 bg-cyan-300/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100 shadow-[0_8px_24px_rgba(0,0,0,0.28)]">
+      Featured
+    </span>
+  )
+}
+
+export function ProjectActionButtons({
+  demoUrl,
+  liveUrl,
+  githubUrl: repoUrl,
+  className = 'mt-6 flex flex-col gap-3 sm:flex-row',
+}) {
+  const demoHref = getValidUrl(demoUrl)
+  const liveHref = getValidUrl(liveUrl)
+  const repoHref = getValidUrl(repoUrl) || githubUrl
+
+  return (
+    <div className={className}>
+      {demoHref ? (
+        <a
+          href={demoHref}
+          rel="noreferrer"
+          target="_blank"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-[#041018] transition-transform duration-300 hover:-translate-y-0.5"
+        >
+          <Play className="h-4 w-4" />
+          Watch Demo
+        </a>
+      ) : null}
+      {liveHref ? (
+        <a
+          href={liveHref}
+          rel="noreferrer"
+          target="_blank"
+          className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300/18 bg-white/3 px-5 py-3 text-sm font-semibold text-cyan-100 transition-colors duration-300 hover:bg-cyan-300/8"
+        >
+          <ExternalLink className="h-4 w-4" />
+          Live App
+        </a>
+      ) : null}
+      {repoHref ? (
+        <a
+          href={repoHref}
+          rel="noreferrer"
+          target="_blank"
+          className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300/18 bg-white/3 px-5 py-3 text-sm font-semibold text-cyan-100 transition-colors duration-300 hover:bg-cyan-300/8"
+        >
+          <GitBranch className="h-4 w-4" />
+          View GitHub
+        </a>
+      ) : null}
+    </div>
+  )
+}
 
 export function ProjectBanner({ project }) {
   if (project.banner === 'ai') {
@@ -90,6 +151,60 @@ export function ProjectBanner({ project }) {
           <div className="h-16 w-16 rounded-full border border-cyan-300/18 bg-cyan-300/8 shadow-[0_0_30px_rgba(34,211,238,0.18)] sm:h-18 sm:w-18" />
           <div className="relative flex h-24 w-24 items-center justify-center rounded-[1.85rem] border border-cyan-300/16 bg-[#091824]/90 shadow-[0_16px_32px_rgba(0,0,0,0.38)] sm:h-28 sm:w-28">
             <Cpu className="h-12 w-12 text-cyan-200 sm:h-14 sm:w-14" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (project.banner === 'tradevault') {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_72%_22%,rgba(34,211,238,0.2),transparent_32%),radial-gradient(circle_at_12%_88%,rgba(99,102,241,0.14),transparent_34%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
+        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="absolute left-5 top-5 z-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+            Full Stack Trading SaaS
+          </p>
+          <p className="mt-3 text-[1.65rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[1.9rem]">
+            TradeVault
+          </p>
+          <p className="mt-1 text-sm text-slate-300">
+            Trading Journal & Analytics
+          </p>
+        </div>
+        <div className="absolute right-4 top-4 z-10 flex gap-2">
+          <span className="rounded-full border border-cyan-300/12 bg-cyan-300/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+            React
+          </span>
+          <span className="rounded-full border border-cyan-300/12 bg-cyan-300/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+            Supabase
+          </span>
+        </div>
+        <div className="absolute bottom-5 left-5 right-5 z-10 flex items-end justify-between gap-4">
+          <div className="h-24 flex-1 rounded-2xl border border-cyan-300/12 bg-[#081622]/90 p-3">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-200/80">
+                Equity Curve
+              </span>
+              <LineChart className="h-4 w-4 text-cyan-200" />
+            </div>
+            <svg className="h-14 w-full" fill="none" viewBox="0 0 200 56">
+              <path
+                d="M4 44L28 38L52 40L76 28L100 32L124 18L148 22L172 12L196 8"
+                stroke="#55f3e5"
+                strokeLinecap="round"
+                strokeWidth="2.5"
+              />
+            </svg>
+          </div>
+          <div className="w-28 rounded-2xl border border-cyan-300/12 bg-[#081622]/90 p-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-200/80">
+                Win Rate
+              </span>
+              <BarChart3 className="h-4 w-4 text-cyan-200" />
+            </div>
+            <p className="mt-2 text-2xl font-semibold text-white">68%</p>
           </div>
         </div>
       </div>
@@ -180,6 +295,8 @@ export function ProjectBanner({ project }) {
 }
 
 export function FeaturedProjectCard({ project, index }) {
+  const isFeatured = project.featured
+
   return (
     <motion.article
       initial="hidden"
@@ -187,8 +304,14 @@ export function FeaturedProjectCard({ project, index }) {
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeUp}
       custom={index * 0.08}
-      className="group min-w-0 overflow-hidden rounded-[1.75rem] border border-cyan-400/10 bg-[#08131d] shadow-[0_24px_70px_rgba(0,0,0,0.32)]"
+      className={[
+        'group relative min-w-0 overflow-hidden rounded-[1.75rem] border bg-[#08131d] shadow-[0_24px_70px_rgba(0,0,0,0.32)]',
+        isFeatured
+          ? 'border-cyan-400/20 ring-1 ring-cyan-400/12'
+          : 'border-cyan-400/10',
+      ].join(' ')}
     >
+      {isFeatured ? <FeaturedBadge /> : null}
       <div className="relative h-48 overflow-hidden border-b border-white/6">
         <ProjectBanner project={project} />
       </div>
@@ -231,7 +354,7 @@ export function FeaturedProjectCard({ project, index }) {
 }
 
 export function AutomationProjectCard({ project, index }) {
-  const demoHref = resolveLinkHref(project.demoUrl)
+  const demoHref = getValidUrl(project.demoUrl)
 
   return (
     <motion.article
@@ -299,6 +422,154 @@ export function AutomationProjectCard({ project, index }) {
               </a>
             ) : null}
           </div>
+        </div>
+      </div>
+    </motion.article>
+  )
+}
+
+export function HomeFeaturedTradeVaultCard({ project, index }) {
+  return (
+    <motion.article
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeUp}
+      custom={index * 0.08}
+      className="group relative min-w-0 overflow-hidden rounded-[1.75rem] border border-cyan-400/20 bg-[#08131d] shadow-[0_24px_70px_rgba(0,0,0,0.32)] ring-1 ring-cyan-400/12"
+    >
+      <FeaturedBadge />
+      <div className="relative h-48 overflow-hidden border-b border-white/6">
+        <ProjectBanner project={project} />
+      </div>
+
+      <div className="p-6">
+        <span className="inline-flex rounded-full border border-cyan-400/12 bg-cyan-400/6 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
+          {project.category}
+        </span>
+        <h3 className="mt-4 text-xl font-semibold tracking-[-0.03em] text-white">
+          {project.title}
+        </h3>
+        {project.subtitle ? (
+          <p className="mt-1 text-sm font-medium text-cyan-200/90">
+            {project.subtitle}
+          </p>
+        ) : null}
+        <p className="mt-3 text-sm leading-7 text-slate-300">{project.copy}</p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.tags?.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/8 bg-white/4 px-3 py-1.5 text-[11px] font-medium text-slate-200"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <ProjectActionButtons
+          demoUrl={project.demoUrl}
+          liveUrl={project.liveUrl}
+          githubUrl={project.githubUrl}
+          className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+        />
+      </div>
+    </motion.article>
+  )
+}
+
+export function ShowcaseProjectCard({ project, index }) {
+  const isFeatured = project.featured
+
+  return (
+    <motion.article
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeUp}
+      custom={index * 0.08}
+      className={[
+        'group relative min-w-0 overflow-hidden rounded-[1.9rem] border bg-[#08131d] shadow-[0_24px_70px_rgba(0,0,0,0.32)]',
+        isFeatured
+          ? 'border-cyan-400/20 ring-1 ring-cyan-400/12'
+          : 'border-cyan-400/10',
+      ].join(' ')}
+    >
+      {isFeatured ? <FeaturedBadge /> : null}
+      <div className="relative h-52 overflow-hidden border-b border-white/6 sm:h-56">
+        <ProjectBanner project={project} />
+      </div>
+
+      <div className="grid gap-8 p-6 xl:grid-cols-[1.04fr_0.96fr] xl:p-8">
+        <div>
+          <span className="inline-flex rounded-full border border-cyan-400/12 bg-cyan-400/6 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            {project.category}
+          </span>
+          <h3 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-white">
+            {project.title}
+          </h3>
+          {project.subtitle ? (
+            <p className="mt-2 text-sm font-medium text-cyan-200/90">
+              {project.subtitle}
+            </p>
+          ) : null}
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+            {project.copy}
+          </p>
+
+          {project.tags?.length ? (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/8 bg-white/4 px-3 py-1.5 text-[11px] font-medium text-slate-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {project.features.map((feature) => (
+              <div
+                key={feature}
+                className="rounded-[1.2rem] border border-white/6 bg-white/4 px-4 py-3"
+              >
+                <p className="text-sm text-slate-200">{feature}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="flex flex-wrap gap-2.5 lg:hidden">
+            {project.tools.map((item) => (
+              <StackBadge key={item} name={item} />
+            ))}
+          </div>
+
+          <div className="hidden flex-wrap gap-2.5 lg:flex">
+            {project.tools.map((item) => (
+              <StackBadge key={item} name={item} />
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-[1.5rem] border border-white/6 bg-white/4 p-5 lg:mt-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300/80">
+              Key Outcome
+            </p>
+            <p className="mt-3 text-sm leading-7 text-slate-200">
+              {project.outcome}
+            </p>
+          </div>
+
+          <ProjectActionButtons
+            demoUrl={project.demoUrl}
+            liveUrl={project.liveUrl}
+            githubUrl={project.githubUrl}
+          />
         </div>
       </div>
     </motion.article>
