@@ -142,7 +142,7 @@ export const aiAutomationProjects = [
     outcome:
       'Reduced manual review effort and streamlined client onboarding through AI-assisted workflow automation.',
     demoUrl:
-      '[PASTE_YOUR_LOOM_URL_HERE](https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1)',
+      'https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1',
   },
 ]
 
