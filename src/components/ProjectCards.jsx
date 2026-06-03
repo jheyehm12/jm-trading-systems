@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import {
   ArrowRight,
   BarChart3,
+  Bot,
   BrainCircuit,
   Cpu,
   ExternalLink,
@@ -9,6 +10,7 @@ import {
   LineChart,
   Play,
   Sparkles,
+  Users,
   Workflow,
 } from 'lucide-react'
 import { githubUrl } from '../data/portfolioData'
@@ -32,7 +34,8 @@ export function ProjectActionButtons({
 }) {
   const demoHref = getValidUrl(demoUrl)
   const liveHref = getValidUrl(liveUrl)
-  const repoHref = getValidUrl(repoUrl) || githubUrl
+  const repoHref =
+    repoUrl === undefined ? getValidUrl(githubUrl) : getValidUrl(repoUrl)
 
   return (
     <div className={className}>
@@ -211,6 +214,49 @@ export function ProjectBanner({ project }) {
     )
   }
 
+  if (project.banner === 'workforce') {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_70%_18%,rgba(114,78,255,0.22),transparent_32%),radial-gradient(circle_at_14%_82%,rgba(34,211,238,0.16),transparent_34%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
+        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="absolute left-5 top-5 z-10 max-w-[12rem] sm:max-w-[14rem]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+            AI & Automation
+          </p>
+          <p className="mt-3 text-[1.35rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[1.55rem]">
+            AI Workforce Assistant
+          </p>
+          <p className="mt-1 text-sm text-slate-300">Role-Based AI Agents</p>
+        </div>
+        <div className="absolute right-4 top-4 z-10 flex gap-2">
+          <span className="rounded-full border border-violet-300/14 bg-violet-300/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-100">
+            OpenAI
+          </span>
+          <span className="rounded-full border border-cyan-300/12 bg-cyan-300/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+            SaaS
+          </span>
+        </div>
+        <div className="absolute bottom-5 left-5 right-5 z-10 flex items-end justify-between gap-3">
+          <div className="flex flex-1 flex-wrap gap-2">
+            {['Sales', 'Ops', 'Admin'].map((agent) => (
+              <div
+                key={agent}
+                className="flex min-w-[4.5rem] flex-1 items-center gap-2 rounded-[1.2rem] border border-cyan-300/12 bg-[#081824]/92 px-3 py-2.5 shadow-[0_10px_24px_rgba(0,0,0,0.28)]"
+              >
+                <Bot className="h-4 w-4 shrink-0 text-cyan-200" />
+                <span className="text-[11px] font-semibold text-slate-100">
+                  {agent}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[1.4rem] border border-cyan-300/14 bg-[#081824]/92 shadow-[0_14px_30px_rgba(0,0,0,0.34)]">
+            <Users className="h-9 w-9 text-cyan-200" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (project.banner === 'intake') {
     return (
       <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_78%_24%,rgba(34,211,238,0.16),transparent_28%),radial-gradient(circle_at_18%_84%,rgba(99,102,241,0.16),transparent_30%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
@@ -354,8 +400,6 @@ export function FeaturedProjectCard({ project, index }) {
 }
 
 export function AutomationProjectCard({ project, index }) {
-  const demoHref = getValidUrl(project.demoUrl)
-
   return (
     <motion.article
       initial="hidden"
@@ -381,6 +425,19 @@ export function AutomationProjectCard({ project, index }) {
             {project.copy}
           </p>
 
+          {project.tags?.length ? (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/8 bg-white/4 px-3 py-1.5 text-[11px] font-medium text-slate-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
+
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {project.features.map((feature) => (
               <div
@@ -400,7 +457,13 @@ export function AutomationProjectCard({ project, index }) {
             ))}
           </div>
 
-          <div className="mt-6 rounded-[1.5rem] border border-white/6 bg-white/4 p-5 lg:mt-0">
+          <div className="hidden flex-wrap gap-2.5 lg:flex">
+            {project.tools.map((item) => (
+              <StackBadge key={`desktop-${item}`} name={item} />
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-[1.5rem] border border-white/6 bg-white/4 p-5 lg:mt-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300/80">
               Outcome
             </p>
@@ -409,19 +472,11 @@ export function AutomationProjectCard({ project, index }) {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            {demoHref ? (
-              <a
-                href={demoHref}
-                rel="noreferrer"
-                target="_blank"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300/18 bg-white/3 px-5 py-3 text-sm font-semibold text-cyan-100 transition-colors duration-300 hover:bg-cyan-300/8"
-              >
-                <Play className="h-4 w-4" />
-                Watch Demo
-              </a>
-            ) : null}
-          </div>
+          <ProjectActionButtons
+            demoUrl={project.demoUrl}
+            liveUrl={project.liveUrl}
+            githubUrl={project.githubUrl ?? null}
+          />
         </div>
       </div>
     </motion.article>

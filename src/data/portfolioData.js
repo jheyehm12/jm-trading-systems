@@ -144,6 +144,45 @@ export const aiAutomationProjects = [
     demoUrl:
       'https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1',
   },
+  {
+    banner: 'workforce',
+    category: 'AI & Automation',
+    title: 'AI Workforce Assistant Platform',
+    copy: 'A role-based AI automation platform that helps teams automate repetitive tasks, generate business content, organize workflows, and improve productivity through specialized AI agents.',
+    features: [
+      'Sales Assistant agent',
+      'Operations Assistant agent',
+      'Admin Assistant agent',
+      'Role-based access & authentication',
+      'Workflow automation & task routing',
+      'Business content generation',
+      'Dashboard analytics & productivity insights',
+    ],
+    tools: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Tailwind CSS',
+      'Supabase',
+      'OpenAI',
+      'Vercel',
+    ],
+    tags: [
+      'AI Agents',
+      'Workflow Automation',
+      'OpenAI',
+      'Authentication',
+      'Dashboard Analytics',
+      'Business Automation',
+      'Prompt Engineering',
+      'SaaS Architecture',
+    ],
+    outcome:
+      'Built a portfolio-grade AI automation platform demonstrating AI integration, prompt engineering, workflow design, SaaS architecture, authentication, and business process automation.',
+    demoUrl:
+      'https://www.loom.com/share/1cc91bd00f0147b28274f0f888a189eb',
+    liveUrl: 'https://ai-workforce-assistant-platform.vercel.app/',
+  },
 ]
 
 export const fullStackTradingProjects = [
@@ -251,18 +290,32 @@ export const coreSkills = [
 ]
 
 export const automationSkills = [
+  { label: 'OpenAI API', icon: Sparkles },
+  { label: 'AI Agents', icon: Bot },
+  { label: 'Prompt Engineering', icon: MessageSquareCode },
   { label: 'Workflow Automation', icon: Workflow },
-  { label: 'AI Process Automation', icon: Bot },
-  { label: 'OpenAI Integration', icon: Sparkles },
-  { label: 'Make.com Automation', icon: Network },
-  { label: 'API Integration', icon: Plug },
   { label: 'Business Process Automation', icon: Briefcase },
+  { label: 'AI Automation Development', icon: Brain },
+  { label: 'AI Workflow Design', icon: Network },
+  { label: 'OpenAI Integration', icon: Sparkles },
+  { label: 'API Integration', icon: Plug },
+  { label: 'AI Process Automation', icon: Bot },
+  { label: 'Make.com Automation', icon: Network },
   { label: 'Document Processing Workflows', icon: FileText },
   { label: 'Data Validation & Processing', icon: Database },
   { label: 'Automated Reporting', icon: BarChart3 },
   { label: 'AI-Assisted Decision Systems', icon: Brain },
   { label: 'Google Workspace Automation', icon: FolderCog },
-  { label: 'Prompt Engineering', icon: MessageSquareCode },
+]
+
+export const fullStackSkills = [
+  { label: 'React', icon: Atom },
+  { label: 'TypeScript', icon: FileCode2 },
+  { label: 'Supabase', icon: Database },
+  { label: 'PostgreSQL', icon: Database },
+  { label: 'Tailwind CSS', icon: Layers3 },
+  { label: 'Authentication Systems', icon: ShieldCheck },
+  { label: 'SaaS Architecture', icon: Layers3 },
 ]
 
 export const workStyle = [
@@ -296,6 +349,11 @@ export const serviceCategories = [
       'AI & Workflow Automation',
       'Python Backend Development',
       'Webhook & API Integration',
+      'AI Automation Development',
+      'AI Agent Development',
+      'Workflow Automation Platforms',
+      'OpenAI Integration',
+      'Business Process Automation',
     ],
   },
   {
@@ -312,6 +370,7 @@ export const serviceCategories = [
       { label: 'Database Integration', icon: Database },
       { label: 'Authentication Systems', icon: ShieldCheck },
       { label: 'SaaS Application Development', icon: Layers3 },
+      { label: 'Full Stack SaaS Development', icon: Layers3 },
       { label: 'Responsive Web Design', icon: Smartphone },
       { label: 'Git & GitHub Workflow', icon: GitBranch },
     ],
@@ -392,6 +451,13 @@ export const tools = [
   'Make.com',
   'OpenAI',
   'Claude',
+  'React',
+  'TypeScript',
+  'Supabase',
+  'PostgreSQL',
+  'Tailwind CSS',
+  'Vite',
+  'Vercel',
   'Git',
   'GitHub',
   'CSV Logging',

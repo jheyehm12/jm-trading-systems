@@ -6,6 +6,7 @@ import { ToolTile } from '../components/ToolLogo'
 import {
   automationSkills,
   coreSkills,
+  fullStackSkills,
   tools,
   workStyle,
 } from '../data/portfolioData'
@@ -60,6 +61,59 @@ export function SkillsPage() {
             >
               <div className="flex flex-wrap gap-3">
                 {automationSkills.map((skill, index) => {
+                  const Icon = skill.icon
+
+                  return (
+                    <motion.div
+                      key={skill.label}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.25 }}
+                      variants={fadeUp}
+                      custom={index * 0.03}
+                      className="inline-flex items-center gap-2 rounded-full border border-cyan-400/12 bg-cyan-400/6 px-4 py-2.5 text-sm font-medium text-cyan-100"
+                    >
+                      <Icon className="h-4 w-4 shrink-0 text-cyan-300" />
+                      {skill.label}
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="mt-10 grid gap-6 xl:grid-cols-[0.8fr_1.2fr]">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              custom={0.04}
+              className="rounded-[1.7rem] border border-cyan-400/10 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.12),transparent_38%),linear-gradient(180deg,rgba(8,20,30,0.96),rgba(5,12,19,1))] p-6 shadow-[0_22px_54px_rgba(0,0,0,0.28)]"
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300/80">
+                Full Stack
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-white">
+                SaaS & Web Application Skills
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-slate-300">
+                Building trader-focused and business SaaS applications with
+                modern React stacks, secure authentication, database integration,
+                and scalable architecture patterns.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              custom={0.12}
+              className="rounded-[1.7rem] border border-cyan-400/10 bg-[#07131d] p-6 shadow-[0_22px_54px_rgba(0,0,0,0.28)]"
+            >
+              <div className="flex flex-wrap gap-3">
+                {fullStackSkills.map((skill, index) => {
                   const Icon = skill.icon
 
                   return (
