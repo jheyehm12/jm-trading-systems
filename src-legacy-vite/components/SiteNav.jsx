@@ -1,23 +1,23 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ChevronDown, Menu, Sparkles, X } from 'lucide-react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { ChevronDown, Code2, Menu, X } from 'lucide-react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { navItems } from '../data/navigation'
 
 function navLinkClasses({ isActive }) {
   return [
-    'rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200',
+    'rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200',
     isActive
-      ? 'bg-cyan-300/12 text-cyan-100'
-      : 'text-slate-200 hover:bg-cyan-300/8 hover:text-cyan-100',
+      ? 'text-white'
+      : 'text-slate-400 hover:text-white',
   ].join(' ')
 }
 
 function subNavLinkClasses({ isActive }) {
   return [
-    'block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200',
+    'block rounded-md px-3 py-2.5 text-sm transition-colors duration-200',
     isActive
-      ? 'bg-cyan-300/10 text-cyan-100'
-      : 'text-slate-300 hover:bg-cyan-300/8 hover:text-cyan-100',
+      ? 'text-white'
+      : 'text-slate-400 hover:text-white',
   ].join(' ')
 }
 
@@ -42,14 +42,14 @@ export function SiteNav() {
   }, [mobileOpen])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/6 bg-[#040b12]/88 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5 sm:px-8 lg:px-12">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#080808]/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 sm:px-8 lg:px-12">
         <NavLink
           to="/"
-          className="inline-flex items-center gap-2 rounded-full border border-cyan-300/12 bg-cyan-300/6 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200 transition-colors duration-200 hover:bg-cyan-300/10"
+          className="inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
           onClick={closeMobile}
         >
-          <Sparkles className="h-3.5 w-3.5" />
+          <Code2 className="h-4 w-4 text-slate-400" />
           JM Trading Systems
         </NavLink>
 
@@ -70,8 +70,8 @@ export function SiteNav() {
                   className={[
                     'inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200',
                     isProjectsActive
-                      ? 'bg-cyan-300/12 text-cyan-100'
-                      : 'text-slate-200 hover:bg-cyan-300/8 hover:text-cyan-100',
+                      ? 'text-white'
+                      : 'text-slate-400 hover:text-white',
                   ].join(' ')}
                   aria-expanded={desktopProjectsOpen}
                   aria-haspopup="true"
@@ -91,7 +91,7 @@ export function SiteNav() {
                       : 'pointer-events-none invisible -translate-y-1 opacity-0'
                   }`}
                 >
-                  <div className="overflow-hidden rounded-2xl border border-cyan-400/12 bg-[#07131d]/98 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+                  <div className="overflow-hidden rounded-lg border border-white/10 bg-[#111] p-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)]">
                     {item.children.map((child) => (
                       <NavLink
                         key={child.to}
@@ -110,11 +110,17 @@ export function SiteNav() {
               </NavLink>
             ),
           )}
+          <Link
+            to="/contact"
+            className="ml-3 inline-flex items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-[#0a0a0a] transition-opacity hover:opacity-90"
+          >
+            Let&apos;s Talk
+          </Link>
         </nav>
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-xl border border-cyan-300/12 bg-cyan-300/6 p-2.5 text-cyan-100 transition-colors duration-200 hover:bg-cyan-300/10 lg:hidden"
+          className="inline-flex items-center justify-center rounded-md border border-white/10 p-2.5 text-white transition-colors hover:bg-white/5 lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -130,7 +136,7 @@ export function SiteNav() {
 
       <div
         id="mobile-nav"
-        className={`border-t border-white/6 bg-[#040b12]/98 lg:hidden ${
+        className={`border-t border-white/5 bg-[#080808] lg:hidden ${
           mobileOpen ? 'block' : 'hidden'
         }`}
       >
@@ -146,8 +152,8 @@ export function SiteNav() {
                   className={[
                     'inline-flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors duration-200',
                     isProjectsActive
-                      ? 'bg-cyan-300/12 text-cyan-100'
-                      : 'text-slate-200 hover:bg-cyan-300/8 hover:text-cyan-100',
+                      ? 'text-white'
+                      : 'text-slate-400 hover:text-white',
                   ].join(' ')}
                   aria-expanded={mobileProjectsOpen}
                   onClick={() =>
@@ -164,7 +170,7 @@ export function SiteNav() {
                     mobileProjectsOpen ? 'max-h-72' : 'max-h-0'
                   }`}
                 >
-                  <div className="flex flex-col gap-0.5 border-l border-cyan-300/12 py-1 pl-4">
+                  <div className="flex flex-col gap-0.5 border-l border-white/10 py-1 pl-4">
                     {item.children.map((child) => (
                       <NavLink
                         key={child.to}

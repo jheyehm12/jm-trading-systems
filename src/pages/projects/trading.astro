@@ -1,0 +1,59 @@
+---
+import { homeCaseStudies } from '../../data/projects';
+import '../../styles/global.css';
+---
+
+<html lang="en" class="bg-page-bg">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Trading Systems — JM Trading Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" />
+  </head>
+  <body class="bg-page-bg font-body text-white antialiased">
+    <main class="site-shell min-h-screen px-6 py-16 sm:px-8 lg:px-12">
+      <div class="mx-auto max-w-4xl">
+        <a href="/#case-studies" class="text-sm text-body-soft hover:text-accent-blue">← Back to projects</a>
+        <h1 class="mt-8 font-display text-4xl font-bold">Trading Systems</h1>
+        <div class="mt-10 space-y-8">
+          {homeCaseStudies.map((project) => (
+            <article class="border-t border-white/10 pt-8">
+              <h2 class="font-display text-2xl font-semibold text-white">{project.title}</h2>
+              {project.subtitle ? (
+                <p class="mt-2 text-sm text-accent-blue">{project.subtitle}</p>
+              ) : null}
+              <p class="mt-3 leading-8 text-body-muted">{project.summary}</p>
+              {project.detail ? (
+                <p class="mt-3 leading-8 text-body-soft">{project.detail}</p>
+              ) : null}
+              {project.outcome ? (
+                <p class="mt-4 text-sm leading-7 text-body-soft">
+                  <span class="text-white/75">Outcome: </span>
+                  {project.outcome}
+                </p>
+              ) : null}
+              <ul class="mt-4 space-y-1.5">
+                {project.features.map((feature) => (
+                  <li class="text-sm leading-7 text-body-soft">– {feature}</li>
+                ))}
+              </ul>
+              <p class="mt-4 text-sm text-body-soft">{project.tools.join(' • ')}</p>
+              {project.images?.length ? (
+                <div class="mt-6 space-y-4">
+                  {project.images.map((image) => (
+                    <figure class="overflow-hidden rounded-lg border border-white/10">
+                      <img src={image.src} alt={image.caption} class="block w-full bg-[#131722]" loading="lazy" />
+                      <figcaption class="border-t border-white/8 px-4 py-2 text-xs text-body-soft">
+                        {image.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              ) : null}
+            </article>
+          ))}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

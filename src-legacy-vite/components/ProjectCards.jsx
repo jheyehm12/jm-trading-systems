@@ -214,6 +214,61 @@ export function ProjectBanner({ project }) {
     )
   }
 
+  if (project.banner === 'screenshot') {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_68%_20%,rgba(34,211,238,0.18),transparent_34%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
+        <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="absolute left-5 top-5 z-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+            AI & Trading
+          </p>
+          <p className="mt-3 text-[1.35rem] font-semibold leading-tight tracking-[-0.05em] text-white sm:text-[1.5rem]">
+            Screenshot Assistant
+          </p>
+        </div>
+        <div className="absolute bottom-5 left-5 right-5 z-10 flex gap-3">
+          <div className="h-24 flex-1 rounded-2xl border border-cyan-300/12 bg-[#081622]/92 p-3">
+            <div className="h-full rounded-xl border border-dashed border-cyan-300/20 bg-cyan-300/5" />
+          </div>
+          <div className="flex w-28 flex-col justify-between rounded-2xl border border-cyan-300/12 bg-[#081622]/92 p-3">
+            <Sparkles className="h-5 w-5 text-cyan-200" />
+            <div className="space-y-2">
+              <div className="h-2 w-full rounded-full bg-cyan-300/50" />
+              <div className="h-2 w-4/5 rounded-full bg-cyan-300/35" />
+              <div className="h-2 w-3/5 rounded-full bg-cyan-300/25" />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (project.banner === 'resort') {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_72%_24%,rgba(99,102,241,0.16),transparent_32%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">
+        <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="absolute left-5 top-5 z-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+            AI & Automation
+          </p>
+          <p className="mt-3 text-[1.35rem] font-semibold leading-tight tracking-[-0.05em] text-white sm:text-[1.5rem]">
+            Resort Booking Assistant
+          </p>
+        </div>
+        <div className="absolute bottom-5 left-5 right-24 z-10 rounded-2xl border border-cyan-300/12 bg-[#081622]/92 p-4">
+          <div className="space-y-3">
+            <div className="max-w-[70%] rounded-2xl border border-white/8 bg-white/5 px-3 py-2 text-[11px] text-slate-200">
+              Guest inquiry received
+            </div>
+            <div className="ml-auto max-w-[75%] rounded-2xl border border-cyan-300/12 bg-cyan-300/8 px-3 py-2 text-[11px] text-cyan-100">
+              Availability + booking options drafted
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (project.banner === 'workforce') {
     return (
       <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_70%_18%,rgba(114,78,255,0.22),transparent_32%),radial-gradient(circle_at_14%_82%,rgba(34,211,238,0.16),transparent_34%),linear-gradient(180deg,#09121e_0%,#07101a_100%)]">

@@ -1,0 +1,49 @@
+---
+import { whatIBuild } from '../data/site';
+import '../styles/global.css';
+---
+
+<html lang="en" class="bg-page-bg">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Services — JM Trading Systems</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    <script is:inline>
+      (() => {
+        const key = 'jm-theme';
+        const stored = window.localStorage.getItem(key);
+        const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
+  </head>
+  <body class="bg-page-bg font-body text-white antialiased">
+    <main class="site-shell min-h-screen px-6 py-16 sm:px-8 lg:px-12">
+      <div class="mx-auto max-w-5xl">
+        <a href="/" class="text-sm text-body-soft transition-colors hover:text-accent-blue">← Back home</a>
+        <h1 class="mt-10 font-display text-4xl font-bold text-white">Services</h1>
+        <p class="mt-4 max-w-2xl text-body-muted">
+          Trading systems development, AI automation, and full stack SaaS delivery.
+        </p>
+        <div class="mt-12 grid gap-10 sm:grid-cols-3">
+          {whatIBuild.map((group) => (
+            <div class="border-t border-white/10 pt-6">
+              <h2 class="font-display text-lg font-semibold text-white">{group.title}</h2>
+              <ul class="mt-4 space-y-2">
+                {group.items.map((item) => (
+                  <li class="text-sm leading-7 text-body-muted">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

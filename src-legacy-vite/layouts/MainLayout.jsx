@@ -12,14 +12,9 @@ export function MainLayout() {
   }, [location.pathname])
 
   return (
-    <div className="min-h-screen bg-[#040b12] text-white">
+    <div className="min-h-screen bg-[#080808] text-white">
       <SiteNav key={location.pathname} />
-      <main className="relative overflow-hidden bg-[linear-gradient(180deg,#03080f_0%,#06111a_38%,#040b12_100%)]">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-0 top-0 h-[28rem] w-[28rem] rounded-full bg-cyan-400/10 blur-3xl" />
-          <div className="absolute right-0 top-32 h-[30rem] w-[30rem] rounded-full bg-teal-400/8 blur-3xl" />
-          <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:88px_88px]" />
-        </div>
+      <main className="relative overflow-hidden bg-[#080808]">
 
         <AnimatePresence mode="wait">
           <motion.div

@@ -1,0 +1,73 @@
+---
+import { contactAvailability, workWithMeMessage } from '../data/site';
+import '../styles/global.css';
+
+const githubUrl = 'https://github.com/jheyehm12';
+---
+
+<html lang="en" class="bg-page-bg">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Work with JM Trading Systems — freelance projects and consulting engagements." />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    <script is:inline>
+      (() => {
+        const key = 'jm-theme';
+        const stored = window.localStorage.getItem(key);
+        const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
+    <title>Work With Me — JM Trading Systems</title>
+  </head>
+  <body class="bg-page-bg font-body text-white antialiased">
+    <main class="site-shell min-h-screen px-6 py-16 sm:px-8 lg:px-12">
+      <div class="mx-auto max-w-3xl">
+        <a href="/" class="inline-flex items-center text-sm text-body-soft transition-colors hover:text-accent-blue">
+          ← Back home
+        </a>
+        <div class="mt-10 border border-white/10 bg-deep-space-card p-8 sm:p-10">
+          <span class="font-display text-lg font-semibold text-white">JM Trading Systems</span>
+          <p class="mt-6 font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">
+            Work With Me
+          </p>
+          <h1 class="mt-4 font-display text-3xl font-bold tracking-[-0.03em] text-white">
+            Let&apos;s talk about your next project.
+          </h1>
+          <p class="mt-4 text-base leading-8 text-body-muted">
+            {workWithMeMessage}
+          </p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            {contactAvailability.map((item) => (
+              <span class="rounded border border-white/10 px-3 py-1.5 text-sm text-body-soft">
+                {item}
+              </span>
+            ))}
+          </div>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex min-h-11 items-center justify-center bg-accent-blue px-7 font-display text-[10px] uppercase tracking-[0.2em] text-page-bg transition-colors hover:bg-white"
+            >
+              Connect on GitHub
+            </a>
+            <a
+              href="/#case-studies"
+              class="inline-flex min-h-11 items-center justify-center border border-white/18 px-7 font-display text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-accent-blue hover:text-accent-blue"
+            >
+              View Projects
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

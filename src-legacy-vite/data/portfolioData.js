@@ -114,6 +114,14 @@ export const additionalProjects = [
     tools: ['Python', 'AI/ML', 'Telegram'],
     outcome: 'Safer experimentation with cleaner feedback loops.',
   },
+  {
+    title: 'AI Trading Screenshot Assistant',
+    summary:
+      'AI-assisted tool for extracting structured trade insights from chart screenshots, reducing manual note-taking and improving review consistency.',
+    tools: ['Python', 'OpenAI', 'FastAPI', 'React'],
+    outcome:
+      'Faster trade review workflows with structured output ready for journaling and analysis.',
+  },
 ]
 
 export const aiAutomationProjects = [
@@ -182,6 +190,29 @@ export const aiAutomationProjects = [
     demoUrl:
       'https://www.loom.com/share/1cc91bd00f0147b28274f0f888a189eb',
     liveUrl: 'https://ai-workforce-assistant-platform.vercel.app/',
+  },
+  {
+    banner: 'resort',
+    category: 'AI & Automation',
+    title: 'Resort Booking Assistant',
+    copy: 'An AI-powered booking assistant that handles guest inquiries, guides reservation workflows, and reduces manual response load for resort operators.',
+    features: [
+      'Guest inquiry handling',
+      'Booking workflow automation',
+      'Availability-aware responses',
+      'Operator handoff support',
+      'Structured conversation logging',
+      'Business content generation',
+    ],
+    tools: ['OpenAI', 'React', 'FastAPI', 'Workflow Automation', 'Vercel'],
+    tags: [
+      'AI Assistants',
+      'Business Automation',
+      'Workflow Automation',
+      'OpenAI',
+    ],
+    outcome:
+      'Streamlined booking inquiries and reduced manual follow-up for hospitality workflows through a focused AI assistant.',
   },
 ]
 
@@ -486,6 +517,247 @@ export const aboutContent = {
   validationDetail:
     'Projects are built with a strong focus on maintainability, structured architecture, testing, validation, and long-term scalability—whether the deliverable is an EA, automation pipeline, or a production trading application like TradeVault.',
 }
+
+export const homeHero = {
+  intro: 'I build trading systems, automation tools, and SaaS products for freelance clients and direct engagements.',
+  lines: [
+    'Trading Systems Developer.',
+    'AI Automation Builder.',
+    'Full Stack SaaS Developer.',
+  ],
+  subheadline:
+    'Building trading tools, automation systems, and AI-powered applications that deliver real-world results.',
+}
+
+export const credibilityLine = [
+  'TradingView',
+  'Pine Script',
+  'MQL4/MQL5',
+  'React',
+  'Supabase',
+  'OpenAI',
+]
+
+export const homeHeroPreview = {
+  previewType: 'saas-dashboard',
+  label: 'TradeVault — live SaaS preview',
+}
+
+export const homeCaseStudies = [
+  {
+    id: 'myalert',
+    category: 'Trading Systems',
+    title: 'MyAlert AI Decision System',
+    summary:
+      'A backend system that receives TradingView alerts, processes them through Python/FastAPI, logs structured trade data, and supports replay validation before automation goes live.',
+    outcome:
+      'Reduced manual alert handling and created a reliable pipeline from signal to logged decision output.',
+    features: [
+      'Webhook alert intake from TradingView',
+      'Structured CSV logging for review',
+      'Replay validation before live routing',
+      'Telegram notifications for operators',
+    ],
+    tools: ['Python', 'TradingView', 'FastAPI', 'Webhooks', 'Telegram'],
+    previewType: 'trading-alert',
+    detailTo: '/projects/trading',
+  },
+  {
+    id: 'lookback',
+    category: 'Trading Systems',
+    title: 'LookBack Trading Algorithm',
+    summary:
+      'A futures-focused TradingView strategy built in Pine Script with contextual market structure, replay-tested entries, and execution rules refined through chart review.',
+    outcome:
+      'Delivered a readable strategy codebase with validation workflow suitable for discretionary and semi-systematic futures trading.',
+    features: [
+      'Pine Script strategy architecture',
+      'Contextual market structure logic',
+      'Replay-driven entry refinement',
+      'Futures execution considerations',
+    ],
+    tools: ['TradingView', 'Pine Script', 'Futures', 'Replay Validation'],
+    previewType: 'tradingview-strategy',
+    detailTo: '/projects/trading',
+  },
+]
+
+export const homeSelectedWork = [
+  {
+    id: 'screenshot-assistant',
+    category: 'AI & Trading',
+    title: 'AI Trading Screenshot Assistant',
+    summary:
+      'Upload a chart screenshot and get structured trade notes — setup, context, and review output ready for journaling.',
+    features: [
+      'Screenshot upload & parsing',
+      'Trade setup extraction',
+      'AI-assisted review notes',
+      'Structured output for journaling',
+    ],
+    tools: ['Python', 'OpenAI', 'FastAPI', 'React'],
+    previewType: 'ai-screenshot',
+    detailTo: '/projects/ai-automation',
+  },
+  {
+    id: 'workforce',
+    category: 'AI & Automation',
+    title: 'AI Workforce Assistant Platform',
+    summary:
+      'Role-based AI agents for sales, operations, and admin teams — with auth, workflow routing, and a live SaaS dashboard.',
+    features: [
+      'Sales, Operations & Admin agents',
+      'Role-based authentication',
+      'Workflow automation',
+      'Dashboard analytics',
+    ],
+    tools: ['React', 'TypeScript', 'Supabase', 'OpenAI', 'Vercel'],
+    previewType: 'ai-workforce',
+    detailTo: '/projects/ai-automation',
+    demoUrl:
+      'https://www.loom.com/share/1cc91bd00f0147b28274f0f888a189eb',
+    liveUrl: 'https://ai-workforce-assistant-platform.vercel.app/',
+  },
+  {
+    id: 'tradevault',
+    category: 'Full Stack SaaS',
+    title: 'TradeVault',
+    summary:
+      'A trading journal and analytics SaaS with authentication, trade CRUD, performance metrics, and equity curve visualizations.',
+    features: [
+      'Auth & protected routes',
+      'Trade journaling & CRUD',
+      'Win rate & P&L tracking',
+      'Equity curve & performance charts',
+    ],
+    tools: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS'],
+    previewType: 'saas-dashboard',
+    detailTo: '/projects/full-stack',
+    demoUrl:
+      'https://www.loom.com/share/6bf544a1f76d4988b75ea54a85a37aa4',
+    liveUrl: 'https://trade-vault2.vercel.app/',
+  },
+  {
+    id: 'resort-booking',
+    category: 'AI & Automation',
+    title: 'Resort Booking Assistant',
+    summary:
+      'An AI assistant that handles guest booking questions, drafts availability-aware responses, and reduces manual operator load.',
+    features: [
+      'Guest inquiry handling',
+      'Booking workflow automation',
+      'Availability-aware responses',
+      'Operator handoff support',
+    ],
+    tools: ['OpenAI', 'React', 'Workflow Automation', 'FastAPI'],
+    previewType: 'booking-chat',
+    detailTo: '/projects/ai-automation',
+  },
+]
+
+export const homeFeaturedProjects = [
+  ...homeCaseStudies,
+  ...homeSelectedWork,
+]
+
+export const whatIBuild = [
+  {
+    title: 'Trading Systems Development',
+    items: [
+      'TradingView Indicators',
+      'Pine Script Strategies',
+      'MT4/MT5 Expert Advisors',
+      'Signal Systems',
+      'Backtesting Tools',
+    ],
+  },
+  {
+    title: 'AI & Automation',
+    items: [
+      'OpenAI Integrations',
+      'Workflow Automation',
+      'AI Assistants',
+      'Business Automation',
+    ],
+  },
+  {
+    title: 'Full Stack Development',
+    items: [
+      'React',
+      'TypeScript',
+      'Supabase',
+      'FastAPI',
+      'Modern SaaS Applications',
+    ],
+  },
+]
+
+export const experienceTimeline = [
+  {
+    role: 'Trading Systems Developer',
+    period: '2023 — Present',
+    copy: 'Building TradingView strategies, MT4/MT5 EAs, signal systems, and validation-focused trading infrastructure.',
+  },
+  {
+    role: 'AI Automation Builder',
+    period: '2023 — Present',
+    copy: 'Delivering OpenAI integrations, workflow automation, AI assistants, and business process automation platforms.',
+  },
+  {
+    role: '9+ Years Software Industry Experience',
+    period: 'QA & validation foundation',
+    copy: 'Background in structured testing, API validation, and reliability review — applied to every project, not positioned as the primary specialty.',
+  },
+]
+
+export const techStackGroups = [
+  {
+    title: 'Trading',
+    tools: ['Pine Script', 'TradingView', 'MQL4', 'MQL5', 'Python'],
+  },
+  {
+    title: 'AI',
+    tools: ['OpenAI', 'Claude', 'Cursor', 'LangChain'],
+  },
+  {
+    title: 'Development',
+    tools: ['React', 'TypeScript', 'Supabase', 'FastAPI', 'Tailwind CSS'],
+  },
+]
+
+export const qaSupportNote =
+  'QA background: Katalon, Postman, BrowserStack, API testing — applied as supporting rigor, not the primary focus.'
+
+export const testimonials = [
+  {
+    quote:
+      'Delivered a clean TradingView strategy with clear logic and thorough documentation. Communication was consistent and the work held up in replay testing.',
+    role: 'Futures Trader',
+    source: 'Upwork',
+    rating: 5,
+  },
+  {
+    quote:
+      'Built a reliable automation workflow that reduced manual follow-up work. Requirements were understood quickly and the implementation was structured.',
+    role: 'Project Manager',
+    source: 'Upwork',
+    rating: 5,
+  },
+  {
+    quote:
+      'Strong full stack delivery on a SaaS MVP — authentication, database integration, and a polished dashboard. Would work together again.',
+    role: 'SaaS Founder',
+    source: 'Upwork',
+    rating: 5,
+  },
+]
+
+export const contactAvailability = [
+  'TradingView Projects',
+  'MT4/MT5 Development',
+  'AI Automation Projects',
+  'Custom SaaS Applications',
+]
 
 export const dashboardBars = [26, 38, 34, 52, 46, 72, 64, 88, 76, 104, 94, 122]
 

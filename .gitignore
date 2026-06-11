@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+_aeon-template/
+.astro/
 *.local
 
 # Editor directories and files
