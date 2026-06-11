@@ -23,18 +23,18 @@ import '../styles/global.css';
       })();
     </script>
   </head>
-  <body class="bg-page-bg font-body text-white antialiased">
-    <main class="site-shell min-h-screen px-6 py-16 sm:px-8 lg:px-12">
+  <body class="bg-page-bg font-body text-body-strong antialiased">
+    <main class="site-shell min-h-screen overflow-x-clip px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-12">
       <div class="mx-auto max-w-5xl">
         <a href="/" class="text-sm text-body-soft transition-colors hover:text-accent-blue">← Back home</a>
-        <h1 class="mt-10 font-display text-4xl font-bold text-white">Services</h1>
+        <h1 class="mt-6 font-display text-[1.85rem] font-bold text-heading sm:mt-8 sm:text-3xl lg:text-4xl">Services</h1>
         <p class="mt-4 max-w-2xl text-body-muted">
           Trading systems development, AI automation, and full stack SaaS delivery.
         </p>
-        <div class="mt-12 grid gap-10 sm:grid-cols-3">
+        <div class="mt-8 grid gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
           {whatIBuild.map((group) => (
-            <div class="border-t border-white/10 pt-6">
-              <h2 class="font-display text-lg font-semibold text-white">{group.title}</h2>
+            <div class="border-t border-theme pt-6">
+              <h2 class="font-display text-lg font-semibold text-heading">{group.title}</h2>
               <ul class="mt-4 space-y-2">
                 {group.items.map((item) => (
                   <li class="text-sm leading-7 text-body-muted">{item}</li>

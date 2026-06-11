@@ -80,9 +80,9 @@ function StatBlock({ index, label, value }: StatBlockProps & { index: number }) 
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.78, delay: index * 0.12, ease: jmEase }}
-      className={index > 0 ? 'lg:border-l lg:border-white/6 lg:pl-10' : ''}
+      className={index > 0 ? 'lg:border-l lg:border-theme-faint lg:pl-10' : ''}
     >
-      <div className="font-display text-[3rem] font-bold leading-none text-white sm:text-[3.6rem]">
+      <div className="font-display text-[2.25rem] font-bold leading-none text-heading sm:text-[3rem] lg:text-[3.6rem]">
         {displayValue}
       </div>
       <div className="mt-4 font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">
@@ -95,9 +95,9 @@ function StatBlock({ index, label, value }: StatBlockProps & { index: number }) 
 export default function StatsSection({ stats }: StatsSectionProps) {
   return (
     <MotionConfig reducedMotion="user">
-      <section className="bg-page-bg py-18 sm:py-22">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="grid gap-y-12 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="bg-page-bg py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="grid gap-y-8 gap-x-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
             {stats.map((stat, index) => (
               <StatBlock key={stat.label} index={index} {...stat} />
             ))}

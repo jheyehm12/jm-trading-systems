@@ -19,7 +19,7 @@ export default function BrandMark({
 
   return (
     <span
-      className={`font-display text-sm font-semibold tracking-[-0.03em] text-white sm:text-base ${className}`}
+      className={`font-display text-sm font-semibold tracking-[-0.03em] text-body-strong sm:text-base ${className}`}
     >
       JM Trading Systems
     </span>

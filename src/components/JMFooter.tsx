@@ -23,9 +23,9 @@ export default function JMFooter({ directory, meta, policies }: JMFooterProps) {
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.85, ease: jmEase }}
-        className="bg-footer-bg py-18 sm:py-22"
+        className="bg-footer-bg py-12 sm:py-16 lg:py-20"
       >
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,0.95fr)]">
             <div className="max-w-2xl">
               <BrandMark className="text-lg" />
@@ -35,7 +35,7 @@ export default function JMFooter({ directory, meta, policies }: JMFooterProps) {
             </div>
 
             <div>
-              <h3 className="font-display text-[11px] uppercase tracking-[0.24em] text-white/75">
+              <h3 className="font-display text-[11px] uppercase tracking-[0.24em] text-body-muted">
                 Explore
               </h3>
               <ul className="mt-6 grid grid-cols-1 gap-y-4 sm:grid-cols-2">
@@ -56,7 +56,7 @@ export default function JMFooter({ directory, meta, policies }: JMFooterProps) {
             </div>
           </div>
 
-          <div className="mt-16 flex flex-col gap-6 border-t border-white/8 pt-8 text-[0.9rem] uppercase tracking-[0.08em] text-body-soft md:flex-row md:items-center md:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-t border-theme pt-6 text-[0.8rem] uppercase tracking-[0.08em] text-body-soft sm:mt-12 sm:gap-6 sm:pt-8 sm:text-[0.9rem] md:flex-row md:items-center md:justify-between lg:mt-16">
             <p>
               © {new Date().getFullYear()} {meta.title}. All rights reserved.
             </p>

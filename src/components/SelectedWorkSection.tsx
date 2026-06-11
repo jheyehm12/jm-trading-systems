@@ -14,8 +14,8 @@ export default function SelectedWorkSection({
 }: SelectedWorkSectionProps) {
   return (
     <MotionConfig reducedMotion="user">
-      <section id="selected-work" className="bg-page-bg py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <section id="selected-work" className="bg-page-bg py-12 sm:py-16 lg:py-20 xl:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -27,12 +27,12 @@ export default function SelectedWorkSection({
               <Layers3 size={16} strokeWidth={1.6} />
               <span>Selected Work</span>
             </div>
-            <h2 className="mt-5 font-display text-[2.4rem] font-bold leading-[1.02] text-white sm:text-[3rem]">
+            <h2 className="mt-4 font-display text-[1.85rem] font-bold leading-[1.05] text-heading sm:mt-5 sm:text-[2.4rem] lg:text-[3rem]">
               AI automation and SaaS delivery.
             </h2>
           </motion.div>
 
-          <div className="mt-14 space-y-20">
+          <div className="mt-10 space-y-12 sm:mt-14 sm:space-y-16 lg:space-y-20">
             {projects.map((project, index) => {
               const reverse = index % 2 === 1;
 
@@ -43,21 +43,18 @@ export default function SelectedWorkSection({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={inViewViewport}
                   transition={{ ...fadeUpTransition, delay: 0.05 }}
-                  className={[
-                    'grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14',
-                    reverse ? 'lg:[&>*:first-child]:order-2' : '',
-                  ].join(' ')}
+                  className="grid items-center gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-14"
                 >
-                  <ProjectScreenshot
-                    type={project.previewType}
-                    imageSrc={project.imageSrc}
-                    large
-                  />
-                  <div>
+                  <div
+                    className={[
+                      'order-1 min-w-0',
+                      reverse ? 'lg:order-2' : 'lg:order-1',
+                    ].join(' ')}
+                  >
                     <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">
                       {project.category}
                     </p>
-                    <h3 className="mt-4 font-display text-[2rem] font-bold leading-[1.02] text-white sm:text-[2.35rem]">
+                    <h3 className="mt-4 font-display text-[1.65rem] font-bold leading-[1.05] text-heading sm:text-[2rem] lg:text-[2.35rem]">
                       {project.title}
                     </h3>
                     <p className="mt-5 text-[1.02rem] leading-8 text-body-muted">
@@ -67,7 +64,7 @@ export default function SelectedWorkSection({
                       {project.tools.map((tool) => (
                         <span
                           key={tool}
-                          className="rounded border border-white/10 px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em] text-body-soft"
+                          className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em]"
                         >
                           {tool}
                         </span>
@@ -76,7 +73,7 @@ export default function SelectedWorkSection({
                     <div className="mt-6 flex flex-wrap gap-3">
                       <a
                         href={project.detailTo}
-                        className="inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-accent-blue"
+                        className="inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-body-muted transition-colors hover:text-accent-blue"
                       >
                         Details <ArrowRight size={14} />
                       </a>
@@ -85,13 +82,22 @@ export default function SelectedWorkSection({
                           href={project.liveUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-accent-blue/80 transition-colors hover:text-accent-blue"
+                          className="inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-accent-blue transition-colors hover:opacity-80"
                         >
                           Live app <ArrowRight size={14} />
                         </a>
                       ) : null}
                     </div>
                   </div>
+                  <ProjectScreenshot
+                    type={project.previewType}
+                    imageSrc={project.imageSrc}
+                    large
+                    className={[
+                      'order-2 w-full min-w-0',
+                      reverse ? 'lg:order-1' : 'lg:order-2',
+                    ].join(' ')}
+                  />
                 </motion.article>
               );
             })}

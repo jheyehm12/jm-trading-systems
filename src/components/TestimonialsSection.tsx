@@ -19,8 +19,8 @@ export default function TestimonialsSection({
 }: TestimonialsSectionProps) {
   return (
     <MotionConfig reducedMotion="user">
-      <section className="bg-section-dark py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <section className="bg-section-dark py-12 sm:py-16 lg:py-20 xl:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function TestimonialsSection({
             <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">
               Client Feedback
             </p>
-            <h2 className="mt-5 font-display text-[2.2rem] font-bold text-white sm:text-[2.8rem]">
+            <h2 className="mt-4 font-display text-[1.75rem] font-bold text-heading sm:mt-5 sm:text-[2.2rem] lg:text-[2.8rem]">
               Upwork reviews.
             </h2>
           </motion.div>
@@ -43,7 +43,7 @@ export default function TestimonialsSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={inViewViewport}
                 transition={{ ...fadeUpTransition, delay: index * 0.08 }}
-                className="border-t border-white/10 pt-6"
+                className="border-t border-theme pt-6"
               >
                 <div className="flex gap-0.5 text-accent-blue">
                   {Array.from({ length: item.rating }).map((_, i) => (
@@ -54,7 +54,7 @@ export default function TestimonialsSection({
                   &ldquo;{item.quote}&rdquo;
                 </p>
                 <footer className="mt-4">
-                  <p className="text-sm text-white">{item.role}</p>
+                  <p className="text-sm text-body-strong">{item.role}</p>
                   <p className="mt-1 text-xs text-body-soft">{item.source}</p>
                 </footer>
               </motion.blockquote>

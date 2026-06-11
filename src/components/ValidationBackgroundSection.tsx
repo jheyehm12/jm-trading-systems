@@ -17,9 +17,9 @@ export default function ValidationBackgroundSection({
     <MotionConfig reducedMotion="user">
       <section
         id="validation-background"
-        className="border-t border-white/8 bg-page-bg py-16 sm:py-20"
+        className="border-t border-theme bg-page-bg py-12 sm:py-16 lg:py-20"
       >
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ export default function ValidationBackgroundSection({
               <ShieldCheck size={16} strokeWidth={1.6} />
               <span>{content.eyebrow}</span>
             </div>
-            <h2 className="mt-5 font-display text-[1.85rem] font-bold leading-[1.08] text-white sm:text-[2.25rem]">
+            <h2 className="mt-5 font-display text-[1.85rem] font-bold leading-[1.08] text-heading sm:text-[2.25rem]">
               {content.title}
             </h2>
             <p className="mt-4 text-[1.02rem] leading-8 text-body-muted">
@@ -74,7 +74,7 @@ export default function ValidationBackgroundSection({
                 {content.tools.map((tool) => (
                   <span
                     key={tool}
-                    className="rounded border border-white/10 px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.12em] text-body-soft"
+                    className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.12em]"
                   >
                     {tool}
                   </span>

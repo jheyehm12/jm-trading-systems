@@ -25,23 +25,23 @@ function CaseStudyBlock({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={inViewViewport}
       transition={{ ...fadeUpTransition, delay: index * 0.08 }}
-      className="border-t border-white/8 py-14 first:border-t-0 sm:py-20"
+      className="border-t border-theme py-10 first:border-t-0 sm:py-14 lg:py-20"
     >
-      <div
-        className={[
-          'grid items-center gap-10 lg:grid-cols-2 lg:gap-16',
-          reverse ? 'lg:[&>*:first-child]:order-2' : '',
-        ].join(' ')}
-      >
-        <div className="max-w-xl">
+      <div className="grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+        <div
+          className={[
+            'order-1 min-w-0 max-w-xl',
+            reverse ? 'lg:order-2' : 'lg:order-1',
+          ].join(' ')}
+        >
           <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">
             {project.category}
           </p>
-          <h3 className="mt-4 font-display text-[2rem] font-bold leading-[1.02] tracking-[-0.03em] text-white sm:text-[2.6rem]">
+          <h3 className="mt-4 font-display text-[1.65rem] font-bold leading-[1.05] tracking-[-0.03em] text-heading sm:text-[2rem] lg:text-[2.6rem]">
             {project.title}
           </h3>
           {project.subtitle ? (
-            <p className="mt-2 text-sm font-medium text-accent-blue/90">
+            <p className="mt-2 text-sm font-medium text-accent-blue">
               {project.subtitle}
             </p>
           ) : null}
@@ -55,7 +55,7 @@ function CaseStudyBlock({
           ) : null}
           {project.outcome ? (
             <p className="mt-4 text-sm leading-7 text-body-soft">
-              <span className="text-white/75">Outcome: </span>
+              <span className="text-body-strong">Outcome: </span>
               {project.outcome}
             </p>
           ) : null}
@@ -73,7 +73,7 @@ function CaseStudyBlock({
             {project.tools.map((tool) => (
               <span
                 key={tool}
-                className="rounded border border-white/10 px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em] text-body-soft"
+                className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em]"
               >
                 {tool}
               </span>
@@ -81,20 +81,28 @@ function CaseStudyBlock({
           </div>
           <a
             href={project.detailTo}
-            className="mt-8 inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-white/70 transition-colors duration-300 hover:text-accent-blue"
+            className="mt-8 inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-body-muted transition-colors duration-300 hover:text-accent-blue"
           >
             View project details <ArrowRight size={14} />
           </a>
         </div>
-        {project.images?.length ? (
-          <ProjectChartGallery images={project.images} />
-        ) : (
-          <ProjectScreenshot
-            type={project.previewType}
-            imageSrc={project.imageSrc}
-            large
-          />
-        )}
+        <div
+          className={[
+            'order-2 w-full min-w-0',
+            reverse ? 'lg:order-1' : 'lg:order-2',
+          ].join(' ')}
+        >
+          {project.images?.length ? (
+            <ProjectChartGallery images={project.images} className="w-full" />
+          ) : (
+            <ProjectScreenshot
+              type={project.previewType}
+              imageSrc={project.imageSrc}
+              large
+              className="w-full"
+            />
+          )}
+        </div>
       </div>
     </motion.article>
   );
@@ -103,8 +111,8 @@ function CaseStudyBlock({
 export default function CaseStudySection({ projects }: CaseStudySectionProps) {
   return (
     <MotionConfig reducedMotion="user">
-      <section id="case-studies" className="bg-section-dark py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <section id="case-studies" className="bg-section-dark py-12 sm:py-16 lg:py-20 xl:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +123,7 @@ export default function CaseStudySection({ projects }: CaseStudySectionProps) {
               <LineChart size={16} strokeWidth={1.6} />
               <span>Case Studies</span>
             </div>
-            <h2 className="mt-5 max-w-3xl font-display text-[2.4rem] font-bold leading-[1.02] text-white sm:text-[3rem]">
+            <h2 className="mt-4 max-w-3xl font-display text-[1.85rem] font-bold leading-[1.05] text-heading sm:mt-5 sm:text-[2.4rem] lg:text-[3rem]">
               Trading systems built for real execution workflows.
             </h2>
             <p className="mt-5 max-w-2xl text-[1.02rem] leading-8 text-body-muted">

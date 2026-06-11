@@ -19,11 +19,11 @@ export default function ProjectChartGallery({
         <div
           key={image.src}
           className={[
-            'overflow-hidden rounded-lg border border-white/10 bg-[#0a0a0a] shadow-[0_20px_50px_rgba(0,0,0,0.45)]',
-            index === 0 ? 'shadow-[0_28px_70px_rgba(0,0,0,0.55)]' : '',
+            'overflow-hidden rounded-lg border border-theme bg-[var(--chrome-bg)] shadow-surface',
+            index === 0 ? 'shadow-surface-lg' : '',
           ].join(' ')}
         >
-          <div className="flex items-center gap-2 border-b border-white/8 bg-[#111] px-3 py-2.5 sm:px-4">
+          <div className="flex items-center gap-2 border-b border-theme bg-[var(--chrome-bar)] px-3 py-2.5 sm:px-4">
             <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
@@ -37,7 +37,7 @@ export default function ProjectChartGallery({
             className="block w-full bg-[#131722]"
             loading={index === 0 ? 'eager' : 'lazy'}
           />
-          <p className="border-t border-white/8 px-4 py-2.5 text-[11px] text-body-soft">
+          <p className="border-t border-theme bg-surface-card px-4 py-2.5 text-[11px] text-body-soft">
             {image.caption}
           </p>
         </div>
