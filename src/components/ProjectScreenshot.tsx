@@ -201,6 +201,58 @@ const previewContent = {
       </div>
     ),
   },
+  'client-intake': {
+    url: 'client-intake.workflow',
+    render: () => (
+      <div className="min-h-[220px] bg-[#0c0f14] p-3 sm:min-h-[280px] sm:p-4">
+        <p className="text-sm font-medium text-white">Document Intake Portal</p>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          <div className="rounded border border-white/8 bg-[#080b10] p-3">
+            <p className="text-[10px] text-slate-500">Client submission</p>
+            <div className="mt-2 space-y-1.5 text-[11px] text-slate-300">
+              <p>Tax documents uploaded</p>
+              <p>ID verification attached</p>
+            </div>
+          </div>
+          <div className="rounded border border-white/8 bg-[#080b10] p-3">
+            <p className="text-[10px] text-slate-500">AI review</p>
+            <div className="mt-2 space-y-1.5 text-[11px] text-slate-300">
+              <p>Missing: W-2 form</p>
+              <p>Priority: High</p>
+              <p>Follow-up drafted</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  'qa-validation': {
+    url: 'qa-validation.suite',
+    render: () => (
+      <div className="min-h-[220px] bg-[#0c0f14] p-3 sm:min-h-[280px] sm:p-4">
+        <p className="text-sm font-medium text-white">Validation Dashboard</p>
+        <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {[
+            ['Regression', '48'],
+            ['API Tests', '32'],
+            ['Passed', '94%'],
+            ['Open Defects', '3'],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="rounded border border-white/8 bg-white/[0.02] p-2"
+            >
+              <p className="text-[10px] text-slate-500">{label}</p>
+              <p className="mt-1 text-xs font-semibold text-white">{value}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 rounded border border-white/8 bg-[#080b10] p-2 text-[11px] text-slate-400">
+          <p>Replay validation · API checks · Release sign-off</p>
+        </div>
+      </div>
+    ),
+  },
 }
 
 import type { PreviewType } from '../data/projects';

@@ -8,7 +8,7 @@ import StatsSection from '../components/StatsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import ValidationBackgroundSection from '../components/ValidationBackgroundSection';
 import WhatIBuildSection from '../components/WhatIBuildSection';
-import { homeCaseStudies, homeSelectedWork } from '../data/projects';
+import { homeCaseStudies, homeQaExperience, homeSelectedWork } from '../data/projects';
 import {
   contactAvailability,
   footerDirectory,
@@ -70,6 +70,7 @@ import '../styles/global.css';
       <ValidationBackgroundSection
         client:visible
         content={validationBackground}
+        qaProjects={homeQaExperience}
       />
       <ContactCTASection client:visible items={contactAvailability} />
       <JMFooter

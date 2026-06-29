@@ -2,6 +2,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import { ArrowRight, Layers3 } from 'lucide-react';
 
 import type { ProjectEntry } from '../data/projects';
+import ProjectActionButtons from './ProjectActionButtons';
 import ProjectScreenshot from './ProjectScreenshot';
 import { fadeUpTransition, inViewViewport } from './motion';
 
@@ -28,7 +29,7 @@ export default function SelectedWorkSection({
               <span>Selected Work</span>
             </div>
             <h2 className="mt-4 font-display text-[1.85rem] font-bold leading-[1.05] text-heading sm:mt-5 sm:text-[2.4rem] lg:text-[3rem]">
-              AI automation and SaaS delivery.
+              AI automation, trading SaaS, and workflow delivery.
             </h2>
           </motion.div>
 
@@ -57,14 +58,37 @@ export default function SelectedWorkSection({
                     <h3 className="mt-4 font-display text-[1.65rem] font-bold leading-[1.05] text-heading sm:text-[2rem] lg:text-[2.35rem]">
                       {project.title}
                     </h3>
+                    {project.subtitle ? (
+                      <p className="mt-2 text-sm font-medium text-accent-blue">
+                        {project.subtitle}
+                      </p>
+                    ) : null}
                     <p className="mt-5 text-[1.02rem] leading-8 text-body-muted">
                       {project.summary}
                     </p>
+                    {project.outcome ? (
+                      <p className="mt-4 text-sm leading-7 text-body-soft">
+                        <span className="text-body-strong">Outcome: </span>
+                        {project.outcome}
+                      </p>
+                    ) : null}
+                    {project.tags?.length ? (
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
                     <div className="mt-6 flex flex-wrap gap-2">
                       {project.tools.map((tool) => (
                         <span
                           key={tool}
-                          className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em]"
+                          className="rounded border border-theme bg-panel-tint px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.12em] text-body-soft"
                         >
                           {tool}
                         </span>
@@ -77,17 +101,13 @@ export default function SelectedWorkSection({
                       >
                         Details <ArrowRight size={14} />
                       </a>
-                      {project.liveUrl ? (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-accent-blue transition-colors hover:opacity-80"
-                        >
-                          Live app <ArrowRight size={14} />
-                        </a>
-                      ) : null}
                     </div>
+                    <ProjectActionButtons
+                      demoUrl={project.demoUrl}
+                      liveUrl={project.liveUrl}
+                      githubUrl={project.githubUrl}
+                      className="mt-3 flex flex-wrap gap-3"
+                    />
                   </div>
                   <ProjectScreenshot
                     type={project.previewType}

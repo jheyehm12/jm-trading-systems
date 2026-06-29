@@ -1,5 +1,5 @@
 ---
-import { homeCaseStudies } from '../../data/projects';
+import { tradingProjects } from '../../data/projects';
 import '../../styles/global.css';
 ---
 
@@ -15,10 +15,11 @@ import '../../styles/global.css';
       <div class="mx-auto max-w-4xl">
         <a href="/#case-studies" class="text-sm text-body-soft hover:text-accent-blue">← Back to projects</a>
         <h1 class="mt-6 font-display text-[1.85rem] font-bold sm:mt-8 sm:text-3xl lg:text-4xl">Trading Systems</h1>
-        <div class="mt-10 space-y-8">
-          {homeCaseStudies.map((project) => (
+        <div class="mt-10 space-y-10">
+          {tradingProjects.map((project) => (
             <article class="border-t border-theme pt-8">
-              <h2 class="font-display text-2xl font-semibold text-heading">{project.title}</h2>
+              <p class="font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">{project.category}</p>
+              <h2 class="mt-3 font-display text-2xl font-semibold text-heading">{project.title}</h2>
               {project.subtitle ? (
                 <p class="mt-2 text-sm text-accent-blue">{project.subtitle}</p>
               ) : null}
@@ -37,7 +38,25 @@ import '../../styles/global.css';
                   <li class="text-sm leading-7 text-body-soft">– {feature}</li>
                 ))}
               </ul>
+              {project.tags?.length ? (
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span class="chip rounded px-2.5 py-1 text-[10px] uppercase tracking-[0.12em]">{tag}</span>
+                  ))}
+                </div>
+              ) : null}
               <p class="mt-4 text-sm text-body-soft">{project.tools.join(' • ')}</p>
+              <div class="mt-4 flex flex-wrap gap-4">
+                {project.liveUrl ? (
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" class="text-sm text-accent-blue hover:opacity-80">Live Demo →</a>
+                ) : null}
+                {project.githubUrl ? (
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">GitHub →</a>
+                ) : null}
+                {project.demoUrl ? (
+                  <a href={project.demoUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">▶ Watch Demo →</a>
+                ) : null}
+              </div>
               {project.images?.length ? (
                 <div class="mt-6 space-y-4">
                   {project.images.map((image) => (

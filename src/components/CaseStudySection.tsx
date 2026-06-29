@@ -3,8 +3,41 @@ import { ArrowRight, LineChart } from 'lucide-react';
 
 import type { ProjectEntry } from '../data/projects';
 import ProjectChartGallery from './ProjectChartGallery';
+import ProjectActionButtons from './ProjectActionButtons';
 import ProjectScreenshot from './ProjectScreenshot';
-import { fadeUpTransition, inViewViewport, jmEase } from './motion';
+import { fadeUpTransition, inViewViewport } from './motion';
+
+function ProjectTags({ tags }: { tags?: string[] }) {
+  if (!tags?.length) return null;
+
+  return (
+    <div className="mt-6 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em]"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ProjectTools({ tools }: { tools: string[] }) {
+  return (
+    <div className="mt-4 flex flex-wrap gap-2">
+      {tools.map((tool) => (
+        <span
+          key={tool}
+          className="rounded border border-theme bg-panel-tint px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em] text-body-soft"
+        >
+          {tool}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 interface CaseStudySectionProps {
   projects: ProjectEntry[];
@@ -69,19 +102,17 @@ function CaseStudyBlock({
               </li>
             ))}
           </ul>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.tools.map((tool) => (
-              <span
-                key={tool}
-                className="chip rounded px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.14em]"
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
+          <ProjectTags tags={project.tags} />
+          <ProjectTools tools={project.tools} />
+          <ProjectActionButtons
+            demoUrl={project.demoUrl}
+            liveUrl={project.liveUrl}
+            githubUrl={project.githubUrl}
+            className="mt-8 flex flex-wrap gap-3"
+          />
           <a
             href={project.detailTo}
-            className="mt-8 inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-body-muted transition-colors duration-300 hover:text-accent-blue"
+            className="mt-4 inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.22em] text-body-muted transition-colors duration-300 hover:text-accent-blue"
           >
             View project details <ArrowRight size={14} />
           </a>
