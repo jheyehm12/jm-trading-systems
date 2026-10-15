@@ -1,8 +1,37 @@
-# Changelog — JM Trading Systems Portfolio
+# Changelog — Jimeno Labs Portfolio
 
-All notable changes to the **JM Trading Systems** portfolio site and documentation.
+All notable changes to the **Jimeno Labs** portfolio site and documentation  
+(formerly JM Trading Systems).
 
 Format based on [Keep a Changelog](https://keepachangelog.com/). Portfolio documentation version tracks major content releases.
+
+---
+
+## [2.2.0] — 2026-10-15
+
+### Changed
+
+- Rebranded portfolio from **JM Trading Systems** to **Jimeno Labs**
+- Brand mark: full name “Jimeno Labs”, symbol “JL”
+- Primary URL / Astro `site`: **https://jimenolabs.dev**
+- Page titles, meta descriptions, footer, hero utility label, contact page brand label
+- Owner attribution: **John Michael Jimeno** (`meta name="author"`)
+
+### Added
+
+- Shared `SiteHead.astro` — canonical URLs, Open Graph, Twitter card tags
+- `public/sitemap.xml` and `public/robots.txt` for jimenolabs.dev
+
+### Preserved
+
+- Project names, descriptions, Live Demo, GitHub, and Loom demo links
+- Premium dark theme, hero layout, navigation, responsiveness, animations
+- Existing contact method (GitHub CTA) — no new email activated
+- GitHub repository name and Vercel project name unchanged
+
+### Documentation
+
+- Updated `MASTER_PROMPT.md`, `PROJECT_STATE.md`, `CHANGELOG.md`, `OPEN_TASKS.md` for Jimeno Labs rebrand and pending domain/email/profile tasks
 
 ---
 

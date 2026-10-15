@@ -1,3 +1,10 @@
+/** Portfolio brand — display name, primary domain, and owner. */
+export const siteBrand = 'Jimeno Labs';
+export const siteUrl = 'https://jimenolabs.dev';
+export const siteOwner = 'John Michael Jimeno';
+export const siteDescription =
+  'Jimeno Labs — trading systems development, AI automation, and full stack SaaS applications by John Michael Jimeno.';
+
 export interface NavLink {
   href: string;
   label: string;
@@ -62,7 +69,7 @@ export const heroContent: HeroContent = {
   ],
   primaryCta: { label: 'View Projects', href: '#case-studies' },
   secondaryCta: { label: "Let's Talk", href: '/contact/' },
-  utilityLabel: 'JM Trading Systems',
+  utilityLabel: 'Jimeno Labs',
 };
 
 export const stats: StatBlockProps[] = [
@@ -73,7 +80,7 @@ export const stats: StatBlockProps[] = [
 ];
 
 export const footerMeta: FooterMeta = {
-  title: 'JM Trading Systems',
+  title: 'Jimeno Labs',
   description:
     'Trading systems development, AI automation, and full stack SaaS delivery for freelance clients and direct engagements.',
 };

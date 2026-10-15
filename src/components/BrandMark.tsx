@@ -12,7 +12,7 @@ export default function BrandMark({
       <span
         className={`font-display text-xl font-bold tracking-[-0.06em] text-page-bg sm:text-2xl ${className}`}
       >
-        JM
+        JL
       </span>
     );
   }
@@ -21,7 +21,7 @@ export default function BrandMark({
     <span
       className={`font-display text-sm font-semibold tracking-[-0.03em] text-body-strong sm:text-base ${className}`}
     >
-      JM Trading Systems
+      Jimeno Labs
     </span>
   );
 }

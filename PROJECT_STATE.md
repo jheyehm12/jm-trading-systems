@@ -1,4 +1,4 @@
-# JM Trading Systems Portfolio — Project State
+# Jimeno Labs Portfolio — Project State
 
 > Snapshot of the portfolio codebase and deployment status. Update on every meaningful portfolio change.
 
@@ -6,7 +6,7 @@
 
 ## Portfolio Version
 
-**2.1.0** (package.json: `1.0.0` — align on next release tag)
+**2.2.0** (package.json: `1.0.0` — align on next release tag)
 
 ---
 
@@ -14,17 +14,22 @@
 
 | Item | Status |
 |---|---|
+| **Brand** | Jimeno Labs |
+| **Owner** | John Michael Jimeno |
+| **Primary URL** | https://jimenolabs.dev |
 | **Build** | Passing (`npm run build` → static `dist/`) |
-| **GitHub** | Pushed to `origin/main` |
-| **Vercel / production URL** | Not configured in repository |
+| **GitHub** | https://github.com/jheyehm12/jm-trading-systems *(name unchanged)* |
+| **Vercel project** | Unchanged (do not rename) |
+| **Astro `site`** | `https://jimenolabs.dev` in `astro.config.mjs` |
 | **Astro dev toolbar** | Disabled in `astro.config.mjs` |
 | **Legacy Vite app** | Archived at `src-legacy-vite/` (not served) |
+| **DNS / redirects / hosting** | Out of scope for this repo — pending ops tasks |
 
 ---
 
 ## Last Updated
 
-**2026-06-02**
+**2026-10-15**
 
 ---
 
@@ -40,7 +45,9 @@
 | `/projects/full-stack/` | `src/pages/projects/full-stack.astro` | TradeVault summary |
 | `/projects/qa-validation/` | `src/pages/projects/qa-validation.astro` | Banking QA, Test Automation / Validation |
 
-**Total static pages:** 7 (build output)
+**Total static pages:** 7 (build output)  
+**SEO:** Shared `SiteHead.astro` — titles, description, canonical, Open Graph, Twitter card, author  
+**Crawl:** `public/robots.txt` + `public/sitemap.xml`
 
 ---
 
@@ -50,6 +57,7 @@
 
 - Angled nav: Projects, Selected Work | Services, Work With Me
 - Mobile/tablet: hamburger menu with full `siteNav`
+- Brand mark: **Jimeno Labs** (symbol **JL**)
 
 ### `siteNav` / footer directory
 
@@ -82,7 +90,7 @@
 | **Homepage Case Studies** | 2 | MyAlert, LookBack |
 | **Homepage Selected Work** | 4 | AI Workforce, Client Intake, TradeVault, Resort Booking |
 | **QA Experience (homepage)** | 2 | Banking QA, Test Automation / Validation |
-| **Portfolio site itself** | 1 | JM Trading Systems (this repo) |
+| **Portfolio site itself** | 1 | Jimeno Labs (this repo) |
 | **Total featured** | **9** | |
 
 **Archived / not on Astro homepage:** AI Trading Screenshot Assistant (`src-legacy-vite/`)
@@ -113,9 +121,9 @@
 
 ## Live Portfolio URL
 
-**Not set in repository.**
+**Primary brand URL:** https://jimenolabs.dev
 
-Project live demos (separate apps):
+Project live demos (separate apps — unchanged):
 
 - https://ai-workforce-assistant-platform.vercel.app/
 - https://trade-vault2.vercel.app/
@@ -132,38 +140,38 @@ Default project GitHub link: https://github.com/jheyehm12
 
 ## Latest Portfolio Changes
 
-- Added **AI Client Submission & Document Intake Platform** with Loom demo
-- Expanded **AI Workforce Assistant Platform** (full copy, tags, demo links)
-- Added **TradeVault** to trading projects with Live + Loom + GitHub
-- Added **QA experience** entries (Banking QA, Test Automation / Validation)
-- Added **`ProjectActionButtons`** — Live Demo, GitHub, ▶ Watch Demo (conditional)
-- Created **`/projects/qa-validation/`** detail page
-- **Responsive layout** overhaul (hero flow, mobile nav, spacing)
-- **Light mode** theme tokens and semantic color system
-- **Work With Me** rename (formerly Contact labels)
-- **Astro 6 migration** from legacy Vite SPA (`src-legacy-vite/`)
+- **Rebrand to Jimeno Labs** — header, footer, page titles, SEO, canonical, Open Graph
+- Primary URL set to **https://jimenolabs.dev** (`astro.config.mjs` `site`, sitemap, robots)
+- Shared **`SiteHead.astro`** for metadata across all pages
+- Owner attributed as **John Michael Jimeno** (`meta name="author"`)
+- Contact method unchanged (GitHub CTA) — no new email activated
+- Project names, descriptions, Live/GitHub/Loom links preserved
 
 ---
 
 ## Missing Items
 
-- [ ] Production URL for portfolio site (Vercel) documented and linked
-- [ ] Root `README.md` still Vite boilerplate — needs Astro portfolio README
-- [ ] `LICENSE` file for JM repo
+- [ ] Configure **www.jimenolabs.dev** (DNS/hosting)
+- [ ] Redirect old domain (**jmtradingsystems.com**) to jimenolabs.dev
+- [ ] Set up professional email (do not publish until ready)
+- [ ] Update external profile links (Upwork, LinkedIn, GitHub profile bio, etc.)
+- [ ] Root `README.md` still Vite boilerplate — needs Astro / Jimeno Labs README
+- [ ] `LICENSE` file for repo
 - [ ] Loom demos for MyAlert, LookBack, Resort Booking
 - [ ] Live demos for Client Intake, Resort Booking, MyAlert
 - [ ] Dedicated Astro `/skills` page (legacy only)
 - [ ] AI Trading Screenshot Assistant on current homepage
 - [ ] Real screenshots beyond MyAlert chart images
 - [ ] Per-project GitHub repo URLs (currently single profile URL)
+- [ ] Open Graph image asset (`og:image`)
 
 ---
 
 ## Next Improvements
 
-1. Deploy to Vercel and record live portfolio URL
-2. Update `README.md` to match Astro stack
-3. Add MyAlert / TradeVault Loom if recordings exist
-4. Migrate or drop `src-legacy-vite/` after parity check
-5. Add Open Graph / social preview meta tags
+1. Complete DNS/hosting: www subdomain + old-domain redirect
+2. Set up professional email when ready (do not invent contact addresses in site copy)
+3. Update external profiles to Jimeno Labs / jimenolabs.dev
+4. Update `README.md` to match Astro stack and new brand
+5. Optional: add `og:image` social preview asset
 6. Optional: project filters by category on homepage

@@ -4,6 +4,7 @@ import ContactCTASection from '../components/ContactCTASection';
 import JMFooter from '../components/JMFooter';
 import JMHeroShell from '../components/JMHeroShell';
 import SelectedWorkSection from '../components/SelectedWorkSection';
+import SiteHead from '../components/SiteHead.astro';
 import StatsSection from '../components/StatsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import ValidationBackgroundSection from '../components/ValidationBackgroundSection';
@@ -28,30 +29,7 @@ import '../styles/global.css';
 
 <html lang="en" class="bg-page-bg">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="JM Trading Systems — trading systems development, AI automation, and full stack SaaS applications."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
-    />
-    <script is:inline>
-      (() => {
-        const key = 'jm-theme';
-        const stored = window.localStorage.getItem(key);
-        const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      })();
-    </script>
-    <title>JM Trading Systems</title>
+    <SiteHead path="/" />
   </head>
   <body class="bg-page-bg font-body text-body-strong antialiased">
     <main class="site-shell overflow-x-clip">

@@ -1,0 +1,60 @@
+---
+import {
+  siteBrand,
+  siteDescription,
+  siteOwner,
+  siteUrl,
+} from '../data/site';
+
+interface Props {
+  /** Page-specific title segment; omit for homepage brand-only title. */
+  title?: string;
+  description?: string;
+  /** Path for canonical + og:url (e.g. `/`, `/contact/`). */
+  path?: string;
+}
+
+const {
+  title,
+  description = siteDescription,
+  path = '/',
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${siteBrand}` : siteBrand;
+const canonical = new URL(path, siteUrl).href;
+---
+
+<meta charset="utf-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+<meta name="description" content={description} />
+<meta name="author" content={siteOwner} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteBrand} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+/>
+<script is:inline>
+  (() => {
+    const key = 'jm-theme';
+    const stored = window.localStorage.getItem(key);
+    const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  })();
+</script>
+<title>{pageTitle}</title>

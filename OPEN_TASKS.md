@@ -1,4 +1,4 @@
-# Open Tasks — JM Trading Systems Portfolio
+# Open Tasks — Jimeno Labs Portfolio
 
 > Future work for the portfolio only. Update when items are completed or priorities shift.  
 > Sync with `MASTER_PROMPT.md` Future Roadmap and `PROJECT_STATE.md` Missing Items.
@@ -7,8 +7,11 @@
 
 ## High Priority
 
-- [ ] **Deploy portfolio to Vercel** — set production URL and add to `PROJECT_STATE.md` + `MASTER_PROMPT.md`
-- [ ] **Update root `README.md`** — replace Vite boilerplate with Astro portfolio setup, scripts, and structure
+- [ ] **Configure www.jimenolabs.dev** — DNS / hosting (out of repo scope)
+- [ ] **Redirect old domain** — point jmtradingsystems.com → jimenolabs.dev (DNS / hosting)
+- [ ] **Set up professional email** — prepare mailbox; do **not** invent or activate `john@jimenolabs.dev` on the site until ready
+- [ ] **Update external profile links** — Upwork, LinkedIn, GitHub profile, other directories → Jimeno Labs / https://jimenolabs.dev
+- [ ] **Update root `README.md`** — replace Vite boilerplate with Astro + Jimeno Labs setup
 - [ ] **Add QuantLab project** — Python trading research platform (content exists in legacy `portfolioData.js`)
 - [ ] **Add MT5 Import / EA demo** — showcase MQL4/MQL5 capability on portfolio
 - [ ] **Add project screenshots** — real UI captures for Workforce, TradeVault, Client Intake (MyAlert charts done)
@@ -23,8 +26,8 @@
 - [ ] **Add `/skills` Astro page** — migrate from `src-legacy-vite/pages/SkillsPage.jsx`
 - [ ] **Improve case study detail pages** — shared layout, previews, consistent action buttons
 - [ ] **Add project filters** — category tabs on homepage (Trading / AI / QA)
-- [ ] **Open Graph & Twitter meta** — social sharing previews per page
-- [ ] **Add `LICENSE` file** — MIT or proprietary for JM Trading Systems repo
+- [ ] **Add `og:image` asset** — social sharing preview image (OG tags already present)
+- [ ] **Add `LICENSE` file** — MIT or proprietary for this repo
 - [ ] **Remove or document `_aeon-template/`** — template reference vs gitignored clone
 - [ ] **Improve mobile animations** — reduce motion cost on low-end devices
 
@@ -44,6 +47,9 @@
 
 ## Completed (recent)
 
+- [x] Rebrand to **Jimeno Labs** (header, footer, titles, SEO, canonical, OG)
+- [x] Primary URL **https://jimenolabs.dev** in Astro config, sitemap, robots
+- [x] Shared `SiteHead.astro` metadata component
 - [x] AI Workforce Assistant Platform — full portfolio entry + demos
 - [x] AI Client Onboarding / Document Intake Platform
 - [x] Loom Demo buttons (conditional `ProjectActionButtons`)

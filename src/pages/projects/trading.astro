@@ -1,14 +1,16 @@
 ---
+import SiteHead from '../../components/SiteHead.astro';
 import { tradingProjects } from '../../data/projects';
 import '../../styles/global.css';
 ---
 
 <html lang="en" class="bg-page-bg">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Trading Systems — JM Trading Systems</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" />
+    <SiteHead
+      title="Trading Systems"
+      description="Trading systems case studies — MyAlert, LookBack, and TradeVault."
+      path="/projects/trading/"
+    />
   </head>
   <body class="bg-page-bg font-body text-body-strong antialiased">
     <main class="site-shell min-h-screen overflow-x-clip px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-12">

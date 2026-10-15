@@ -1,22 +1,24 @@
-# JM Trading Systems Portfolio — Master Documentation
+# Jimeno Labs Portfolio — Master Documentation
 
-> **Source of truth** for the JM Trading Systems personal developer portfolio.  
+> **Source of truth** for the Jimeno Labs personal developer portfolio.  
 > Update this file whenever projects, skills, services, positioning, or design direction change.
 
 ---
 
 ## Project Overview
 
-**JM Trading Systems** is my personal developer portfolio showcasing experience in:
+**Jimeno Labs** is the personal developer portfolio of **John Michael Jimeno**, showcasing experience in:
 
 - **AI Automation** — agents, workflows, OpenAI integrations, business process automation
 - **Full Stack Development** — React, TypeScript, Supabase, SaaS architecture
 - **Trading Systems** — TradingView, Pine Script, alerts, journals, analytics
 - **QA & Validation** — supporting credibility from 9+ years of quality engineering (not offered as a standalone freelance service)
 
-**Stack:** Astro 6 · React 19 islands · TypeScript · Tailwind CSS 4 · Framer Motion · static deploy (Vercel-ready)
+**Primary URL:** https://jimenolabs.dev  
+**Stack:** Astro 6 · React 19 islands · TypeScript · Tailwind CSS 4 · Framer Motion · static deploy (Vercel-ready)  
+**Repository:** https://github.com/jheyehm12/jm-trading-systems *(repo name unchanged)*
 
-**Repository:** https://github.com/jheyehm12/jm-trading-systems
+> Formerly branded as **JM Trading Systems**. Portfolio branding and SEO now use Jimeno Labs / jimenolabs.dev. GitHub repository and Vercel project names remain unchanged.
 
 ---
 
@@ -142,16 +144,16 @@
 
 ---
 
-### Portfolio Website (JM Trading Systems)
+### Portfolio Website (Jimeno Labs)
 
 | Field | Value |
 |---|---|
 | **Description** | This site — cinematic Astro portfolio with case studies, selected work, QA credibility section, services, and contact. |
 | **Tech Stack** | Astro 6, React 19, TypeScript, Tailwind CSS 4, Framer Motion, sharp |
-| **Live Demo** | *Not recorded in repository — configure after Vercel deploy* |
+| **Live Demo** | https://jimenolabs.dev *(primary brand URL; DNS/hosting cutover may still be pending)* |
 | **GitHub** | https://github.com/jheyehm12/jm-trading-systems |
 | **Loom Demo** | — |
-| **Status** | **Active development** — primary codebase |
+| **Status** | **Active** — branded as Jimeno Labs |
 
 ---
 
@@ -237,7 +239,8 @@ Derived from site copy (`whatIBuild`, `contactAvailability`, footer positioning)
 - Custom SaaS applications
 - Freelance projects & consulting engagements
 
-**Note:** QA is positioned as delivery credibility, not a standalone freelance offering.
+**Note:** QA is positioned as delivery credibility, not a standalone freelance offering.  
+**Contact:** Existing GitHub CTA only — do not invent or activate `john@jimenolabs.dev` until email is ready.
 
 ---
 
@@ -250,6 +253,7 @@ Derived from site copy (`whatIBuild`, `contactAvailability`, footer positioning)
 - **Professional animations** — Framer Motion section reveals, stats count-up, reduced-motion respected
 - **No dev toolbar** in local development (`devToolbar.enabled: false`)
 - **Semantic theme tokens** — `text-heading`, `border-theme`, `btn-primary`, etc.
+- **Brand mark** — “Jimeno Labs” full / “JL” symbol
 
 ---
 
@@ -257,11 +261,14 @@ Derived from site copy (`whatIBuild`, `contactAvailability`, footer positioning)
 
 | Project / initiative | Priority | Notes |
 |---|---|---|
+| Configure www.jimenolabs.dev | High | Hosting/DNS — not in this codebase |
+| Redirect old domain (jmtradingsystems.com) | High | Hosting/DNS — not in this codebase |
+| Set up professional email | High | Do not publish until ready |
+| Update external profile links | High | Upwork, LinkedIn, GitHub profile, etc. |
 | QuantLab trading research platform | High | From legacy portfolio data |
 | MT5 Import / EA tooling demo | High | Showcase MT4/MT5 capability |
 | AI Trading Screenshot Assistant | Medium | Exists in legacy app; not on Astro homepage |
 | Dedicated `/skills` Astro page | Medium | Legacy Vite page archived |
-| Live portfolio URL on Vercel | High | Not in repo config yet |
 | Project screenshot assets (beyond MyAlert) | Medium | More real UI captures |
 | Blog / insights section | Low | Thought leadership |
 | Project filters on homepage | Low | Category toggles |

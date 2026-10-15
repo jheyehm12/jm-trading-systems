@@ -1,5 +1,6 @@
 ---
-import { contactAvailability, workWithMeMessage } from '../data/site';
+import SiteHead from '../components/SiteHead.astro';
+import { contactAvailability, siteBrand, workWithMeMessage } from '../data/site';
 import '../styles/global.css';
 
 const githubUrl = 'https://github.com/jheyehm12';
@@ -7,24 +8,11 @@ const githubUrl = 'https://github.com/jheyehm12';
 
 <html lang="en" class="bg-page-bg">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Work with JM Trading Systems — freelance projects and consulting engagements." />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    <SiteHead
+      title="Work With Me"
+      description={`Work with ${siteBrand} — freelance projects and consulting engagements.`}
+      path="/contact/"
     />
-    <script is:inline>
-      (() => {
-        const key = 'jm-theme';
-        const stored = window.localStorage.getItem(key);
-        const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      })();
-    </script>
-    <title>Work With Me — JM Trading Systems</title>
   </head>
   <body class="bg-page-bg font-body text-body-strong antialiased">
     <main class="site-shell min-h-screen overflow-x-clip px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-12">
@@ -33,7 +21,7 @@ const githubUrl = 'https://github.com/jheyehm12';
           ← Back home
         </a>
         <div class="surface-panel mt-6 rounded-lg p-5 sm:mt-8 sm:p-8 lg:p-10">
-          <span class="font-display text-lg font-semibold text-body-strong">JM Trading Systems</span>
+          <span class="font-display text-lg font-semibold text-body-strong">{siteBrand}</span>
           <p class="mt-6 font-display text-[11px] uppercase tracking-[0.24em] text-accent-blue">
             Work With Me
           </p>
