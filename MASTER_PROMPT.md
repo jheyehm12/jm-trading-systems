@@ -253,7 +253,7 @@ Derived from site copy (`whatIBuild`, `contactAvailability`, footer positioning)
 - **Professional animations** — Framer Motion section reveals, stats count-up, reduced-motion respected
 - **No dev toolbar** in local development (`devToolbar.enabled: false`)
 - **Semantic theme tokens** — `text-heading`, `border-theme`, `btn-primary`, etc.
-- **Brand mark** — “Jimeno Labs” full / “JL” symbol
+- **Brand mark** — “Jimeno Labs” full / “JM” center monogram
 
 ---
 

@@ -7,12 +7,20 @@ Format based on [Keep a Changelog](https://keepachangelog.com/). Portfolio docum
 
 ---
 
+## [2.2.1] — 2026-10-15
+
+### Changed
+
+- Center circular monogram restored from **JL** to **JM** (Jimeno Labs full brand unchanged)
+
+---
+
 ## [2.2.0] — 2026-10-15
 
 ### Changed
 
 - Rebranded portfolio from **JM Trading Systems** to **Jimeno Labs**
-- Brand mark: full name “Jimeno Labs”, symbol “JL”
+- Brand mark: full name “Jimeno Labs”, symbol “JM” (personal initials; briefly “JL” in 2.2.0, restored in 2.2.1)
 - Primary URL / Astro `site`: **https://jimenolabs.dev**
 - Page titles, meta descriptions, footer, hero utility label, contact page brand label
 - Owner attribution: **John Michael Jimeno** (`meta name="author"`)

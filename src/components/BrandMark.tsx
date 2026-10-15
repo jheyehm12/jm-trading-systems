@@ -12,7 +12,7 @@ export default function BrandMark({
       <span
         className={`font-display text-xl font-bold tracking-[-0.06em] text-page-bg sm:text-2xl ${className}`}
       >
-        JL
+        JM
       </span>
     );
   }

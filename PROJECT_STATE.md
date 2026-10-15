@@ -6,7 +6,7 @@
 
 ## Portfolio Version
 
-**2.2.0** (package.json: `1.0.0` — align on next release tag)
+**2.2.1** (package.json: `1.0.0` — align on next release tag)
 
 ---
 
@@ -57,7 +57,7 @@
 
 - Angled nav: Projects, Selected Work | Services, Work With Me
 - Mobile/tablet: hamburger menu with full `siteNav`
-- Brand mark: **Jimeno Labs** (symbol **JL**)
+- Brand mark: **Jimeno Labs** (center monogram **JM**)
 
 ### `siteNav` / footer directory
 
@@ -140,6 +140,7 @@ Default project GitHub link: https://github.com/jheyehm12
 
 ## Latest Portfolio Changes
 
+- Center circular monogram restored to **JM** (full brand remains Jimeno Labs)
 - **Rebrand to Jimeno Labs** — header, footer, page titles, SEO, canonical, Open Graph
 - Primary URL set to **https://jimenolabs.dev** (`astro.config.mjs` `site`, sitemap, robots)
 - Shared **`SiteHead.astro`** for metadata across all pages
