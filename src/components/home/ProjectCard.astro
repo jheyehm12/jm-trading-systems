@@ -1,0 +1,55 @@
+---
+import type { ProjectEntry } from '../../data/projects';
+import { MAX_TAGS } from '../../data/home';
+
+interface Props {
+  project: ProjectEntry;
+  featured?: boolean;
+  index?: number;
+  delay?: number;
+}
+
+const { project, featured = false, index = 1, delay = 0 } = Astro.props;
+const tags = (project.tags ?? []).slice(0, MAX_TAGS);
+const demo = project.liveUrl ?? project.demoUrl;
+const demoLabel = project.liveUrl ? 'Live site' : 'Watch demo';
+// Real screenshot when one exists; otherwise the CSS placeholder below.
+const image = project.imageSrc ?? project.images?.[0]?.src;
+---
+
+<article
+  class:list={['jl-card', featured ? 'jl-card--featured' : 'jl-card--support']}
+  data-card-reveal
+  style={`--delay: ${delay}ms`}
+>
+  <span class="jl-card__num" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+  <a href={project.detailTo} class="jl-card__media" aria-label={`${project.title} case study`} tabindex="-1">
+    {
+      image ? (
+        <img src={image} alt={project.title} loading="lazy" />
+      ) : (
+        <div class="jl-card__art jl-art" aria-hidden="true">
+          <div class="jl-art__bar"><i></i><i></i><i></i></div>
+          <div class="jl-art__body">
+            <div class="jl-art__side"><b></b><b></b><b></b><b></b></div>
+            <div class="jl-art__main">
+              <span class="jl-art__hero"></span>
+              <div class="jl-art__cols"><b></b><b></b><b></b></div>
+              <b></b><b></b>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </a>
+
+  <div class="jl-card__meta">
+    {tags.map((tag) => <span class="jl-tag">{tag}</span>)}
+  </div>
+  <h3><a href={project.detailTo}>{project.title}</a></h3>
+  <p>{project.summary}</p>
+  <div class="jl-card__links">
+    <a href={project.detailTo}>Case study →</a>
+    {demo && <a href={demo} target="_blank" rel="noreferrer">{demoLabel} ↗</a>}
+  </div>
+</article>

@@ -24,3 +24,6 @@ _aeon-template/
 *.njsproj
 *.sln
 *.sw?
+
+# UI review screenshots (local QA evidence)
+docs/ui-review/

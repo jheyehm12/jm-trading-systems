@@ -1,62 +1,32 @@
 ---
-import CaseStudySection from '../components/CaseStudySection';
-import ContactCTASection from '../components/ContactCTASection';
-import JMFooter from '../components/JMFooter';
-import JMHeroShell from '../components/JMHeroShell';
-import SelectedWorkSection from '../components/SelectedWorkSection';
+import HomeAbout from '../components/home/HomeAbout.astro';
+import HomeContact from '../components/home/HomeContact.astro';
+import HomeExpertise from '../components/home/HomeExpertise.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import HomeNav from '../components/home/HomeNav.astro';
+import HomeWork from '../components/home/HomeWork.astro';
 import SiteHead from '../components/SiteHead.astro';
-import StatsSection from '../components/StatsSection';
-import TestimonialsSection from '../components/TestimonialsSection';
-import ValidationBackgroundSection from '../components/ValidationBackgroundSection';
-import WhatIBuildSection from '../components/WhatIBuildSection';
-import { homeCaseStudies, homeQaExperience, homeSelectedWork } from '../data/projects';
-import {
-  contactAvailability,
-  footerDirectory,
-  footerMeta,
-  footerPolicies,
-  heroContent,
-  heroLeftNav,
-  heroRightNav,
-  mobileNav,
-  stats,
-  testimonials,
-  validationBackground,
-  whatIBuild,
-} from '../data/site';
 import '../styles/global.css';
+import '../styles/home.css';
+
+const description =
+  'Jimeno Labs is a software engineering studio by John Michael Jimeno — full-stack software, AI solutions, and automation built for reliability, quality, and practical impact.';
 ---
 
-<html lang="en" class="bg-page-bg">
+<html lang="en">
   <head>
-    <SiteHead path="/" />
+    <SiteHead path="/" description={description} />
+    <!-- Flags JS so scroll-reveal only hides content when it can be revealed again. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body class="bg-page-bg font-body text-body-strong antialiased">
-    <main class="site-shell overflow-x-clip">
-      <JMHeroShell
-        client:load
-        content={heroContent}
-        leftNav={heroLeftNav}
-        mobileNav={mobileNav}
-        rightNav={heroRightNav}
-      />
-      <CaseStudySection client:visible projects={homeCaseStudies} />
-      <SelectedWorkSection client:visible projects={homeSelectedWork} />
-      <StatsSection client:visible stats={stats} />
-      <WhatIBuildSection client:visible groups={whatIBuild} />
-      <TestimonialsSection client:visible items={testimonials} />
-      <ValidationBackgroundSection
-        client:visible
-        content={validationBackground}
-        qaProjects={homeQaExperience}
-      />
-      <ContactCTASection client:visible items={contactAvailability} />
-      <JMFooter
-        client:visible
-        directory={footerDirectory}
-        meta={footerMeta}
-        policies={footerPolicies}
-      />
+  <body class="jl">
+    <HomeNav />
+    <main>
+      <HomeHero />
+      <HomeWork />
+      <HomeExpertise />
+      <HomeAbout />
+      <HomeContact />
     </main>
   </body>
 </html>

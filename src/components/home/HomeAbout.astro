@@ -1,0 +1,31 @@
+---
+import { homeAbout } from '../../data/home';
+---
+
+<section class="jl-about" id="about" data-nav-theme="light">
+  <div class="jl-wrap jl-about__grid">
+    <!-- Portrait placeholder: swap for <img src="/images/john.jpg"> when available. -->
+    <div class="jl-portrait" data-reveal role="img" aria-label="Portrait placeholder">
+      JM
+      <small>Portrait coming soon</small>
+    </div>
+
+    <div class="jl-about__copy" data-reveal style="--delay: 120ms">
+      <p class="jl-eyebrow">About</p>
+      <h2 class="jl-h2">{homeAbout.name}</h2>
+      <p class="jl-about__title">{homeAbout.title}</p>
+      <p class="jl-about__roles">{homeAbout.roles}</p>
+      {homeAbout.paragraphs.map((text) => <p>{text}</p>)}
+      <div class="jl-facts">
+        {
+          homeAbout.facts.map((f) => (
+            <div>
+              <strong>{f.value}</strong>
+              <span>{f.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

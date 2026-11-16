@@ -1,0 +1,21 @@
+---
+import { featuredProject, homeWork, supportingProjects } from '../../data/home';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section class="jl-work" id="work" data-nav-theme="dark">
+  <div class="jl-wrap">
+    <div class="jl-section-head" data-reveal>
+      <p class="jl-eyebrow">{homeWork.eyebrow}</p>
+      <h2 class="jl-h2">{homeWork.title}</h2>
+      <p>{homeWork.intro}</p>
+    </div>
+
+    <div class="jl-work__grid">
+      <ProjectCard project={featuredProject} featured index={1} />
+      <div class="jl-work__support">
+        {supportingProjects.map((p, i) => <ProjectCard project={p} index={i + 2} delay={i * 160} />)}
+      </div>
+    </div>
+  </div>
+</section>
