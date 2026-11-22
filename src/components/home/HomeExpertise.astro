@@ -1,0 +1,24 @@
+---
+import { homeExpertise } from '../../data/home';
+---
+
+<section class="jl-expertise" id="expertise" data-nav-theme="light">
+  <div class="jl-wrap">
+    <div class="jl-section-head" data-reveal>
+      <p class="jl-eyebrow">{homeExpertise.eyebrow}</p>
+      <h2 class="jl-h2">{homeExpertise.title}</h2>
+    </div>
+
+    <ul class="jl-expertise__list">
+      {
+        homeExpertise.areas.map((area, i) => (
+          <li class="jl-area" data-reveal style={`--delay: ${i * 70}ms`}>
+            <span class="jl-area__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{area.title}</h3>
+            <p>{area.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -10,6 +10,9 @@
     <loc>https://jimenolabs.dev/services/</loc>
   </url>
   <url>
+    <loc>https://jimenolabs.dev/projects/</loc>
+  </url>
+  <url>
     <loc>https://jimenolabs.dev/projects/trading/</loc>
   </url>
   <url>
@@ -20,5 +23,17 @@
   </url>
   <url>
     <loc>https://jimenolabs.dev/projects/qa-validation/</loc>
+  </url>
+  <url>
+    <loc>https://jimenolabs.dev/projects/auvyre-ai/</loc>
+  </url>
+  <url>
+    <loc>https://jimenolabs.dev/projects/casa-tia/</loc>
+  </url>
+  <url>
+    <loc>https://jimenolabs.dev/projects/myalert-ai/</loc>
+  </url>
+  <url>
+    <loc>https://jimenolabs.dev/projects/quant-research/</loc>
   </url>
 </urlset>

@@ -1,0 +1,243 @@
+---
+import HomeFooter from '../../components/home/HomeFooter.astro';
+import HomeNav from '../../components/home/HomeNav.astro';
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import '../../styles/home.css';
+import '../../styles/case-study.css';
+
+const meta = [
+  { k: 'Type', v: 'Business automation, AI integration' },
+  { k: 'Status', v: 'Development & controlled testing' },
+  { k: 'Built with', v: 'n8n, Messenger, Google Calendar and Sheets' },
+];
+
+const pipeline = [
+  { t: 'Messenger', d: 'Guest messages arrive through a Messenger webhook integration with signature verification and message normalization. Tested in DEV.' },
+  { t: 'n8n routing', d: 'Workflows route each message by intent, language, guest count, and requested date.' },
+  { t: 'Date validation', d: 'Booking dates are validated first. Invalid dates take their own branch and never reach the availability check.' },
+  { t: 'Availability', d: 'Valid dates trigger a calendar availability check. Airbnb availability is simulated in DEV, not a verified live integration, and the results feed a combined decision.' },
+  { t: 'Data capture', d: 'Guest and inquiry details are written to Google Sheets in structured form. Tested in DEV.' },
+];
+
+const engineering = [
+  ['Workflow routing', 'Intent, language, guest count, and date rules run before any reply is composed. Unknown date expressions are rejected instead of guessed.'],
+  ['Structured data', 'Each verified message becomes a minimal structured request record. Result outputs carry no personal data.'],
+  ['Duplicate handling', 'In the isolated write-queue prototype, every message ID gets one write budget, tracked as claim, write, complete. Duplicates and conflicts end without a second write or a reply.'],
+  ['Failure handling', 'In the same prototype, a send or write with an uncertain outcome is held for human review and never retried automatically.'],
+  ['Integration safeguards', 'In the isolated chatbot design, approved-tester and approved-page allowlists, a recipient allowlist, and an outbound text guard sit in front of any Messenger send.'],
+  ['AI boundary', 'In the isolated chatbot, the assistant may answer only from approved, cited knowledge. Versioned input and output contracts are validated before and after any model call, and anything else escalates to staff.'],
+  ['Credentials', 'Workflow exports hold credential references only, never secret values.'],
+];
+
+const tested = [
+  'Messenger webhook integration: signature check and text normalization.',
+  'Google Sheets guest and inquiry writes.',
+  'Booking-date validation and calendar availability check.',
+];
+
+const developing = [
+  'Isolated development / synthetic validation: an idempotent write-queue prototype, exercised through n8n locally with synthetic data for success, duplicate replay, and failed and ambiguous outcomes. It is separate from the DEV Sheets-writing flow.',
+  'AI chatbot, developed in isolation: synthetic and offline QA is complete, including a 30-case Filipino and Taglish pack and deterministic guards for sources, citations, fail-closed fallback, staff escalation, and no automatic booking confirmation. It is not activated as a production service.',
+  'AI provider execution: only a single controlled provider case has been verified.',
+  'Airbnb availability: simulated in DEV. It is not a verified live Airbnb integration.',
+  'Approved real knowledge sources for guest answers.',
+  'Unattended recovery after restarts: not validated.',
+  'Booking confirmation, payment, and production rollout: not built or approved.',
+];
+
+const validation = [
+  'All testing runs in a DEV environment with synthetic data. No real guest data or production records are used.',
+  'The isolated AI chatbot is covered by a 30-case synthetic Filipino and Taglish message pack, plus frozen English fixtures, checked by offline regression suites.',
+  'Local runs of the isolated write-queue prototype through n8n matched the expected outcome in every case. Failed and ambiguous writes were held for human review.',
+  'The local pass covers synthetic laptop scope only. It is not a production-readiness claim.',
+];
+---
+
+<html lang="en">
+  <head>
+    <SiteHead
+      title="CASA Tia: Resort Booking Automation"
+      description="CASA Tia case study — a Messenger-based resort inquiry and booking automation built with n8n, in development and controlled testing."
+      path="/projects/casa-tia/"
+    />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="jl">
+    <HomeNav offHome />
+    <main id="main">
+      <!-- Hero -->
+      <section class="cs-hero" data-nav-theme="light">
+        <div class="jl-wrap cs-hero__grid">
+          <div class="cs-hero__lead">
+            <a class="cs-back cs-in" href="/#work" style="--d: 0s">← Back to Selected Work</a>
+            <p class="jl-eyebrow cs-eyebrow--deep cs-in" style="--d: 0.05s">Case study · 02</p>
+            <h1 class="cs-title cs-title--md cs-in" style="--d: 0.15s">CASA <em>Tia</em></h1>
+            <p class="cs-sub cs-in" style="--d: 0.25s">Resort Booking Automation</p>
+            <p class="cs-lede cs-in" style="--d: 0.35s">
+              AI-assisted resort inquiry and booking automation, built on Messenger and n8n and still in controlled DEV testing.
+            </p>
+            <div class="cs-cta cs-in" style="--d: 0.45s">
+              <a class="jl-btn jl-btn--dark" href="/contact/">Discuss a project</a>
+              <a class="jl-btn jl-btn--outline" href="/#work">Selected Work</a>
+            </div>
+          </div>
+          <dl class="cs-meta cs-in" style="--d: 0.4s">
+            {meta.map((m) => <div><dt>{m.k}</dt><dd>{m.v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Workflow evidence -->
+      <section class="cs-dark cs-dark--flow" data-nav-theme="dark" aria-labelledby="cs-evidence-h">
+        <div class="jl-wrap">
+          <figure class="cs-wide cs-rise">
+            <div class="cs-fig__frame">
+              <img
+                src="/images/projects/casa-tia/casa-tia-booking-workflow-authentic.webp"
+                width="1500"
+                height="660"
+                alt="CASA Tia n8n DEV workflow for booking date validation and availability checks."
+              />
+            </div>
+            <figcaption>
+              <p class="jl-eyebrow" id="cs-evidence-h">Workflow evidence</p>
+              <p>
+                The DEV workflow for booking-date validation and availability checks, as it appears in n8n. Valid dates go to
+                a calendar availability check; invalid dates take a separate branch. Airbnb availability is simulated.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Overview / Problem -->
+      <section class="cs-dark cs-dark--cont" data-nav-theme="dark">
+        <div class="jl-wrap">
+          <div class="cs-row cs-rise">
+            <span class="cs-num" aria-hidden="true">01</span>
+            <div>
+              <p class="jl-eyebrow">Overview</p>
+              <h2 class="jl-h2">Inquiries in, structured requests out.</h2>
+            </div>
+            <p class="cs-body">
+              CASA Tia is an AI-assisted inquiry and booking automation for a resort, built around Messenger and n8n. It is in
+              development and controlled testing. The existing DEV integration workflows have been tested in DEV, while the
+              AI chatbot is being developed separately and is not activated.
+            </p>
+          </div>
+          <div class="cs-row cs-rise">
+            <span class="cs-num" aria-hidden="true">02</span>
+            <div>
+              <p class="jl-eyebrow">Problem</p>
+              <h2 class="jl-h2">Every inquiry means manual checking.</h2>
+            </div>
+            <p class="cs-body">
+              Guests write informally, often in English, Filipino, or Taglish. Each message means checking dates and
+              availability by hand, then recording the details. The aim is to capture requests in a structured way while
+              keeping staff in control of anything that affects a booking.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solution: pipeline -->
+      <section class="cs-light" data-nav-theme="light">
+        <div class="jl-wrap">
+          <div class="cs-split__head cs-rise">
+            <p class="jl-eyebrow cs-eyebrow--deep">03 · Solution</p>
+            <h2 class="jl-h2 cs-h2--wide">One message, five controlled steps.</h2>
+          </div>
+          <ol class="cs-pipe cs-rise">
+            {
+              pipeline.map((n, i) => (
+                <li>
+                  <span class="cs-pipe__dot" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{n.t}</h3>
+                  <p>{n.d}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <!-- Engineering -->
+      <section class="cs-dark cs-dark--q" data-nav-theme="dark">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow">04 · Engineering</p>
+            <h2 class="jl-h2">Fail closed, keep staff in the loop.</h2>
+            <p class="cs-body">
+              The design favors safe rejection: when a message, date, or outcome is unclear, the workflow escalates instead of
+              guessing.
+            </p>
+          </div>
+          <dl class="cs-defs cs-defs--dark">
+            {engineering.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Quality -->
+      <section class="cs-light" data-nav-theme="light">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow cs-eyebrow--deep">05 · Quality &amp; validation</p>
+            <h2 class="jl-h2">Tested on DEV, with synthetic data.</h2>
+          </div>
+          <ul class="cs-list">
+            {validation.map((v) => <li>{v}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <!-- Status -->
+      <section class="cs-dark cs-dark--q cs-dark--status" data-nav-theme="dark">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow">06 · Status</p>
+          <p class="cs-status__big cs-status__big--dark">Development &amp; controlled testing.</p>
+          <p class="cs-body cs-body--wide">
+            CASA Tia is not live. The AI chatbot is not activated, bookings are not confirmed automatically, and no
+            production rollout or outcomes are claimed.
+          </p>
+          <div class="cs-ledger">
+            <div class="cs-ledger__col cs-ledger__col--done">
+              <h3>Existing DEV integration workflows (DEV tested)</h3>
+              <ul>{tested.map((t) => <li>{t}</li>)}</ul>
+            </div>
+            <div class="cs-ledger__col cs-ledger__col--dev">
+              <h3>Isolated development, simulated, or not yet validated</h3>
+              <ul>{developing.map((t) => <li>{t}</li>)}</ul>
+            </div>
+          </div>
+          <div class="cs-status__links cs-status__links--dark">
+            <a class="cs-back cs-back--dark" href="/#work">← Back to Selected Work</a>
+            <a class="jl-btn jl-btn--ghost" href="/contact/">Discuss a project</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <HomeFooter base="/" />
+    <script>
+      // Reveal each section once it first appears (or has already been scrolled past).
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.cs-rise'));
+      const show = (el: Element) => el.classList.add('is-visible');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting || e.boundingClientRect.top < 0) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach(show);
+      }
+    </script>
+  </body>
+</html>

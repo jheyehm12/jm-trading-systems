@@ -17,8 +17,9 @@ const tradevault = tradingProjects.find((p) => p.id === 'tradevault');
   <body class="bg-page-bg font-body text-body-strong antialiased">
     <main class="site-shell min-h-screen overflow-x-clip px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-12">
       <div class="mx-auto max-w-4xl">
-        <a href="/#selected-work" class="text-sm text-body-soft hover:text-accent-blue">← Back to projects</a>
+        <a href="/projects/" class="text-sm text-body-soft hover:text-accent-blue">← All projects</a>
         <h1 class="mt-6 font-display text-[1.85rem] font-bold sm:mt-8 sm:text-3xl lg:text-4xl">Full Stack SaaS</h1>
+        <p class="mt-3 text-sm text-body-soft">Part of the project archive. See <a href="/projects/" class="text-accent-blue hover:opacity-80">all projects</a>, including four detailed case studies.</p>
         {tradevault ? (
           <article class="mt-10 border-t border-theme pt-8">
             <h2 class="font-display text-2xl font-semibold text-heading">{tradevault.title}</h2>
@@ -38,7 +39,7 @@ const tradevault = tradingProjects.find((p) => p.id === 'tradevault');
                 <a href={tradevault.liveUrl} target="_blank" rel="noreferrer" class="text-sm text-accent-blue hover:opacity-80">Live Demo →</a>
               ) : null}
               {tradevault.githubUrl ? (
-                <a href={tradevault.githubUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">GitHub →</a>
+                <a href={tradevault.githubUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">GitHub profile →</a>
               ) : null}
               {tradevault.demoUrl ? (
                 <a href={tradevault.demoUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">▶ Watch Demo →</a>

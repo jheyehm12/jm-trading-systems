@@ -8,15 +8,16 @@ import '../../styles/global.css';
   <head>
     <SiteHead
       title="Trading Systems"
-      description="Trading systems case studies — MyAlert, LookBack, and TradeVault."
+      description="Trading systems and research projects — MyAlert and TradeVault."
       path="/projects/trading/"
     />
   </head>
   <body class="bg-page-bg font-body text-body-strong antialiased">
     <main class="site-shell min-h-screen overflow-x-clip px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-12">
       <div class="mx-auto max-w-4xl">
-        <a href="/#case-studies" class="text-sm text-body-soft hover:text-accent-blue">← Back to projects</a>
+        <a href="/projects/" class="text-sm text-body-soft hover:text-accent-blue">← All projects</a>
         <h1 class="mt-6 font-display text-[1.85rem] font-bold sm:mt-8 sm:text-3xl lg:text-4xl">Trading Systems</h1>
+        <p class="mt-3 text-sm text-body-soft">Part of the project archive. See <a href="/projects/" class="text-accent-blue hover:opacity-80">all projects</a>, including four detailed case studies.</p>
         <div class="mt-10 space-y-10">
           {tradingProjects.map((project) => (
             <article class="border-t border-theme pt-8">
@@ -53,7 +54,7 @@ import '../../styles/global.css';
                   <a href={project.liveUrl} target="_blank" rel="noreferrer" class="text-sm text-accent-blue hover:opacity-80">Live Demo →</a>
                 ) : null}
                 {project.githubUrl ? (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">GitHub →</a>
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">GitHub profile →</a>
                 ) : null}
                 {project.demoUrl ? (
                   <a href={project.demoUrl} target="_blank" rel="noreferrer" class="text-sm text-body-muted hover:text-accent-blue">▶ Watch Demo →</a>

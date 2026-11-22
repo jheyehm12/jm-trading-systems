@@ -1,0 +1,56 @@
+---
+import type { FeaturedProject } from '../../data/home';
+
+interface Props {
+  project: FeaturedProject;
+  featured?: boolean;
+  flip?: boolean;
+  index?: number;
+  delay?: number;
+}
+
+const { project, featured = false, flip = false, index = 1, delay = 0 } = Astro.props;
+const href = project.detailTo ?? project.externalUrl?.href ?? project.relatedTo;
+const external = !project.detailTo && Boolean(project.externalUrl);
+---
+
+<article
+  class:list={['jl-card', featured ? 'jl-card--featured' : 'jl-card--support', flip && 'jl-card--flip']}
+  data-card-reveal
+  style={`--delay: ${delay}ms`}
+>
+  <span class="jl-card__num" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+  <a
+    href={href}
+    class:list={['jl-card__media', project.imageContain && 'jl-card__media--contain']}
+    aria-label={project.title}
+    tabindex="-1"
+    style={project.imageRatio ? `aspect-ratio: ${project.imageRatio}` : undefined}
+    {...external ? { target: '_blank', rel: 'noreferrer' } : {}}
+  >
+    {
+      project.imageSrc ? (
+        <img src={project.imageSrc} alt={project.imageAlt ?? project.title} loading="lazy" />
+      ) : (
+        <div class="jl-card__art jl-type" aria-hidden="true">
+          <span class="jl-type__cat">{project.category.split(' / ')[0]}</span>
+          <span class="jl-type__name">{project.title.split(':')[0]}</span>
+          <span class="jl-type__status">{project.status}</span>
+        </div>
+      )
+    }
+  </a>
+
+  <div class="jl-card__meta">
+    <span class="jl-tag jl-tag--status">{project.status}</span>
+    {project.tags.map((tag) => <span class="jl-tag">{tag}</span>)}
+  </div>
+  <p class="jl-card__cat">{project.category}</p>
+  <h3>{href ? <a href={href} {...external ? { target: '_blank', rel: 'noreferrer' } : {}}>{project.title}</a> : project.title}</h3>
+  <p>{project.summary}</p>
+  <div class="jl-card__links">
+    {project.detailTo && <a href={project.detailTo}>Case study →</a>}
+    {project.externalUrl && <a href={project.externalUrl.href} target="_blank" rel="noreferrer">{project.externalUrl.label} ↗</a>}
+    {project.relatedTo && <a href={project.relatedTo}>Related projects →</a>}
+  </div>
+</article>

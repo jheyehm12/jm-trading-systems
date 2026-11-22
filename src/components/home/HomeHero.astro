@@ -1,0 +1,54 @@
+---
+import { homeHero } from '../../data/home';
+
+// Phrase set in the accent colour; the rest of the headline stays ink.
+const EMPHASIS = 'real-world';
+const year = new Date().getFullYear();
+---
+
+<section class="jl-hero" id="top" data-nav-theme="light">
+  <div class="jl-hero__bg" aria-hidden="true">
+    <span class="jl-hero__guides"></span>
+    <span class="jl-hero__mono">JM</span>
+  </div>
+
+  <div class="jl-wrap jl-hero__inner">
+    <div class="jl-hero__meta jl-fade" style="--delay: 0.05s">
+      <p class="jl-eyebrow">{homeHero.eyebrow}</p>
+      <p class="jl-hero__year">Portfolio {year}</p>
+    </div>
+
+    <h1>
+      {
+        homeHero.headlineLines.map((line, i) => (
+          <span class="jl-hero__line">
+            <span style={`--i: ${i}`}>
+              {line.includes(EMPHASIS) ? (
+                <>
+                  {line.split(EMPHASIS)[0]}
+                  <em>{EMPHASIS}</em>
+                  {line.split(EMPHASIS)[1]}
+                </>
+              ) : (
+                line
+              )}
+            </span>
+          </span>
+        ))
+      }
+    </h1>
+
+    <div class="jl-hero__foot">
+      <div>
+        <p class="jl-hero__intro jl-fade" style="--delay: 0.55s">{homeHero.intro}</p>
+        <div class="jl-hero__cta jl-fade" style="--delay: 0.7s">
+          <a href={homeHero.primaryCta.href} class="jl-btn jl-btn--dark">{homeHero.primaryCta.label}</a>
+          <a href={homeHero.secondaryCta.href} class="jl-btn jl-btn--outline">{homeHero.secondaryCta.label}</a>
+        </div>
+      </div>
+      <a href="#work" class="jl-hero__scroll jl-fade" style="--delay: 0.9s" aria-label="Scroll to selected work">
+        <span>Scroll</span><i aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</section>

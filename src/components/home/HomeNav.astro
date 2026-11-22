@@ -1,0 +1,124 @@
+---
+import { homeNav } from '../../data/home';
+
+interface Props {
+  /** True on /contact/: in-page hash links point back to the homepage, and Contact marks the current page. */
+  onContact?: boolean;
+  /** True on other sub-pages (e.g. case studies): hash links point to the homepage, nothing is marked current. */
+  offHome?: boolean;
+}
+const { onContact = false, offHome = false } = Astro.props;
+const links = homeNav.map((item) => {
+  if (!onContact && !offHome) return { ...item, current: false };
+  if (offHome && item.href === '#contact') return { label: item.label, href: '/contact/', current: false };
+  if (item.href === '#contact') return { label: item.label, href: '/contact/', current: true };
+  return { ...item, href: `/${item.href}`, current: false };
+});
+---
+
+<div class="jl-nav__backdrop" id="jl-nav-backdrop" data-open="false" aria-hidden="true"></div>
+<header class="jl-nav" data-scrolled="false" data-theme="light" id="jl-nav">
+  <div class="jl-wrap jl-nav__bar">
+    <a href="/" class="jl-logo" aria-label="Jimeno Labs home"><span class="jl-logo__mark" aria-hidden="true">JM</span><span>Jimeno Labs</span></a>
+
+    <ul class="jl-nav__links">
+      {links.map((item) => <li><a href={item.href} aria-current={item.current ? 'page' : undefined}>{item.label}</a></li>)}
+      <li><a href="/contact/" class="jl-btn jl-btn--primary jl-btn--sm">Let's Talk</a></li>
+    </ul>
+
+    <button
+      type="button"
+      class="jl-nav__toggle"
+      id="jl-nav-toggle"
+      aria-expanded="false"
+      aria-controls="jl-nav-menu"
+      aria-label="Menu"
+    >
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M2 6h14M2 12h14"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="jl-nav__menu" id="jl-nav-menu" data-open="false" aria-label="Primary">
+    <ul>
+      {links.map((item) => <li><a href={item.href} aria-current={item.current ? 'page' : undefined}>{item.label}</a></li>)}
+      <li><a href="/contact/">Let's Talk</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const nav = document.getElementById('jl-nav');
+  const toggle = document.getElementById('jl-nav-toggle');
+  const menu = document.getElementById('jl-nav-menu');
+
+  // Frosted background once the page scrolls.
+  const onScroll = () => nav?.setAttribute('data-scrolled', String(window.scrollY > 24));
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Later sections paint over earlier ones, so search bottom-up. Match nav colours to the section under the nav (light paper vs dark navy).
+  const themed = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-theme]'));
+  const syncTheme = () => {
+    const hit = [...themed].reverse().find((s) => {
+      const r = s.getBoundingClientRect();
+      return r.top <= 36 && r.bottom > 36;
+    });
+    nav?.setAttribute('data-theme', hit?.dataset.navTheme ?? 'light');
+  };
+  syncTheme();
+  window.addEventListener('scroll', syncTheme, { passive: true });
+  window.addEventListener('resize', syncTheme);
+
+  const backdrop = document.getElementById('jl-nav-backdrop');
+  const root = document.documentElement;
+  const main = document.querySelector('main');
+  const setOpen = (open: boolean, restoreFocus = false) => {
+    nav?.setAttribute('data-open', String(open));
+    menu?.setAttribute('data-open', String(open));
+    backdrop?.setAttribute('data-open', String(open));
+    toggle?.setAttribute('aria-expanded', String(open));
+    // Lock background scroll only while the overlay menu is open.
+    root.classList.toggle('jl-menu-open', open);
+    // Modal behaviour: page content (a sibling of the header, never its ancestor) becomes unreachable by keyboard and AT.
+    if (main) main.inert = open;
+    if (!open && restoreFocus) toggle?.focus();
+  };
+  const isOpen = () => menu?.dataset.open === 'true';
+  toggle?.addEventListener('click', () => setOpen(!isOpen()));
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  // Escape closes and returns focus to the toggle.
+  document.addEventListener('keydown', (e) => {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') {
+      setOpen(false, true);
+      return;
+    }
+    // Keep Tab within the toggle + menu links while the overlay is open.
+    if (e.key === 'Tab') {
+      const links = Array.from(menu?.querySelectorAll<HTMLElement>('a') ?? []);
+      const first = links[0];
+      const last = links[links.length - 1];
+      if (e.shiftKey && document.activeElement === toggle) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        toggle?.focus();
+      } else if (!e.shiftKey && !nav?.contains(document.activeElement)) {
+        e.preventDefault();
+        first?.focus();
+      }
+    }
+  });
+  // Outside interaction (backdrop or anywhere beyond the header) closes.
+  document.addEventListener('pointerdown', (e) => {
+    if (isOpen() && e.target instanceof Node && !nav?.contains(e.target)) setOpen(false);
+  });
+  // Leaving the mobile breakpoint resets state.
+  window.matchMedia('(min-width: 52rem)').addEventListener('change', (e) => {
+    if (e.matches && isOpen()) setOpen(false);
+  });
+</script>

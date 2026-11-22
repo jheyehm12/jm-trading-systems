@@ -1,0 +1,52 @@
+---
+import { homeContact } from '../../data/home';
+import HomeFooter from './HomeFooter.astro';
+---
+
+<section class="jl-contact" id="contact" data-nav-theme="dark">
+  <div class="jl-wrap" data-reveal>
+    <p class="jl-eyebrow">{homeContact.eyebrow}</p>
+    <h2 class="jl-h2">{homeContact.title}</h2>
+    <p>{homeContact.text}</p>
+    <div class="jl-hero__cta">
+      <a href={homeContact.cta.href} class="jl-btn jl-btn--primary">{homeContact.cta.label}</a>
+      <a href={homeContact.secondary.href} class="jl-btn jl-btn--ghost" target="_blank" rel="noreferrer">
+        {homeContact.secondary.label}
+      </a>
+    </div>
+  </div>
+</section>
+
+<HomeFooter />
+
+<script>
+  // Fade/slide sections in as they enter the viewport. Cards reveal as soon as their top edge appears.
+  const items = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal], [data-card-reveal]'));
+  const show = (el: Element) => el.classList.add('is-visible');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          // Also reveal anything already scrolled past (fast scroll / anchor jumps skip the intersecting state).
+          if (e.isIntersecting || e.boundingClientRect.top < 0) {
+            show(e.target);
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0, rootMargin: '0px 0px -10% 0px' },
+    );
+    items.forEach((el) => io.observe(el));
+    // Safety net: never leave content hidden once it sits above the reveal line.
+    const sweep = () => {
+      const line = window.innerHeight * 0.9;
+      items.forEach((el) => {
+        if (!el.classList.contains('is-visible') && el.getBoundingClientRect().top < line) show(el);
+      });
+    };
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('load', sweep);
+    sweep();
+  } else {
+    items.forEach(show);
+  }
+</script>

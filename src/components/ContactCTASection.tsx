@@ -46,7 +46,7 @@ export default function ContactCTASection({ items }: ContactCTASectionProps) {
             <a href="/contact/" className="btn-primary gap-2">
               Let&apos;s Talk <ArrowRight size={14} />
             </a>
-            <a href="#case-studies" className="btn-secondary">
+            <a href="/#work" className="btn-secondary">
               View Projects
             </a>
           </div>
