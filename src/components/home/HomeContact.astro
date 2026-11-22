@@ -1,5 +1,6 @@
 ---
-import { homeContact, homeFooterDirectory, homeFooterMeta, homeFooterPolicies } from '../../data/home';
+import { homeContact } from '../../data/home';
+import HomeFooter from './HomeFooter.astro';
 ---
 
 <section class="jl-contact" id="contact" data-nav-theme="dark">
@@ -16,25 +17,7 @@ import { homeContact, homeFooterDirectory, homeFooterMeta, homeFooterPolicies } 
   </div>
 </section>
 
-<footer class="jl-footer" data-nav-theme="dark">
-  <div class="jl-wrap jl-footer__row">
-    <p>© {new Date().getFullYear()} {homeFooterMeta.title}. {homeFooterPolicies.join(' · ')}</p>
-    <ul>
-      {
-        homeFooterDirectory.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</footer>
+<HomeFooter />
 
 <script>
   // Fade/slide sections in as they enter the viewport. Cards reveal as soon as their top edge appears.

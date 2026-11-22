@@ -1,0 +1,198 @@
+---
+import HomeFooter from '../../components/home/HomeFooter.astro';
+import HomeNav from '../../components/home/HomeNav.astro';
+import SiteHead from '../../components/SiteHead.astro';
+import { featuredProjects, homeResearch } from '../../data/home';
+import '../../styles/global.css';
+import '../../styles/home.css';
+import '../../styles/case-study.css';
+import '../../styles/projects.css';
+
+interface More {
+  title: string;
+  kind: string;
+  text: string;
+  tools: string;
+  links: { label: string; href: string }[];
+}
+
+// Standalone projects with documented capabilities. Links were checked and respond.
+const more: More[] = [
+  {
+    title: 'AI Workforce Assistant Platform',
+    kind: 'AI application · Full-stack',
+    text: 'A role-based AI assistant platform with specialized agents for sales, operations, and admin tasks, plus business content generation and workflow routing.',
+    tools: 'React, TypeScript, Supabase, OpenAI API',
+    links: [
+      { label: 'Live demo', href: 'https://ai-workforce-assistant-platform.vercel.app/' },
+      { label: 'Demo video', href: 'https://www.loom.com/share/1cc91bd00f0147b28274f0f888a189eb' },
+    ],
+  },
+  {
+    title: 'AI Client Document Submission Platform',
+    kind: 'Business automation · AI integration',
+    text: 'An AI-assisted client onboarding and document submission platform that collects documents, flags missing information, classifies priority, and drafts summaries and follow-ups.',
+    tools: 'React, TypeScript, Supabase, OpenAI, Google Sheets',
+    links: [{ label: 'Demo video', href: 'https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1' }],
+  },
+  {
+    title: 'TradeVault',
+    kind: 'Full-stack SaaS · Trading journal',
+    text: 'A trading journal and analytics application with authentication, trade tracking, performance dashboards, and charts, backed by row-level security.',
+    tools: 'React, TypeScript, Supabase, PostgreSQL, Recharts',
+    links: [
+      { label: 'Live app', href: 'https://trade-vault2.vercel.app/' },
+      { label: 'Demo video', href: 'https://www.loom.com/share/6bf544a1f76d4988b75ea54a85a37aa4' },
+    ],
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <SiteHead
+      title="Projects"
+      description="Selected work and research from Jimeno Labs, an AI systems & engineering studio — four case studies in AI applications, automation, real-time alerting, and quantitative research, plus additional projects."
+      path="/projects/"
+    />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="jl">
+    <HomeNav offHome />
+    <main id="main">
+      <!-- Hero -->
+      <section class="cs-hero pj-hero" data-nav-theme="light">
+        <div class="jl-wrap pj-hero__grid">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep cs-in" style="--d: 0.05s">Projects</p>
+            <h1 class="pj-title cs-in" style="--d: 0.15s">Selected work <em>and research.</em></h1>
+          </div>
+          <p class="cs-lede cs-in" style="--d: 0.3s">
+            Four detailed case studies, more projects with working demos, and research that is still in development. Each
+            entry states its status plainly.
+          </p>
+        </div>
+      </section>
+
+      <!-- Featured -->
+      <section class="cs-light pj-feat" data-nav-theme="light" aria-labelledby="pj-feat-h">
+        <div class="jl-wrap">
+          <p class="jl-eyebrow cs-eyebrow--deep">Featured case studies</p>
+          <h2 class="pj-sr" id="pj-feat-h">Featured case studies</h2>
+          <ol class="pj-feat__list">
+            {
+              featuredProjects.map((p, i) => (
+                <li class="pj-feat__row cs-rise">
+                  <span class="pj-feat__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <div class="pj-feat__body">
+                    <p class="pj-status">{p.status}</p>
+                    <h3>
+                      <a href={p.detailTo}>{p.title}</a>
+                    </h3>
+                    <p class="pj-cat">{p.category}</p>
+                    <p>{p.summary}</p>
+                    <p class="pj-links">
+                      <a href={p.detailTo}>Case study →</a>
+                      {p.externalUrl && (
+                        <a href={p.externalUrl.href} target="_blank" rel="noreferrer">
+                          {p.externalUrl.label} ↗
+                        </a>
+                      )}
+                    </p>
+                  </div>
+                  <a class="pj-feat__thumb" href={p.detailTo} tabindex="-1" aria-hidden="true">
+                    {p.imageSrc ? <img src={p.imageSrc} alt="" loading="lazy" /> : null}
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <!-- More projects -->
+      <section class="cs-dark cs-dark--cont pj-more" data-nav-theme="dark" aria-labelledby="pj-more-h">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow">More projects</p>
+          <h2 class="jl-h2" id="pj-more-h">Applications with working demos.</h2>
+          <ul class="pj-more__list">
+            {
+              more.map((m) => (
+                <li>
+                  <div>
+                    <h3>{m.title}</h3>
+                    <p class="pj-more__kind">{m.kind}</p>
+                  </div>
+                  <div>
+                    <p>{m.text}</p>
+                    <p class="pj-more__tools">{m.tools}</p>
+                  </div>
+                  <p class="pj-more__links">
+                    {m.links.map((l) => (
+                      <a href={l.href} target="_blank" rel="noreferrer">
+                        {l.label} ↗
+                      </a>
+                    ))}
+                  </p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <!-- QA experience + R&D -->
+      <section class="cs-light pj-last" data-nav-theme="light">
+        <div class="jl-wrap pj-last__grid cs-rise">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep">Professional experience</p>
+            <h2 class="jl-h2 pj-last__h">QA &amp; software testing.</h2>
+            <p class="cs-body cs-body--light">
+              More than ten years of quality assurance and software testing, including banking and financial software.
+              This is professional experience that informs every project above, not a standalone software project. Tools
+              include Katalon Studio, Postman, BrowserStack, and Jira.
+            </p>
+            <p class="pj-links pj-links--light"><a href="/services/">Quality engineering services →</a></p>
+          </div>
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep">{homeResearch.eyebrow}</p>
+            <h2 class="jl-h2 pj-last__h">Experimental and in development.</h2>
+            <ul class="pj-rd">
+              {
+                homeResearch.items.map((r) => (
+                  <li>
+                    <span class="pj-rd__tag">{r.label}</span>
+                    <h3>{r.title}</h3>
+                    <p>{r.text}</p>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="pj-rd__note">These are not operational services and are not available commercially.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <HomeFooter base="/" />
+    <script>
+      // Reveal each section once it first appears (or has already been scrolled past).
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.cs-rise'));
+      const show = (el: Element) => el.classList.add('is-visible');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting || e.boundingClientRect.top < 0) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach(show);
+      }
+    </script>
+  </body>
+</html>

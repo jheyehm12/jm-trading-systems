@@ -1,6 +1,8 @@
 ---
-import { featuredProject, homeWork, supportingProjects } from '../../data/home';
+import { featuredProjects, homeResearch, homeWork } from '../../data/home';
 import ProjectCard from './ProjectCard.astro';
+
+const [first, second, third, fourth] = featuredProjects;
 ---
 
 <section class="jl-work" id="work" data-nav-theme="dark">
@@ -12,10 +14,32 @@ import ProjectCard from './ProjectCard.astro';
     </div>
 
     <div class="jl-work__grid">
-      <ProjectCard project={featuredProject} featured index={1} />
+      <ProjectCard project={first} featured index={1} />
       <div class="jl-work__support">
-        {supportingProjects.map((p, i) => <ProjectCard project={p} index={i + 2} delay={i * 160} />)}
+        <ProjectCard project={second} index={2} />
+        <ProjectCard project={third} index={3} delay={160} />
       </div>
+      <ProjectCard project={fourth} featured flip index={4} />
+    </div>
+
+    <p class="jl-work__all" data-reveal><a href="/projects/">All projects →</a></p>
+
+    <div class="jl-rd" data-reveal>
+      <div class="jl-rd__head">
+        <p class="jl-eyebrow">{homeResearch.eyebrow}</p>
+        <p class="jl-rd__title">{homeResearch.title}</p>
+      </div>
+      <ul class="jl-rd__list">
+        {
+          homeResearch.items.map((item) => (
+            <li>
+              <span class="jl-tag jl-tag--rd">{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>

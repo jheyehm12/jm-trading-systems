@@ -1,38 +1,190 @@
 ---
+import HomeFooter from '../components/home/HomeFooter.astro';
+import HomeNav from '../components/home/HomeNav.astro';
 import SiteHead from '../components/SiteHead.astro';
-import { whatIBuild } from '../data/site';
 import '../styles/global.css';
+import '../styles/home.css';
+import '../styles/case-study.css';
+import '../styles/services.css';
+
+interface Related {
+  label: string;
+  href: string;
+  note?: string;
+}
+
+const offerings: { n: string; title: string; text: string; points: string[]; related: Related[] }[] = [
+  {
+    n: '01',
+    title: 'AI Systems & Integration',
+    text: 'Architecture, orchestration, and backend integrations that connect AI models to existing data, tools, and workflows, with validation and clear limits.',
+    points: ['System architecture and orchestration', 'Backend and API integrations', 'Output validation and fail-safe fallbacks'],
+    related: [
+      { label: 'Auvyre AI', href: '/projects/auvyre-ai/' },
+      { label: 'MyAlert AI', href: '/projects/myalert-ai/' },
+    ],
+  },
+  {
+    n: '02',
+    title: 'Business Process Automation',
+    text: 'Workflow automation for inquiries, intake, and routing, with validation at each step and a clear handoff to people when something is uncertain.',
+    points: ['Workflow design and orchestration', 'Structured data capture', 'Validation, error handling, and escalation'],
+    related: [{ label: 'CASA Tia', href: '/projects/casa-tia/', note: 'in development and controlled testing' }],
+  },
+  {
+    n: '03',
+    title: 'Full-Stack Application Development',
+    text: 'End-to-end web applications, from authentication and data models to APIs and a considered interface.',
+    points: ['React and TypeScript front ends', 'Supabase and FastAPI back ends', 'Deployment and handover'],
+    related: [{ label: 'Auvyre AI', href: '/projects/auvyre-ai/' }],
+  },
+  {
+    n: '04',
+    title: 'Quality Engineering & Test Automation',
+    text: 'More than ten years of QA and software testing, applied to the systems I build and available to teams who need dependable releases.',
+    points: ['API, regression, and release validation', 'Test planning and automation', 'Defect analysis and clear reporting'],
+    related: [],
+  },
+  {
+    n: '05',
+    title: 'AI Applications & Connected Systems',
+    text: 'Complete AI-powered applications and user-facing products, from the interface and analysis through to results and notifications.',
+    points: ['Product design around an AI core', 'User-facing applications end to end', 'Messaging and notification integrations'],
+    related: [
+      { label: 'Auvyre AI', href: '/projects/auvyre-ai/' },
+      { label: 'MyAlert AI', href: '/projects/myalert-ai/' },
+    ],
+  },
+];
 ---
 
-<html lang="en" class="bg-page-bg">
+<html lang="en">
   <head>
     <SiteHead
       title="Services"
-      description="Trading systems development, AI automation, and full stack SaaS delivery."
+      description="Services from Jimeno Labs, an AI systems & engineering studio — AI systems and integration, business process automation, full-stack development, quality engineering, and connected AI applications."
       path="/services/"
     />
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body class="bg-page-bg font-body text-body-strong antialiased">
-    <main class="site-shell min-h-screen overflow-x-clip px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-12">
-      <div class="mx-auto max-w-5xl">
-        <a href="/" class="text-sm text-body-soft transition-colors hover:text-accent-blue">← Back home</a>
-        <h1 class="mt-6 font-display text-[1.85rem] font-bold text-heading sm:mt-8 sm:text-3xl lg:text-4xl">Services</h1>
-        <p class="mt-4 max-w-2xl text-body-muted">
-          Trading systems development, AI automation, and full stack SaaS delivery.
-        </p>
-        <div class="mt-8 grid gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
-          {whatIBuild.map((group) => (
-            <div class="border-t border-theme pt-6">
-              <h2 class="font-display text-lg font-semibold text-heading">{group.title}</h2>
-              <ul class="mt-4 space-y-2">
-                {group.items.map((item) => (
-                  <li class="text-sm leading-7 text-body-muted">{item}</li>
-                ))}
-              </ul>
+  <body class="jl">
+    <HomeNav offHome />
+    <main id="main">
+      <!-- Hero -->
+      <section class="cs-hero sv-hero" data-nav-theme="light">
+        <div class="jl-wrap sv-hero__grid">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep cs-in" style="--d: 0.05s">Services</p>
+            <h1 class="sv-title cs-in" style="--d: 0.15s">
+              AI systems, automation, and <em>quality engineering.</em>
+            </h1>
+          </div>
+          <div class="sv-hero__side cs-in" style="--d: 0.3s">
+            <p class="cs-lede">
+              Jimeno Labs is an AI systems &amp; engineering studio. I build and integrate AI-powered systems, and I bring
+              10+ years of QA and software testing into every project.
+            </p>
+            <div class="cs-cta">
+              <a class="jl-btn jl-btn--dark" href="/contact/">Start a conversation</a>
+              <a class="jl-btn jl-btn--outline" href="/#work">See selected work</a>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Primary offerings -->
+      <section class="cs-light sv-offer" data-nav-theme="light" aria-labelledby="sv-offer-h">
+        <div class="jl-wrap">
+          <h2 class="sv-sr" id="sv-offer-h">Primary offerings</h2>
+          {
+            offerings.map((o) => (
+              <article class="sv-row cs-rise">
+                <span class="sv-row__n" aria-hidden="true">{o.n}</span>
+                <div class="sv-row__main">
+                  <h3>{o.title}</h3>
+                  <p>{o.text}</p>
+                </div>
+                <div class="sv-row__side">
+                  <ul class="sv-points">{o.points.map((p) => <li>{p}</li>)}</ul>
+                  {o.related.length > 0 && (
+                    <p class="sv-related">
+                      <span>Related work</span>
+                      {o.related.map((r) => (
+                        <a href={r.href}>
+                          {r.label} →{r.note ? <small> ({r.note})</small> : null}
+                        </a>
+                      ))}
+                    </p>
+                  )}
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Secondary specialization -->
+      <section class="cs-dark cs-dark--cont sv-spec" data-nav-theme="dark" aria-labelledby="sv-spec-h">
+        <div class="jl-wrap cs-rise">
+          <div class="sv-spec__grid">
+            <div>
+              <p class="jl-eyebrow">Specialization</p>
+              <h2 class="jl-h2" id="sv-spec-h">Trading systems &amp; quantitative research.</h2>
+            </div>
+            <div>
+              <p class="cs-body">
+                A specialization where AI systems, alerting, and research workflows meet the financial markets. It covers
+                TradingView and Pine Script tooling, MT4 and MT5 development, decision-support systems, and research that tests
+                ideas against historical data. The work is decision support and research, and it makes no claims about trading performance.
+              </p>
+              <p class="sv-spec__links">
+                <a href="/projects/myalert-ai/">MyAlert AI →</a>
+                <a href="/projects/quant-research/">Quant Research →</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Engagement -->
+      <section class="cs-light sv-close" data-nav-theme="light">
+        <div class="jl-wrap sv-close__grid cs-rise">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep">Working together</p>
+            <p class="cs-status__big">Freelance projects and consulting.</p>
+          </div>
+          <div>
+            <p class="cs-body cs-body--light">
+              Available for freelance projects and consulting engagements. Tell me what you are building and where it needs
+              to be reliable.
+            </p>
+            <div class="cs-cta">
+              <a class="jl-btn jl-btn--dark" href="/contact/">Start a conversation</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+    <HomeFooter base="/" />
+    <script>
+      // Reveal each section once it first appears (or has already been scrolled past).
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.cs-rise'));
+      const show = (el: Element) => el.classList.add('is-visible');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting || e.boundingClientRect.top < 0) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach(show);
+      }
+    </script>
   </body>
 </html>

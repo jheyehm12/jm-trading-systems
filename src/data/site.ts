@@ -1,9 +1,10 @@
 /** Portfolio brand — display name, primary domain, and owner. */
 export const siteBrand = 'Jimeno Labs';
 export const siteUrl = 'https://jimenolabs.dev';
+export const contactEmail = 'jheyehm12@gmail.com';
 export const siteOwner = 'John Michael Jimeno';
 export const siteDescription =
-  'Jimeno Labs — trading systems development, AI automation, and full stack SaaS applications by John Michael Jimeno.';
+  'Jimeno Labs is an AI systems & engineering studio by John Michael Jimeno — AI systems, automation, integration, and quality engineering, with trading as a specialization.';
 
 export interface NavLink {
   href: string;
@@ -31,15 +32,15 @@ export interface FooterMeta {
 }
 
 export const siteNav: NavLink[] = [
-  { label: 'Projects', href: '#case-studies' },
-  { label: 'Selected Work', href: '#selected-work' },
+  { label: 'Projects', href: '/#work' },
+  { label: 'Selected Work', href: '/#work' },
   { label: 'Services', href: '/services/' },
   { label: 'Work With Me', href: '/contact/' },
 ];
 
 export const heroLeftNav: NavLink[] = [
-  { label: 'Projects', href: '#case-studies' },
-  { label: 'Selected Work', href: '#selected-work' },
+  { label: 'Projects', href: '/#work' },
+  { label: 'Selected Work', href: '/#work' },
 ];
 
 export const heroRightNav: NavLink[] = [
@@ -67,7 +68,7 @@ export const heroContent: HeroContent = {
     'Supabase',
     'OpenAI',
   ],
-  primaryCta: { label: 'View Projects', href: '#case-studies' },
+  primaryCta: { label: 'View Projects', href: '/#work' },
   secondaryCta: { label: "Let's Talk", href: '/contact/' },
   utilityLabel: 'Jimeno Labs',
 };
@@ -76,37 +77,37 @@ export const stats: StatBlockProps[] = [
   { value: '2020', label: 'Trading since' },
   { value: '2023', label: 'Software development' },
   { value: '6', label: 'Flagship projects' },
-  { value: '9+', label: 'Years industry experience' },
+  { value: '10+', label: 'Years industry experience' },
 ];
 
 export const footerMeta: FooterMeta = {
   title: 'Jimeno Labs',
   description:
-    'Trading systems development, AI automation, and full stack SaaS delivery for freelance clients and direct engagements.',
+    'AI systems, automation, integration, and quality engineering for freelance clients and direct engagements, with trading systems as a specialization.',
 };
 
 export const footerDirectory: NavLink[] = [
-  { label: 'Case Studies', href: '#case-studies' },
-  { label: 'Selected Work', href: '#selected-work' },
+  { label: 'Projects', href: '/#work' },
+  { label: 'Selected Work', href: '/#work' },
   { label: 'Services', href: '/services/' },
   { label: 'Work With Me', href: '/contact/' },
-  { label: 'GitHub', href: 'https://github.com/jheyehm12' },
+  { label: 'GitHub profile', href: 'https://github.com/jheyehm12' },
 ];
 
 export const workWithMeMessage =
   'Available for freelance projects and consulting engagements.';
 
 export const footerPolicies = [
-  'Trading Systems',
-  'AI Automation',
-  'Full Stack SaaS',
+  'AI Systems',
+  'Automation',
+  'Quality Engineering',
 ];
 
 export const validationBackground = {
   eyebrow: 'Testing & Validation Background',
   title: "Built with an Engineer's Mindset",
   intro:
-    'Behind every project is 9+ years of software quality engineering experience.',
+    'Behind every project is 10+ years of software quality engineering experience.',
   copy: 'My background in QA helps me build trading systems, AI applications, and SaaS products with a strong focus on:',
   focusAreas: [
     'Validation & Verification',

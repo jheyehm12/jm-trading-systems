@@ -1,0 +1,260 @@
+---
+import HomeFooter from '../../components/home/HomeFooter.astro';
+import HomeNav from '../../components/home/HomeNav.astro';
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import '../../styles/home.css';
+import '../../styles/case-study.css';
+import '../../styles/myalert.css';
+
+const meta = [
+  { k: 'Type', v: 'Real-time AI systems, Python automation' },
+  { k: 'Status', v: 'Active alerting, ongoing research' },
+  { k: 'Version', v: 'v1.0.68' },
+  { k: 'Scope', v: 'BTCUSDT, ETHUSDT, SOLUSDT · 1m, 3m, 5m' },
+];
+
+const stages = [
+  { n: 'TradingView', d: 'Alerts fire on BTCUSDT, ETHUSDT, and SOLUSDT across the 1m, 3m, and 5m timeframes.' },
+  { n: 'Python processing', d: 'A FastAPI backend validates and normalizes each webhook, then queues it for processing.' },
+  { n: 'Decision evaluation', d: 'Rules, AI review, and plan checks produce a single final decision.' },
+  { n: 'Telegram', d: 'The decision and its levels are delivered as an alert message for human review.' },
+];
+
+const layers = [
+  { k: 'Deterministic rules', d: 'Set the first decision (TAKE_BUY, TAKE_SELL, WAIT, or SKIP) from the alert and market context.', e: 'Starting decision' },
+  { k: 'AI evaluation', d: 'Reviews selected setups and returns a validated decision with a reason and a confidence score. Rule scores can reconcile it.', e: 'Shapes the final decision' },
+  { k: 'Plan validation (deterministic)', d: 'Checks that entry, stop-loss, and take-profit still make sense against current candles. A stale or invalid plan turns a TAKE into WAIT.', e: 'Can downgrade a TAKE' },
+  { k: 'ML shadow', d: 'Produces a separate prediction that is recorded and shown beside the alert.', e: 'Does not decide' },
+];
+
+const reading = [
+  ['Rule Decision', 'The outcome of the deterministic rules.'],
+  ['My Decision, Confidence, Reason', 'The AI evaluation’s decision, with its confidence and reason.'],
+  ['Entry, SL, TP1', 'Levels tied to the final decision.'],
+  ['Source', 'A marker for the AI-evaluation path that produced the decision. It is not the ML output.'],
+  ['ML Decision, Confidence, Status', 'The ML shadow prediction, reported separately from the decision above.'],
+];
+
+const engineering = [
+  ['Alert ingestion', 'Webhooks are normalized and placed in a queue that a background worker drains, one decision per alert. Only recognized signal types are accepted; anything else is rejected with an error.'],
+  ['Validation', 'AI output is checked against the allowed decisions before it is used. If the AI call is skipped or fails, the result falls back to the rule decision and the reason is recorded.'],
+  ['Decision handling', 'AI review is selective and rate-gated per symbol and timeframe. WAIT setups are stored and reviewed later, and a WAIT can upgrade to a TAKE.'],
+  ['Risk levels', 'Entry, stop-loss, and take-profit are built for the final decision and checked against recent candles. A stop already crossed or a target already reached makes the plan stale, and the decision becomes WAIT.'],
+  ['Delivery', 'Final decisions are sent as Telegram messages for human review. Delivery is not guaranteed.'],
+  ['Records', 'Processed alerts are written to a log with timing and decision fields. A failed write is reported only in diagnostic output, so recording is not guaranteed. Where enabled, decision-replay records capture the inputs and outputs of TAKE candidates for later review.'],
+];
+
+const quality = [
+  ['Setup parity', 'A documented 49/49 parity result between TradingView Pine setup events and the Python signal engine. It covers setup detection only, not AI decisions, accuracy, or end-to-end execution.'],
+  ['Payload checks', 'Webhook signals are validated, AI output is validated, and trade plans are validated before a TAKE is released.'],
+  ['Replay', 'Where enabled, decision-replay records store the inputs and outputs of TAKE candidates so a decision can be reviewed afterward.'],
+  ['Health and diagnostics', 'The signal engine writes health output for inspection, and processing events are logged for diagnosis. These support troubleshooting. They are not automatic recovery.'],
+];
+
+const notClaims = [
+  'It does not place live orders with a broker or exchange.',
+  'It does not guarantee alert delivery or recover automatically from failures.',
+  'It makes no claim of profitability, predictive accuracy, or validated trading expectancy.',
+  'ML shadow predictions are research output and are not used to make the final decision.',
+];
+---
+
+<html lang="en">
+  <head>
+    <SiteHead
+      title="MyAlert AI"
+      description="MyAlert AI case study — a real-time, AI-assisted trading decision-support system connecting TradingView alerts, Python processing, and Telegram notifications."
+      path="/projects/myalert-ai/"
+    />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="jl">
+    <HomeNav offHome />
+    <main id="main">
+      <!-- Hero + brief -->
+      <section class="cs-hero ma-hero" data-nav-theme="light">
+        <div class="jl-wrap">
+          <a class="cs-back cs-in" href="/#work" style="--d: 0s">← Back to Selected Work</a>
+          <p class="jl-eyebrow cs-eyebrow--deep cs-in" style="--d: 0.05s">Case study · 03</p>
+          <h1 class="cs-title cs-title--md cs-in" style="--d: 0.15s">MyAlert <em>AI</em></h1>
+          <p class="cs-lede cs-in" style="--d: 0.3s">
+            Real-time, AI-assisted trading decision support. TradingView alerts become structured, reviewable decisions
+            delivered to Telegram.
+          </p>
+          <dl class="ma-tape cs-in" style="--d: 0.4s">
+            {meta.map((m) => <div><dt>{m.k}</dt><dd>{m.v}</dd></div>)}
+          </dl>
+          <div class="ma-brief">
+            <div>
+              <p class="jl-eyebrow cs-eyebrow--deep">01 · Overview</p>
+              <p class="ma-brief__text">
+                MyAlert AI receives TradingView alerts, processes them in Python, evaluates each setup with deterministic
+                rules and an AI review, and sends the final decision to Telegram: TAKE_BUY, TAKE_SELL, or WAIT, with entry,
+                stop-loss, and take-profit levels tied to that decision. It supports a human reviewer and does not place
+                live orders.
+              </p>
+            </div>
+            <div>
+              <p class="jl-eyebrow cs-eyebrow--deep">02 · Problem</p>
+              <p class="ma-brief__text">
+                A raw chart alert says only that something happened. Turning it into a decision takes context, consistent
+                rules, and risk levels, and each result has to be reviewable afterward. MyAlert AI converts raw alerts into
+                structured records that show what was decided and why.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section class="cs-dark ma-arch" data-nav-theme="dark" aria-labelledby="ma-arch-h">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow">03 · Architecture</p>
+          <h2 class="jl-h2" id="ma-arch-h">From alert to decision.</h2>
+
+          <ol class="ma-flow">
+            {
+              stages.map((s, i) => (
+                <li>
+                  <span class="ma-flow__tag" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{s.n}</h3>
+                  <p>{s.d}</p>
+                </li>
+              ))
+            }
+          </ol>
+
+          <div class="ma-lanes">
+            <p class="ma-lanes__label">Inside decision evaluation</p>
+            <ol class="ma-lanes__main">
+              <li>Rules</li>
+              <li>AI review</li>
+              <li>Plan check</li>
+              <li class="ma-lanes__final">TAKE_BUY · TAKE_SELL · WAIT</li>
+            </ol>
+            <p class="ma-lanes__shadow">
+              <span>ML shadow</span> A separate prediction is recorded alongside the alert. It never feeds the final
+              decision.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Layers -->
+      <section class="cs-light ma-layers" data-nav-theme="light">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow cs-eyebrow--deep">Who decides what</p>
+          <h2 class="jl-h2 cs-h2--wide">Rules, AI, and ML shadow stay separate.</h2>
+          <div class="ma-table" role="table" aria-label="Decision layers">
+            <div class="ma-table__head" role="row">
+              <span role="columnheader">Layer</span><span role="columnheader">What it does</span><span role="columnheader">Effect on the final decision</span>
+            </div>
+            {
+              layers.map((l) => (
+                <div class="ma-table__row" role="row">
+                  <span class="ma-table__k" role="cell">{l.k}</span>
+                  <span role="cell">{l.d}</span>
+                  <span class="ma-table__e" role="cell">{l.e}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Alert in practice -->
+      <section class="cs-dark cs-dark--cont ma-shot" data-nav-theme="dark" aria-labelledby="ma-shot-h">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow">The alert in practice</p>
+          <h2 class="jl-h2" id="ma-shot-h">A real Telegram alert.</h2>
+          <div class="ma-shot__grid">
+            <figure class="ma-shot__fig">
+              <div class="ma-shot__frame">
+                <img
+                  src="/images/projects/myalert/myalert-btcusdt-telegram-authentic.webp"
+                  width="752"
+                  height="862"
+                  loading="lazy"
+                  alt="MyAlert AI BTCUSDT 5m Telegram alert showing final TAKE_SELL decision, entry, stop loss, take profit, and ML shadow prediction."
+                />
+              </div>
+              <figcaption>An alert as delivered to Telegram. It is a decision message, not a record of an executed trade.</figcaption>
+            </figure>
+            <div>
+              <h3 class="ma-shot__h">Reading the message</h3>
+              <dl class="cs-defs cs-defs--dark">
+                {reading.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Engineering -->
+      <section class="cs-light" data-nav-theme="light">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow cs-eyebrow--deep">04 · Engineering</p>
+            <h2 class="jl-h2">Structured for human review.</h2>
+          </div>
+          <dl class="cs-defs">
+            {engineering.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Quality -->
+      <section class="cs-dark cs-dark--q" data-nav-theme="dark">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow">05 · Quality &amp; validation</p>
+            <h2 class="jl-h2">Checked at the payload, the decision, and the plan.</h2>
+          </div>
+          <dl class="cs-defs cs-defs--dark">
+            {quality.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Status -->
+      <section class="cs-light cs-status" data-nav-theme="light">
+        <div class="jl-wrap cs-status__grid cs-rise">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep">06 · Current status</p>
+            <p class="cs-status__big">Active alerting. Research and validation continue.</p>
+          </div>
+          <div class="cs-note">
+            <h3>What MyAlert AI is not</h3>
+            <ul class="ma-not">{notClaims.map((c) => <li>{c}</li>)}</ul>
+          </div>
+        </div>
+        <div class="jl-wrap cs-status__links">
+          <a class="cs-back cs-back--light" href="/#work">← Back to Selected Work</a>
+          <a class="jl-btn jl-btn--dark" href="/contact/">Discuss a project</a>
+        </div>
+      </section>
+    </main>
+    <HomeFooter base="/" />
+    <script>
+      // Reveal each section once it first appears (or has already been scrolled past).
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.cs-rise'));
+      const show = (el: Element) => el.classList.add('is-visible');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting || e.boundingClientRect.top < 0) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach(show);
+      }
+    </script>
+  </body>
+</html>

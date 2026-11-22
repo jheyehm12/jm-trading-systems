@@ -1,0 +1,30 @@
+---
+import { homeFooterDirectory, homeFooterMeta, homeFooterPolicies } from '../../data/home';
+
+interface Props {
+  /** Prefix for in-page hash links when rendered outside the homepage. */
+  base?: string;
+}
+const { base = '' } = Astro.props;
+const links = homeFooterDirectory.map((item) => (item.href.startsWith('#') ? { ...item, href: `${base}${item.href}` } : item));
+---
+
+<footer class="jl-footer" data-nav-theme="dark">
+  <div class="jl-wrap jl-footer__row">
+    <p>© {new Date().getFullYear()} {homeFooterMeta.title}. {homeFooterPolicies.join(' · ')}</p>
+    <ul>
+      {
+        links.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

@@ -43,20 +43,16 @@ export const homeCaseStudies: ProjectEntry[] = [
     title: 'MyAlert',
     subtitle: 'AI-Powered Trading Decision Platform',
     summary:
-      'MyAlert is an end-to-end trading intelligence system that receives TradingView alerts, enriches them with market context, evaluates trade quality using AI-assisted decision logic, tracks outcomes through structured logging, and supports replay-driven validation before automation is enabled.',
+      'MyAlert is a real-time decision-support system that receives TradingView alerts, adds market context, evaluates each setup with deterministic rules and AI-assisted review, and sends the decision to Telegram. It is not an autonomous trading system.',
     detail:
-      'The platform was designed to bridge the gap between raw chart alerts and actionable trading decisions by combining technical analysis, rule-based validation, AI review workflows, and performance tracking.',
-    outcome:
-      'Built a scalable decision-support system that transforms raw trading alerts into structured, reviewable, and measurable trading workflows.',
+      'Alerts are converted into structured, reviewable decisions (TAKE_BUY, TAKE_SELL, or WAIT) with entry, stop-loss, and take-profit levels tied to the decision.',
     features: [
       'TradingView webhook integration',
       'AI-assisted trade evaluation engine',
       'WAIT → TAKE decision lifecycle',
-      'Structured trade logging & analytics',
+      'Structured trade logging',
       'Replay validation framework',
       'Telegram trade notifications',
-      'Performance tracking and review',
-      'Automation-ready architecture',
     ],
     tags: [
       'TradingView',
@@ -76,12 +72,10 @@ export const homeCaseStudies: ProjectEntry[] = [
     ],
     previewType: 'trading-alert',
     detailTo: '/projects/trading/',
-    githubUrl: DEFAULT_GITHUB_URL,
     images: [
       {
         src: '/images/projects/myalert/xauusd-1h-alerts.png',
         caption: 'XAUUSD · 1H — MyAlert signals on TradingView',
-        url: 'tradingview.com/chart/eiSHnZvF',
       },
       {
         src: '/images/projects/myalert/btcusd-15m-alerts.png',
@@ -96,8 +90,6 @@ export const homeCaseStudies: ProjectEntry[] = [
     title: 'LookBack Trading Algorithm',
     summary:
       'A futures-focused TradingView strategy built in Pine Script with contextual market structure, replay-tested entries, and execution rules refined through chart review.',
-    outcome:
-      'Delivered a readable strategy codebase with validation workflow suitable for discretionary and semi-systematic futures trading.',
     features: [
       'Pine Script strategy architecture',
       'Contextual market structure logic',
@@ -108,7 +100,6 @@ export const homeCaseStudies: ProjectEntry[] = [
     tools: ['TradingView', 'Pine Script', 'Futures', 'Replay Validation'],
     previewType: 'tradingview-strategy',
     detailTo: '/projects/trading/',
-    githubUrl: DEFAULT_GITHUB_URL,
   },
 ];
 
@@ -118,9 +109,7 @@ export const homeSelectedWork: ProjectEntry[] = [
     category: 'AI & Automation',
     title: 'AI Workforce Assistant Platform',
     summary:
-      'A role-based AI automation platform that helps teams automate repetitive tasks, generate business content, organize workflows, and improve productivity through specialized AI agents.',
-    outcome:
-      'Built a portfolio-grade AI automation platform demonstrating AI integration, prompt engineering, workflow automation, SaaS architecture, authentication, and business process automation.',
+      'A role-based AI assistant platform with specialized agents for sales, operations, and admin tasks, plus business content generation and workflow routing.',
     features: [
       'Sales Assistant agent',
       'Operations Assistant agent',
@@ -153,16 +142,13 @@ export const homeSelectedWork: ProjectEntry[] = [
     detailTo: '/projects/ai-automation/',
     demoUrl: 'https://www.loom.com/share/1cc91bd00f0147b28274f0f888a189eb',
     liveUrl: 'https://ai-workforce-assistant-platform.vercel.app/',
-    githubUrl: DEFAULT_GITHUB_URL,
   },
   {
     id: 'client-intake',
     category: 'AI & Automation',
     title: 'AI Client Submission & Document Intake Platform',
     summary:
-      'An AI-powered client onboarding and document submission platform that streamlines document collection, organizes submissions, automates intake workflows, and improves client communication.',
-    outcome:
-      'Built a streamlined client submission workflow that reduces manual processing and improves onboarding efficiency.',
+      'An AI-assisted client onboarding and document submission platform that collects documents, flags missing information, classifies priority, and drafts summaries and follow-ups.',
     features: [
       'Automated document intake',
       'AI-powered submission review',
@@ -194,7 +180,6 @@ export const homeSelectedWork: ProjectEntry[] = [
     previewType: 'client-intake',
     detailTo: '/projects/ai-automation/',
     demoUrl: 'https://www.loom.com/share/594b500fa7954d479f816fdf0429c2a1',
-    githubUrl: DEFAULT_GITHUB_URL,
   },
   {
     id: 'tradevault',
@@ -203,8 +188,6 @@ export const homeSelectedWork: ProjectEntry[] = [
     subtitle: 'Trading Journal & Analytics SaaS',
     summary:
       'TradeVault is a full stack trading journal and analytics SaaS built for traders to track, manage, and analyze trading performance through secure authentication, trade journaling, performance dashboards, and interactive visualizations.',
-    outcome:
-      'Built a production-ready trader-focused SaaS application that demonstrates full stack delivery while staying aligned with trading systems and validation-focused development.',
     features: [
       'User registration & authentication',
       'Protected routes & session handling',
@@ -238,16 +221,13 @@ export const homeSelectedWork: ProjectEntry[] = [
     detailTo: '/projects/trading/',
     demoUrl: 'https://www.loom.com/share/6bf544a1f76d4988b75ea54a85a37aa4',
     liveUrl: 'https://trade-vault2.vercel.app/',
-    githubUrl: DEFAULT_GITHUB_URL,
   },
   {
     id: 'resort-booking',
     category: 'AI & Automation',
     title: 'Resort Booking Assistant',
     summary:
-      'An AI-powered booking assistant that handles guest inquiries, guides reservation workflows, and reduces manual response load for resort operators.',
-    outcome:
-      'Streamlined booking inquiries and reduced manual follow-up for hospitality workflows through a focused AI assistant.',
+      'An AI-powered booking assistant concept for guest inquiries and reservation workflows. Status to be confirmed.',
     features: [
       'Guest inquiry handling',
       'Booking workflow automation',
@@ -265,7 +245,6 @@ export const homeSelectedWork: ProjectEntry[] = [
     tools: ['OpenAI', 'React', 'FastAPI', 'Workflow Automation', 'Vercel'],
     previewType: 'booking-chat',
     detailTo: '/projects/ai-automation/',
-    githubUrl: DEFAULT_GITHUB_URL,
   },
 ];
 
@@ -275,9 +254,7 @@ export const homeQaExperience: ProjectEntry[] = [
     category: 'QA & Validation',
     title: 'Banking QA Experience',
     summary:
-      'Enterprise quality assurance across banking and financial software — validating web and mobile applications, APIs, and release workflows in regulated environments with structured regression, defect tracking, and stakeholder reporting.',
-    outcome:
-      'Supported reliable production releases through disciplined test planning, cross-platform validation, and clear defect communication in high-compliance delivery cycles.',
+      'Quality assurance across banking and financial software: web and mobile application testing, API validation, regression, defect tracking, and release validation.',
     features: [
       'Web & mobile application testing',
       'API validation & integration testing',
@@ -311,9 +288,7 @@ export const homeQaExperience: ProjectEntry[] = [
     category: 'QA & Validation',
     title: 'Test Automation / Validation',
     summary:
-      'Structured test automation and validation practice applied across web, API, and workflow systems — combining manual exploratory testing, automated regression, and reliability review to improve delivery confidence.',
-    outcome:
-      'Established repeatable validation workflows that reduce regression risk and improve production readiness across software delivery projects.',
+      'Test automation and validation practice across web, API, and workflow systems, combining exploratory testing, automated regression, and reliability review.',
     features: [
       'Test case design & execution',
       'Automation testing frameworks',
@@ -346,12 +321,14 @@ export const homeQaExperience: ProjectEntry[] = [
 ];
 
 export const tradingProjects: ProjectEntry[] = [
-  ...homeCaseStudies,
+  // LookBack is withheld from public pages pending owner approval.
+  ...homeCaseStudies.filter((p) => p.id !== 'lookback'),
   homeSelectedWork.find((p) => p.id === 'tradevault')!,
 ];
 
-export const aiAutomationProjects: ProjectEntry[] = homeSelectedWork.filter((p) =>
-  p.category.includes('AI'),
+// The legacy Resort Booking Assistant is withheld from public pages pending owner approval.
+export const aiAutomationProjects: ProjectEntry[] = homeSelectedWork.filter(
+  (p) => p.category.includes('AI') && p.id !== 'resort-booking',
 );
 
 export const allPortfolioProjects: ProjectEntry[] = [

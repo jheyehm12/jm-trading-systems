@@ -1,0 +1,214 @@
+---
+import HomeFooter from '../../components/home/HomeFooter.astro';
+import HomeNav from '../../components/home/HomeNav.astro';
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import '../../styles/home.css';
+import '../../styles/case-study.css';
+import '../../styles/quant-research.css';
+
+const meta = [
+  { k: 'Type', v: 'Quantitative research, data analysis' },
+  { k: 'Status', v: 'Ongoing research' },
+  { k: 'Built with', v: 'Python, Streamlit' },
+  { k: 'Scope', v: 'Research only. No order routing.' },
+];
+
+const ladder = [
+  { n: '01', t: 'Hypothesis', s: 'Registered', state: 'done', d: 'A testable idea is registered as an experiment, with each dataset assigned a role.' },
+  { n: '02', t: 'Backtest', s: 'Backtested', state: 'done', d: 'The strategy runs on historical data. A backtested experiment is a candidate, not a validated strategy.' },
+  { n: '03', t: 'Historical holdout', s: 'Evaluated', state: 'done', d: 'Data held back from development is examined. It is still historical, so it is not forward evidence.' },
+  { n: '04', t: 'Forward OOS', s: 'Not yet run', state: 'open', d: 'New data the research has never seen. It is required before promotion, and analysis studies refuse to touch it early.' },
+  { n: '05', t: 'Evidence review', s: 'Preliminary', state: 'open', d: 'Evidence is rated from insufficient to strong. The example sits at preliminary, and the next action is to collect more data.' },
+];
+
+const methods = [
+  ['Backtesting and imports', 'Native strategies are backtested on historical data. MT4 and MT5 reports and signal exports can be imported for the same evaluation.'],
+  ['Experiment tracking', 'Experiments move through a defined lifecycle: proposed, implemented, backtested, validated, then promote, keep testing, or reject. A promotion is refused when its linked evidence assessment blocks it.'],
+  ['Data roles', 'Each dataset is tagged as discovery, in-sample, historical holdout, forward out-of-sample, or robustness. Unrecognized roles are rejected, and unseen forward data cannot be consumed by the analysis studies.'],
+  ['Strategy comparison', 'Strategies and versions are compared and ranked side by side, alongside walk-forward evaluation and robustness checks.'],
+  ['Monte Carlo analysis', 'Where trade histories are available, trade-sequence simulation estimates drawdown distributions and the probability of ruin.'],
+  ['Repeated-testing control', 'A search ledger records each examination so repeated testing stays visible, and Bonferroni and Holm corrections run on supplied p-values.'],
+  ['Execution costs', 'Cost and fill fields are never invented. If they are missing, they stay missing.'],
+];
+
+const reading = [
+  ['Registered experiment', 'The experiment under review. Internal identifiers are redacted.'],
+  ['Research and experiment status', 'Where the work stands: here, evidence collecting and backtested.'],
+  ['Evidence strength', 'The assessed strength of the evidence: here, preliminary.'],
+  ['Next action', 'What the research needs next: here, collect more data.'],
+];
+
+const safeguards = [
+  'Evidence strength runs from insufficient through preliminary and moderate to strong. Strong is refused when provenance or temporal independence is unverified.',
+  'Promotion and deployment stay blocked unless the evidence is assessed as strong and a forward out-of-sample result is recorded as sufficient.',
+  'Backtested and validated are separate states. A historical holdout never counts as forward out-of-sample evidence.',
+  'AI-generated summaries are optional, and the research modules do not accept them as evidence.',
+  'The Python test suite runs as a gate in CI.',
+];
+
+const notClaims = [
+  'No forward out-of-sample result is validated or claimed.',
+  'Preliminary evidence does not establish profitability and does not authorize deployment.',
+  'Nothing here is a trading recommendation, and the platform is not production-trading ready.',
+];
+---
+
+<html lang="en">
+  <head>
+    <SiteHead
+      title="Quant Research & Strategy Analytics"
+      description="Quant Research & Strategy Analytics case study — research workflows for testing trading hypotheses, separating backtests from validation, and gating promotion on evidence. Ongoing research."
+      path="/projects/quant-research/"
+    />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="jl">
+    <HomeNav offHome />
+    <main id="main">
+      <!-- Hero + brief -->
+      <section class="cs-hero qr-hero" data-nav-theme="light">
+        <div class="jl-wrap">
+          <a class="cs-back cs-in" href="/#work" style="--d: 0s">← Back to Selected Work</a>
+          <p class="jl-eyebrow cs-eyebrow--deep cs-in" style="--d: 0.05s">Case study · 04</p>
+          <h1 class="qr-title cs-in" style="--d: 0.15s">Quant Research <em>&amp; Strategy Analytics</em></h1>
+          <p class="cs-lede cs-in" style="--d: 0.3s">
+            Research workflows for testing trading hypotheses, examining historical data, and judging how much evidence a
+            strategy has earned. Built to say "not yet" when the evidence is missing.
+          </p>
+          <dl class="qr-meta cs-in" style="--d: 0.4s">
+            {meta.map((m) => <div><dt>{m.k}</dt><dd>{m.v}</dd></div>)}
+          </dl>
+          <div class="qr-brief">
+            <div>
+              <p class="jl-eyebrow cs-eyebrow--deep">01 · Overview</p>
+              <p class="qr-brief__text">
+                A research-only workspace for evaluating, comparing, and stress-testing systematic strategies before any
+                deployment decision. Results are CSV, HTML, and Markdown artifacts, viewed through a Streamlit interface over
+                Python research modules. It has no live order routing and no broker execution.
+              </p>
+            </div>
+            <div>
+              <p class="jl-eyebrow cs-eyebrow--deep">02 · Problem</p>
+              <p class="qr-brief__text">
+                A good-looking backtest is easy to produce and easy to over-trust. The challenge is telling a hypothesis that
+                merely fit past data from one with enough independent evidence to justify the next step.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Evidence ladder -->
+      <section class="cs-dark qr-ladder" data-nav-theme="dark" aria-labelledby="qr-ladder-h">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow">03 · Workflow</p>
+          <h2 class="jl-h2" id="qr-ladder-h">Five stages. Not every one is finished.</h2>
+          <ol class="qr-steps">
+            {
+              ladder.map((s) => (
+                <li class:list={['qr-step', `qr-step--${s.state}`]}>
+                  <span class="qr-step__n" aria-hidden="true">{s.n}</span>
+                  <h3>{s.t}</h3>
+                  <p class="qr-step__s">{s.s}</p>
+                  <p>{s.d}</p>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="qr-ladder__note">
+            Stage status shown for the example experiment in the workspace screenshot below. Solid stages are complete as
+            described. Dashed stages are not.
+          </p>
+        </div>
+      </section>
+
+      <!-- Methods -->
+      <section class="cs-light" data-nav-theme="light">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow cs-eyebrow--deep">04 · Methods</p>
+            <h2 class="jl-h2">Structure that resists over-fitting.</h2>
+          </div>
+          <dl class="cs-defs">
+            {methods.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Evidence workspace + safeguards -->
+      <section class="cs-dark cs-dark--q qr-evidence" data-nav-theme="dark" aria-labelledby="qr-ev-h">
+        <div class="jl-wrap cs-rise">
+          <p class="jl-eyebrow">05 · Evidence &amp; safeguards</p>
+          <h2 class="jl-h2" id="qr-ev-h">Preliminary is not validated.</h2>
+          <div class="qr-ev__grid">
+            <figure class="qr-ev__fig">
+              <div class="qr-ev__frame">
+                <img
+                  src="/images/projects/quant-research/quant-research-experiment-tracking-crop.webp"
+                  width="650"
+                  height="504"
+                  loading="lazy"
+                  alt="Quant Research experiment tracking workspace showing backtested experiments, preliminary evidence, and ongoing data collection."
+                />
+              </div>
+              <figcaption>The Experiment Tracking workspace. It is read-only and shows stored research status only.</figcaption>
+            </figure>
+            <div>
+              <h3 class="qr-ev__h">Reading the workspace</h3>
+              <dl class="cs-defs cs-defs--dark">
+                {reading.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+              </dl>
+            </div>
+          </div>
+          <div class="qr-guards">
+            <h3 class="qr-ev__h">Deployment safeguards</h3>
+            <ul class="qr-guards__list">{safeguards.map((s) => <li>{s}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status -->
+      <section class="cs-light cs-status" data-nav-theme="light">
+        <div class="jl-wrap cs-status__grid cs-rise">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep">06 · Current status</p>
+            <p class="cs-status__big">Ongoing research.</p>
+            <p class="cs-body cs-body--light">
+              The workflow is in use and the evidence is still being collected. No strategy here has been validated.
+            </p>
+          </div>
+          <div class="cs-note">
+            <h3>What this research does not claim</h3>
+            <ul class="qr-not">{notClaims.map((c) => <li>{c}</li>)}</ul>
+          </div>
+        </div>
+        <div class="jl-wrap cs-status__links">
+          <a class="cs-back cs-back--light" href="/#work">← Back to Selected Work</a>
+          <a class="jl-btn jl-btn--dark" href="/contact/">Discuss a project</a>
+        </div>
+      </section>
+    </main>
+    <HomeFooter base="/" />
+    <script>
+      // Reveal each section once it first appears (or has already been scrolled past).
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.cs-rise'));
+      const show = (el: Element) => el.classList.add('is-visible');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting || e.boundingClientRect.top < 0) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach(show);
+      }
+    </script>
+  </body>
+</html>

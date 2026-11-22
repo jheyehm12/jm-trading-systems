@@ -1,5 +1,19 @@
 ---
 import { homeNav } from '../../data/home';
+
+interface Props {
+  /** True on /contact/: in-page hash links point back to the homepage, and Contact marks the current page. */
+  onContact?: boolean;
+  /** True on other sub-pages (e.g. case studies): hash links point to the homepage, nothing is marked current. */
+  offHome?: boolean;
+}
+const { onContact = false, offHome = false } = Astro.props;
+const links = homeNav.map((item) => {
+  if (!onContact && !offHome) return { ...item, current: false };
+  if (offHome && item.href === '#contact') return { label: item.label, href: '/contact/', current: false };
+  if (item.href === '#contact') return { label: item.label, href: '/contact/', current: true };
+  return { ...item, href: `/${item.href}`, current: false };
+});
 ---
 
 <div class="jl-nav__backdrop" id="jl-nav-backdrop" data-open="false" aria-hidden="true"></div>
@@ -8,7 +22,7 @@ import { homeNav } from '../../data/home';
     <a href="/" class="jl-logo" aria-label="Jimeno Labs home"><span class="jl-logo__mark" aria-hidden="true">JM</span><span>Jimeno Labs</span></a>
 
     <ul class="jl-nav__links">
-      {homeNav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      {links.map((item) => <li><a href={item.href} aria-current={item.current ? 'page' : undefined}>{item.label}</a></li>)}
       <li><a href="/contact/" class="jl-btn jl-btn--primary jl-btn--sm">Let's Talk</a></li>
     </ul>
 
@@ -28,7 +42,7 @@ import { homeNav } from '../../data/home';
 
   <nav class="jl-nav__menu" id="jl-nav-menu" data-open="false" aria-label="Primary">
     <ul>
-      {homeNav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      {links.map((item) => <li><a href={item.href} aria-current={item.current ? 'page' : undefined}>{item.label}</a></li>)}
       <li><a href="/contact/">Let's Talk</a></li>
     </ul>
   </nav>

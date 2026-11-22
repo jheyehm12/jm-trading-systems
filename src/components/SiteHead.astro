@@ -20,7 +20,7 @@ const {
   path = '/',
 } = Astro.props;
 
-const pageTitle = title ? `${title} — ${siteBrand}` : siteBrand;
+const pageTitle = title ? `${title} — ${siteBrand}` : `${siteBrand} — AI Systems & Engineering Studio`;
 const canonical = new URL(path, siteUrl).href;
 ---
 

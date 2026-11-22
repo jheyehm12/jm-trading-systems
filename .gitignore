@@ -27,3 +27,6 @@ _aeon-template/
 
 # UI review screenshots (local QA evidence)
 docs/ui-review/
+
+# Unredacted original screenshot (contains internal identifiers). Never commit.
+docs/quant-research-experiment-tracking-authentic.webp

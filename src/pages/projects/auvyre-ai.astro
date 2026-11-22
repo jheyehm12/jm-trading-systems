@@ -1,0 +1,230 @@
+---
+import HomeFooter from '../../components/home/HomeFooter.astro';
+import HomeNav from '../../components/home/HomeNav.astro';
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import '../../styles/home.css';
+import '../../styles/case-study.css';
+
+const siteUrl = 'https://www.auvyreai.com';
+
+const meta = [
+  { k: 'Type', v: 'Client AI application, full-stack' },
+  { k: 'Status', v: 'Live client application' },
+  { k: 'Focus', v: 'AI integration, application architecture, quality engineering' },
+];
+
+const flow = [
+  { t: 'Submit', d: 'Users upload one to four chart screenshots, each assigned a role: primary, overview, higher timeframe, or entry.' },
+  { t: 'Analyze', d: 'A vision-capable AI model reads market structure, support and resistance, and timing from the screenshots.' },
+  { t: 'Structure', d: 'The result is validated on the server and saved as a structured record: decision, confidence band, bias, scenarios, and key levels.' },
+  { t: 'Contextualize', d: 'Delayed market indicators and an informational news view sit alongside the analysis as supporting context.' },
+];
+
+const engineering = [
+  ['Application', 'React and TypeScript front end with a serverless API layer, deployed on Vercel.'],
+  ['Data and access', 'Supabase for authentication, Postgres, and private screenshot storage, protected with row-level security.'],
+  ['Uploads', 'Screenshots go straight to private storage through server-issued, path-bound tokens. The server verifies every expected file before it creates an analysis record, and the browser cannot write results.'],
+  ['AI output', 'Model output is checked against a versioned schema. Evidence priority is enforced in server code, not only in the prompt, and indicators such as EMA and RSI are calculated by the backend rather than by the model.'],
+  ['Secrets', 'Provider keys and service credentials stay server-side and are never exposed to the browser.'],
+];
+
+const safeguards = [
+  'Unclear charts, conflicting timeframes, invalid model output, or missing trusted context resolve to WAIT, with an explanation written by the server.',
+  'Decision and confidence values are authoritative. Narrative text that contradicts them is corrected or rejected before it is shown.',
+  'Delayed market indicators are supporting context only. They can add caution but cannot create a direction.',
+  'News is informational and is never wired into the decision logic.',
+];
+
+const validation = [
+  'Automated unit tests for the analysis rules and validators.',
+  'Frozen calibration suites built from real chart fixtures, used as a regression check when rules or prompts change.',
+  'Preview QA before each release, followed by a production smoke test covering login, analysis flows, history, and access control.',
+];
+---
+
+<html lang="en">
+  <head>
+    <SiteHead
+      title="Auvyre AI"
+      description="Auvyre AI case study — an AI-powered futures chart analysis application with structured results, validation safeguards, and supporting market context."
+      path="/projects/auvyre-ai/"
+    />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="jl">
+    <HomeNav offHome />
+    <main id="main">
+      <!-- Hero -->
+      <section class="cs-hero" data-nav-theme="light">
+        <div class="jl-wrap cs-hero__grid">
+          <div class="cs-hero__lead">
+            <a class="cs-back cs-in" href="/#work" style="--d: 0s">← Back to Selected Work</a>
+            <p class="jl-eyebrow cs-eyebrow--deep cs-in" style="--d: 0.05s">Case study · 01</p>
+            <h1 class="cs-title cs-in" style="--d: 0.15s">Auvyre <em>AI</em></h1>
+            <p class="cs-lede cs-in" style="--d: 0.3s">
+              An AI-powered futures chart analysis application that turns chart screenshots into structured,
+              reviewable decision support.
+            </p>
+            <div class="cs-cta cs-in" style="--d: 0.45s">
+              <a class="jl-btn jl-btn--dark" href={siteUrl} target="_blank" rel="noreferrer">Visit auvyreai.com ↗</a>
+              <a class="jl-btn jl-btn--outline" href="/contact/">Discuss a project</a>
+            </div>
+          </div>
+          <dl class="cs-meta cs-in" style="--d: 0.4s">
+            {meta.map((m) => <div><dt>{m.k}</dt><dd>{m.v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Overview / Problem / Solution -->
+      <section class="cs-dark" data-nav-theme="dark">
+        <div class="jl-wrap">
+          <div class="cs-row cs-rise">
+            <span class="cs-num" aria-hidden="true">01</span>
+            <div>
+              <p class="jl-eyebrow">Overview</p>
+              <h2 class="jl-h2">Chart analysis, organized.</h2>
+            </div>
+            <p class="cs-body">
+              Auvyre AI is a live client application. Users submit chart screenshots for NQ and MGC futures and receive a
+              structured result: a BUY, SELL, or WAIT decision, a confidence band, market structure, key levels, and the
+              reasoning behind them. It is decision support for review, not trade execution.
+            </p>
+          </div>
+
+          <div class="cs-row cs-rise">
+            <span class="cs-num" aria-hidden="true">02</span>
+            <div>
+              <p class="jl-eyebrow">Problem</p>
+              <h2 class="jl-h2">Reading a chart is subjective.</h2>
+            </div>
+            <p class="cs-body">
+              Interpreting several timeframes by hand is inconsistent, and free-form commentary is hard to compare from one
+              chart to the next. The client needed organized analytical output that is consistent, traceable, and honest
+              about uncertainty.
+            </p>
+          </div>
+
+          <div class="cs-row cs-rise">
+            <span class="cs-num" aria-hidden="true">03</span>
+            <div>
+              <p class="jl-eyebrow">Solution</p>
+              <h2 class="jl-h2">From screenshot to structured result.</h2>
+            </div>
+            <ol class="cs-flow">
+              {flow.map((f, i) => (
+                <li>
+                  <span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <div><h3>{f.t}</h3><p>{f.d}</p></div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visual evidence -->
+      <section class="cs-evidence" data-nav-theme="dark" aria-labelledby="cs-evidence-h">
+        <div class="jl-wrap">
+          <figure class="cs-fig cs-rise">
+            <div class="cs-fig__frame">
+              <img
+                src="/images/projects/auvyre/auvyre-ai-analysis-homepage.webp"
+                width="1375"
+                height="777"
+                loading="lazy"
+                alt="Auvyre AI analysis result screen for an MGC chart review, showing the submitted chart images and a result snapshot with bias, confidence, and decision."
+              />
+            </div>
+            <figcaption>
+              <p class="jl-eyebrow" id="cs-evidence-h">Visual evidence</p>
+              <p>
+                The analysis result screen: submitted charts on the left, with the result snapshot and traceability
+                details alongside. Screenshot used with client approval.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Engineering -->
+      <section class="cs-light" data-nav-theme="light">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow cs-eyebrow--deep">Engineering</p>
+            <h2 class="jl-h2">Built so the server owns the result.</h2>
+          </div>
+          <dl class="cs-defs">
+            {engineering.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <!-- Quality -->
+      <section class="cs-dark cs-dark--q" data-nav-theme="dark">
+        <div class="jl-wrap cs-split cs-rise">
+          <div class="cs-split__head">
+            <p class="jl-eyebrow">Quality &amp; validation</p>
+            <h2 class="jl-h2">Safe rejection over forced answers.</h2>
+            <p class="cs-body">
+              Quality engineering shaped the product rules. When the evidence is weak or inconsistent, the system chooses
+              WAIT instead of guessing a direction.
+            </p>
+          </div>
+          <div class="cs-q">
+            <h3>Analysis safeguards</h3>
+            <ul>{safeguards.map((s) => <li>{s}</li>)}</ul>
+            <h3>Testing practice</h3>
+            <ul>{validation.map((s) => <li>{s}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status + decision support -->
+      <section class="cs-light cs-status" data-nav-theme="light">
+        <div class="jl-wrap cs-status__grid cs-rise">
+          <div>
+            <p class="jl-eyebrow cs-eyebrow--deep">Current status</p>
+            <p class="cs-status__big">Live client application.</p>
+            <p class="cs-body cs-body--light">
+              Auvyre AI is in production. News &amp; Earnings Calendar v1 is deployed; expanded economic-calendar coverage remains deferred due to provider limitations.
+            </p>
+          </div>
+          <div class="cs-note">
+            <h3>Decision support, not automated trading</h3>
+            <p>
+              Auvyre AI does not place orders, connect to brokers, or trade automatically. Its output is educational
+              decision support, and it makes no claim about trading performance.
+            </p>
+          </div>
+        </div>
+        <div class="jl-wrap cs-status__links">
+          <a class="cs-back cs-back--light" href="/#work">← Back to Selected Work</a>
+          <a class="jl-btn jl-btn--dark" href={siteUrl} target="_blank" rel="noreferrer">Visit auvyreai.com ↗</a>
+        </div>
+      </section>
+    </main>
+    <HomeFooter base="/" />
+    <script>
+      // Reveal each section once it first appears (or has already been scrolled past).
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.cs-rise'));
+      const show = (el: Element) => el.classList.add('is-visible');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting || e.boundingClientRect.top < 0) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach(show);
+      }
+    </script>
+  </body>
+</html>
